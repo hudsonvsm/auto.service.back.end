@@ -8,9 +8,13 @@ use Mladenov\Config;
 use Mladenov\IController;
 use App\Model\RepairCardData as Model;
 use Mladenov\IDatabase;
+use Mladenov\JsonView;
+use Mladenov\View;
 
 class RepairCardData implements IController
 {
+    use ReflectionShortName;
+
     private $model;
 
     public function __construct(IDatabase $db)
@@ -34,7 +38,13 @@ class RepairCardData implements IController
 
         $out['count'] = $out['count'][0]['count'];
 
-        return json_encode($out);
+        switch ($params['returnDataType']) {
+            case 'json':
+                return JsonView::render($out);
+            case null;
+                $view = new View(ReflectionShortName::getClassShortName(__CLASS__), 'index', $out);
+                $view->render();
+        }
     }
 
     public function getItem($id)

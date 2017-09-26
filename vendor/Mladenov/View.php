@@ -12,11 +12,19 @@ class View
 {
     private $content;
     protected $templatePath;
-    private $data;
+    private $response;
 
-    public function __construct(string $folderName, string $fileName, array $data)
+    /**
+     * @return array
+     */
+    public function getResponse() : array
     {
-        $this->data = $data;
+        return $this->response;
+    }
+
+    public function __construct(string $folderName, string $fileName, array $response)
+    {
+        $this->response = $response;
 
         $this->templatePath = Config::getProperty('templatePath')
             . strtolower($folderName)
@@ -45,7 +53,7 @@ class View
         if (file_exists($file)) {
             include_once $file;
         } else {
-            echo $this->content;
+            return $this->content;
         }
     }
 
@@ -56,5 +64,9 @@ class View
         if (file_exists($file)) {
             include $file;
         }
+    }
+
+    function camelCaseToHyphen(string $string) {
+        return strtolower(preg_replace('/([a-zA-Z])(?=[A-Z])/', '$1-', $string));
     }
 }

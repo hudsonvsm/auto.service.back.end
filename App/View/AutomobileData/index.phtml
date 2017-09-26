@@ -1,0 +1,31 @@
+<?php $response = $this->getResponse(); ?>
+
+<table class="table table-hover-custom table-responsive table-bordered table-striped">
+  <thead>
+    <tr>
+      <?php foreach ($response['data'][0] as $key => $column) { ?>
+      <th><?= $key ?></th>
+      <?php } ?>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr>
+      <td colspan="<?= count($response['data'][0]->getColumns()) ?>"><?php $this->loadPartial('pagination'); ?></td>
+    </tr>
+  </tfoot>
+  <tbody>
+    <?php foreach ($response['data'] as $row) { ?>
+      <tr
+        <?php foreach ($row as $key => $column) { ?>
+        data-<?= $this->camelCaseToHyphen($key); ?>="<?= $column; ?>"
+        <?php } ?>
+      >
+        <?php foreach ($row as $key => $column) { ?>
+          <td><?= $column; ?></td>
+        <?php } ?>
+      </tr>
+    <?php } ?>
+  </tbody>
+</table>
+
+<?php $this->loadPartial('automobileAddEdit'); ?>

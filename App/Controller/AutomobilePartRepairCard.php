@@ -2,11 +2,11 @@
 
 namespace App\Controller;
 
-use App\Model\GeneralModel;
 use Mladenov\Config;
 use Mladenov\IController;
 use App\Model\AutomobilePartRepairCard as Model;
 use Mladenov\IDatabase;
+use Mladenov\JsonView;
 
 class AutomobilePartRepairCard implements IController
 {
@@ -33,7 +33,7 @@ class AutomobilePartRepairCard implements IController
 
         $out['count'] = $out['count'][0]['count'];
 
-        return json_encode($out);
+        return JsonView::render($out);
     }
 
     public function getItem($id)
@@ -49,13 +49,5 @@ class AutomobilePartRepairCard implements IController
     public function updateItem($id, $params)
     {
         return $this->model->updateItem($id, $params);
-    }
-
-    /**
-     * @return \App\Model\GeneralModel
-     */
-    public function getModel() : GeneralModel
-    {
-        return $this->model;
     }
 }

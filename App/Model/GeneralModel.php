@@ -96,7 +96,9 @@ abstract class GeneralModel extends AbstractModel
                 $params['searchBy'] => $params['search'],
             ];
 
-        return parent::findByFilters($this->getTableName(), $this->getColumns(), $limits, $sort, $search, 'LIKE');
+        $result = parent::findByFilters($this->getTableName(), $this->getColumns(), $limits, $sort, $search, 'LIKE');
+
+        return $this->assignReturnValuesToObject($result);
     }
 
     /**
@@ -129,6 +131,8 @@ abstract class GeneralModel extends AbstractModel
      */
     public function insertNewItem(array $params)
     {
+        $allowedParams = [];
+
         foreach ($params as $key => $param) {
             if(in_array($key, $this->getColumns())) {
                 $allowedParams[$key] = $param;
@@ -146,6 +150,8 @@ abstract class GeneralModel extends AbstractModel
      */
     public function updateItem(string $id, array $params)
     {
+        $allowedParams = [];
+
         foreach ($params as $key => $param) {
             if(in_array($key, $this->getColumns())) {
                 $allowedParams[$key] = $param;
@@ -163,5 +169,30 @@ abstract class GeneralModel extends AbstractModel
     public function deleteItem(string $id)
     {
         return parent::delete($this->getTableName(), $id);
+    }
+
+    /**
+     * @param $result
+     *
+     * @return array
+     */
+    protected function assignReturnValuesToObject($result) : array
+    {
+        $out = [];
+        foreach ($result as $entity) {
+            $class = get_called_class();
+
+            $outClass = new $class($this->getDb(), $this->getTableName(), $entity);
+
+            foreach ($entity as $key => $value) {
+                $ormKey = lcfirst(str_replace('_', '', ucwords($key, '_')));
+
+                $outClass->{$ormKey} = $value;
+            }
+
+            $out[] = $outClass;
+        }
+
+        return $out;
     }
 }

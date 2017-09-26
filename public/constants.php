@@ -5,7 +5,7 @@ define('DS', DIRECTORY_SEPARATOR);
 define('ROOT_DIR', __DIR__ . DS . '..');
 define('VIEW_DIR', ROOT_DIR . DS . 'App' . DS . 'View' . DS);
 
-//define('OPERATOR_URL_NOPROTOCOL', '//' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF'])  );
+define('OPERATOR_URL_NOPROTOCOL', '//' . $_SERVER['HTTP_HOST'] . dirname(str_replace("public", "", $_SERVER['PHP_SELF'])));
 
 define('DB_TABLE_AUTOMOBILE', 'automobile');
 define('DB_TABLE_AUTOMOBILE_BRAND', 'automobile_brand');

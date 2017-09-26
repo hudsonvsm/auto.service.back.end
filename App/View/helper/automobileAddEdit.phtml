@@ -1,0 +1,40 @@
+<!-- Modal -->
+<div class="modal fade" id="bidding-popup-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content bidding-popup">
+
+            <form method="post" id="new_bidding" action="#">
+                <div class="modal-header">
+                    <div class="clearfix">
+                        <span class="col-xs-6 title-container"><span class="title"></span></span>
+                        <span class="col-xs-4 deadline-container">
+            <img src="<?php //echo $this->getPublicUrl(); ?>/img/clock.png">
+            <span class="deadline"></span>
+          </span>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="bidding-reason-fail hidden alert alert-danger fade in alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <span></span>
+                    </div>
+                    <h1 class="clearfix">
+                        <span class="current-price"></span>
+                        <img class="disable-bid bid-decrease" src="<?php //echo $this->getPublicUrl(); ?>/img/minus.png">
+                        <img class="bid-increase" src="<?php //echo $this->getPublicUrl(); ?>/img/plus.png">
+                    </h1>
+                </div>
+                <div class="modal-footer">
+                    <span class="price-step-container">Стъпка на наддаване: <span class="price-step"></span> лв.</span>
+                    <div class="send-buttons clearfix">
+                        <input class="disable-bid btn btn-primary" type="submit" value="Потвърждавам" name="commit" id="bid-submit"/>
+                        <button type="button" class="bid-close btn btn-danger" data-dismiss="modal">Откажи</button>
+                    </div>
+                    <div class="bidding-loading">
+                        <img src="<?php //echo $this->getPublicUrl(); ?>/img/loading.gif">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

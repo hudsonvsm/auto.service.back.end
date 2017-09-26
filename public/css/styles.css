@@ -1,0 +1,7 @@
+.active.disable {
+    pointer-events: none;
+}
+
+.table-hover-custom tbody tr:hover {
+    background-color: rgba(0,150,150,.175) !important;
+}

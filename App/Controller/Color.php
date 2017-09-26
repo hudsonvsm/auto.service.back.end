@@ -2,11 +2,12 @@
 
 namespace App\Controller;
 
-use App\Model\GeneralModel;
+use App\Exceptions\ControllerException;
 use Mladenov\Config;
 use Mladenov\IController;
 use App\Model\Color as Model;
 use Mladenov\IDatabase;
+use Mladenov\JsonView;
 
 class Color implements IController
 {
@@ -33,12 +34,12 @@ class Color implements IController
 
         $out['count'] = $out['count'][0]['count'];
 
-        return json_encode($out);
+        return JsonView::render($out);
     }
 
     public function getItem($id)
     {
-        return json_encode($this->model->getOne($id));
+        return JsonView::render([ 'result' => $this->model->getOne($id) ]);
     }
 
     public function deleteItem($id)
@@ -49,13 +50,5 @@ class Color implements IController
     public function updateItem($id, $params)
     {
         throw new ControllerException("Unsupported Request method: Forbidden.");
-    }
-
-    /**
-     * @return \App\Model\GeneralModel
-     */
-    public function getModel() : GeneralModel
-    {
-        return $this->model;
     }
 }

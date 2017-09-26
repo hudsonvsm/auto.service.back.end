@@ -2,11 +2,11 @@
 
 namespace App\Controller;
 
-use App\Model\GeneralModel;
 use Mladenov\Config;
 use Mladenov\IController;
 use App\Model\Automobile as Model;
 use Mladenov\IDatabase;
+use Mladenov\JsonView;
 
 class Automobile implements IController
 {
@@ -19,17 +19,9 @@ class Automobile implements IController
         $this->model = new Model($db, DB_TABLE_AUTOMOBILE, $dbTableColumns[DB_TABLE_AUTOMOBILE]);
     }
 
-    /**
-     * @return \App\Model\GeneralModel
-     */
-    public function getModel() : GeneralModel
-    {
-        return $this->model;
-    }
-
     public function addItem($params)
     {
-        return $this->model->insertNewItem($params);
+        return JsonView::render([ 'result' => $this->model->insertNewItem($params) ]);
     }
 
     public function getCollection(array $params)
@@ -41,21 +33,27 @@ class Automobile implements IController
 
         $out['count'] = $out['count'][0]['count'];
 
-        return json_encode($out);
+        switch ($params['returnDataType']) {
+            case 'json':
+                return JsonView::render($out);
+            case null;
+                $view = new VieW('error404', 'index', $out);
+                $view->render();
+        }
     }
 
     public function getItem($id)
     {
-        return json_encode($this->model->getOne($id));
+        return JsonView::render($this->model->getOne($id));
     }
 
     public function deleteItem($id)
     {
-        return $this->model->deleteItem($id);
+        return JsonView::render([ 'result' => $this->model->deleteItem($id) ]);
     }
 
     public function updateItem($id, $params)
     {
-        return $this->model->updateItem($id, $params);
+        return JsonView::render([ 'result' => $this->model->updateItem($id, $params) ]);
     }
 }

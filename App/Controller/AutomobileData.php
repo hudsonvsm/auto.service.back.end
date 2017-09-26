@@ -2,14 +2,18 @@
 
 namespace App\Controller;
 
-use App\Model\GeneralModel;
+use App\Exceptions\ControllerException;
 use Mladenov\Config;
 use Mladenov\IController;
 use App\Model\AutomobileData as Model;
 use Mladenov\IDatabase;
+use Mladenov\JsonView;
+use Mladenov\View;
 
 class AutomobileData implements IController
 {
+    use ReflectionShortName;
+
     private $model;
 
     public function __construct(IDatabase $db)
@@ -33,12 +37,18 @@ class AutomobileData implements IController
 
         $out['count'] = $out['count'][0]['count'];
 
-        return json_encode($out);
+        switch ($params['returnDataType']) {
+            case 'json':
+                return JsonView::render($out);
+            case null;
+                $view = new View(ReflectionShortName::getClassShortName(__CLASS__), 'index', $out);
+                $view->render();
+        }
     }
 
     public function getItem($id)
     {
-        return json_encode($this->model->getOne($id));
+        return JsonView::render($this->model->getOne($id));
     }
 
     public function deleteItem($id)
@@ -49,14 +59,5 @@ class AutomobileData implements IController
     public function updateItem($id, $params)
     {
         throw new ControllerException("Unsupported Request method: Forbidden.");
-    }
-
-
-    /**
-     * @return \App\Model\GeneralModel
-     */
-    public function getModel() : GeneralModel
-    {
-        return $this->model;
     }
 }

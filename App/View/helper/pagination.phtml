@@ -1,0 +1,31 @@
+<?php
+$response = $this->getResponse();
+
+$url = OPERATOR_URL_NOPROTOCOL . '/' . $response['params']['params'];
+
+$previousStart = $response['params']['start'] - $response['params']['count'];
+if ($previousStart < 0) $previousStart = 0;
+
+$nextStart = $response['params']['start'] + $response['params']['count'];
+
+$counter = (int)ceil($response['count'] / $response['params']['count']);
+?>
+<nav>
+  <ul class="pagination pagination-lg justify-content-left">
+    <li class="page-item <?php if ($previousStart === (int)$response['params']['start']) echo 'disabled'; ?>">
+      <a class="page-link previous" href="<?= $url ?>?start=<?= $previousStart ?>&count=<?= $response['params']['count']; ?>" >&lt;</a>
+    </li>
+    <?php for ($i = 0; $i < $counter; $i++) { ?>
+    <li class="page-item <?php
+    if (($i * $response['params']['count']) === (int)$response['params']['start']) {
+        echo 'active disable';
+    }
+    ?>">
+      <a class="page-link " href="<?= $url ?>?start=<?= 0 + $i * $response['params']['count']; ?>&count=<?= $response['params']['count']; ?>"><?= $i + 1; ?></a>
+    </li>
+    <?php } ?>
+    <li class="page-item <?php if ($nextStart >= $response['count']) echo 'disabled'; ?>">
+      <a class="page-link next" href="<?= $url ?>?start=<?= $nextStart ?>&count=<?= $response['params']['count']; ?>" >&gt;</a>
+    </li>
+  </ul>
+</nav>

@@ -2,43 +2,39 @@
 
 namespace App;
 
-use App\Controller\Error404;
+use App\Controller\ErrorController;
 use App\Exceptions\ControllerException;
+use App\Exceptions\RouterException;
 use Mladenov\Config;
 use Mladenov\IController;
-use Mladenov\View;
 
 class Router
 {
-    static function route() : void
+    static function route()
     {
         try {
-            // TODO build response object
-            header('Content-Type: application/json');
-
             switch ($_SERVER['REQUEST_METHOD']) {
                 case 'POST':
-                    $out['result'] = (self::post()) ? 'true' : 'false';
-                    die(json_encode($out));
+                    die(self::post());
                 case 'PATCH':
-                    $out['result'] = self::patch() ? 'true' : 'false';
-                    die(json_encode($out));
+                    die(self::patch());
                 case 'DELETE':
-                    $out['result'] = self::delete() ? 'true' : 'false';
-                    die(json_encode($out));
+                    die(self::delete());
                 case 'GET':
                     die(self::get());
                     break;
                 case 'PUT':
                 default:
-                    self::dieWithError('Unsupported Request method: ' . $_SERVER['REQUEST_METHOD']);
+                    ErrorController::showErrorPage('Unsupported Request method: ' . $_SERVER['REQUEST_METHOD']);
             }
         } catch (ControllerException $e) {
-            self::dieWithError($e->getMessage());
+            ErrorController::showErrorPage($e->getMessage());
+        } catch (RouterException $e) {
+            ErrorController::showErrorPage($e->getMessage());
         }
     }
 
-    private static function get() : string
+    private static function get()
     {
         $parameters = explode('/', filter_input(INPUT_GET, 'params', FILTER_SANITIZE_MAGIC_QUOTES));
 
@@ -50,27 +46,28 @@ class Router
             case count($parameters) === 2:
                 return self::getEntity($controller, $parameters[1]);
             default:
-                self::dieWithError('Unknown controller method.');
+                throw new RouterException('Unknown controller method.');
         }
     }
 
-    private static function post() : bool
+    private static function post() : string
     {
         $parameters = explode('/', filter_input(INPUT_GET, 'params', FILTER_SANITIZE_MAGIC_QUOTES));
 
         if (count($parameters) > 1) {
-            self::dieWithError('Too many GET parameters.');
+            throw new RouterException('Too many GET parameters.');
         };
 
         $controller = self::loadController($parameters[0]);
 
-        $params['description'] = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_MAGIC_QUOTES);
+        //$params['description'] = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_MAGIC_QUOTES);
 
         $postParams = $_POST;
         if (empty($postParams)) {
             $postParams = json_decode(file_get_contents('php://input'), true);
         }
 
+        $params = [];
         foreach ($postParams as $key => $value) {
             $params[$key] = filter_var($postParams[$key], FILTER_SANITIZE_MAGIC_QUOTES);
         }
@@ -78,7 +75,7 @@ class Router
         return $controller->addItem($params);
     }
 
-    private static function delete() : bool
+    private static function delete() : string
     {
         $parameters = explode('/', filter_input(INPUT_GET, 'params', FILTER_SANITIZE_MAGIC_QUOTES));
 
@@ -87,7 +84,7 @@ class Router
         return $controller->deleteItem($parameters[1]);
     }
 
-    private static function patch() : bool
+    private static function patch() : string
     {
         $updateParams = json_decode(file_get_contents('php://input'),true);
 
@@ -108,17 +105,18 @@ class Router
             return new $controllerName($dbDriver::getInstance($db));
         }
 
-        self::dieWithError('No such controller.');
+        throw new RouterException('No such controller.');
     }
 
-    private static function getCollection(IController $controller) : string
+    private static function getCollection(IController $controller)
     {
         $basicConfigs = Config::getProperty('basicGet');
 
-        $params = $basicConfigs;
+        $params = $basicConfigs[$_GET['params']];
         foreach ($_GET as $key => $value) {
             $params[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_MAGIC_QUOTES);
         }
+
 
         return $controller->getCollection($params);
     }
@@ -126,16 +124,5 @@ class Router
     private static function getEntity(IController $controller, string $id) : string
     {
         return $controller->getItem($id);
-    }
-
-    private static function dieWithError(string $message)
-    {
-
-        header('Content-Type: text/html');
-        $error = array('error'=> $message);
-
-        $view = new View('error404', 'index', $error);
-        $view->render();
-        die();
     }
 }

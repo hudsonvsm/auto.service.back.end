@@ -2,11 +2,12 @@
 
 namespace App\Controller;
 
-use App\Model\GeneralModel;
 use Mladenov\Config;
 use Mladenov\IController;
 use App\Model\AutomobileBrandModel as Model;
 use Mladenov\IDatabase;
+use Mladenov\JsonView;
+use Mladenov\View;
 
 class AutomobileBrandModel implements IController
 {
@@ -33,12 +34,18 @@ class AutomobileBrandModel implements IController
 
         $out['count'] = $out['count'][0]['count'];
 
-        return json_encode($out);
+        switch ($params['returnDataType']) {
+            case 'json':
+                return JsonView::render($out);
+            case null;
+                $view = new View('error404', 'index', $out);
+                $view->render();
+        }
     }
 
     public function getItem($id)
     {
-        return json_encode($this->model->getOne($id));
+        return JsonView::render($this->model->getOne($id));
     }
 
     public function deleteItem($id)
@@ -49,13 +56,5 @@ class AutomobileBrandModel implements IController
     public function updateItem($id, $params)
     {
         return $this->model->updateItem($id, $params);
-    }
-
-    /**
-     * @return \App\Model\GeneralModel
-     */
-    public function getModel() : GeneralModel
-    {
-        return $this->model;
     }
 }

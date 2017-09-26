@@ -13,6 +13,4 @@ interface IController
     function deleteItem($id);
 
     function updateItem($id, $params);
-
-    function getModel();
 }
