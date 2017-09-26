@@ -8,7 +8,7 @@ return [
     ],
     'RepairCardData' => [
         'start' => 0,
-        'count' => 5,
+        'count' => 4,
         'sortBy' => 'id',
         'sortDirection' => 'ASC',
     ],

@@ -5,3 +5,7 @@
 .table-hover-custom tbody tr:hover {
     background-color: rgba(0,150,150,.175) !important;
 }
+
+table.RepairCardData {
+    font-size: 0.77rem;
+}
