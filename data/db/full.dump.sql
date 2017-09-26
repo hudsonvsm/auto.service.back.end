@@ -1,7 +1,7 @@
 SET FOREIGN_KEY_CHECKS=0;
 
 -- Dumping database structure for auto_service
-CREATE DATABASE IF NOT EXISTS `auto_service` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE IF NOT EXISTS `auto_service`;
 USE `auto_service`;
 
 -- Дъмп структура за таблица auto_service.automobile
@@ -61,7 +61,6 @@ CREATE TABLE IF NOT EXISTS `automobile_brand_model` (
 
 -- Дъмп данни за таблица auto_service.automobile_brand_model: ~6 rows (approximately)
 DELETE FROM `automobile_brand_model`;
-/*!40000 ALTER TABLE `automobile_brand_model` DISABLE KEYS */;
 INSERT INTO `automobile_brand_model` (`id`, `name`, `brand_id`) VALUES
 	(1, 'Аурис', 1),
 	(2, 'Приус', 1),
@@ -69,7 +68,6 @@ INSERT INTO `automobile_brand_model` (`id`, `name`, `brand_id`) VALUES
 	(4, 'Сивик', 2),
 	(5, '500СЛ', 3),
 	(6, '350Г', 3);
-/*!40000 ALTER TABLE `automobile_brand_model` ENABLE KEYS */;
 
 -- Дъмп структура за view auto_service.automobile_data
 -- Creating temporary table to overcome VIEW dependency errors
