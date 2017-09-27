@@ -3,24 +3,28 @@
 <table class="<?= $response['params']['params']; ?> table table-hover-custom table-responsive table-bordered table-striped">
   <thead>
   <tr>
-      <?php foreach ($response['data'][0] as $key => $column) { ?>
-        <th><?= $key ?></th>
+      <?php foreach ($response['data'][0] as $key => $column) {
+          if ($key === 'id') continue;  ?>
+        <th><?= $key; ?></th>
       <?php } ?>
   </tr>
   </thead>
   <tfoot>
   <tr>
-    <td colspan="<?= count($response['data'][0]->getColumns()) ?>"><?php $this->loadPartial('pagination'); ?></td>
+    <td colspan="<?= count($response['data'][0]->getColumns()) - 1; ?>"><?php $this->loadPartial('pagination'); ?></td>
   </tr>
   </tfoot>
-  <tbody>
+  <tbody class="row-element">
   <?php foreach ($response['data'] as $row) { ?>
-    <tr class="edit"
+    <tr class="edit-row"
+        data-toggle="modal"
+        data-target="#add-edit-popup-modal"
         <?php foreach ($row as $key => $column) { ?>
           data-<?= $this->camelCaseToHyphen($key); ?>="<?= $column; ?>"
         <?php } ?>
     >
-        <?php foreach ($row as $key => $column) { ?>
+        <?php foreach ($row as $key => $column) {
+            if ($key === 'id') continue; ?>
           <td><?= $column; ?></td>
         <?php } ?>
     </tr>

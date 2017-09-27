@@ -9,3 +9,7 @@
 table.RepairCardData {
     font-size: 0.77rem;
 }
+
+textarea.desc-textarea {
+    width: 70% !important;
+}

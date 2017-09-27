@@ -18,4 +18,10 @@ return [
         'sortBy' => 'id',
         'sortDirection' => 'ASC',
     ],
+    'AutomobileDataConnections' => [
+        'start' => 0,
+        'count' => 1000,
+        'sortBy' => 'id',
+        'sortDirection' => 'ASC',
+    ],
 ];

@@ -1,40 +1,81 @@
 <!-- Modal -->
-<div class="modal fade" id="bidding-popup-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content bidding-popup">
-
-            <form method="post" id="new_bidding" action="#">
-                <div class="modal-header">
-                    <div class="clearfix">
-                        <span class="col-xs-6 title-container"><span class="title"></span></span>
-                        <span class="col-xs-4 deadline-container">
-            <img src="<?php //echo $this->getPublicUrl(); ?>/img/clock.png">
-            <span class="deadline"></span>
-          </span>
-                    </div>
-                </div>
-                <div class="modal-body">
-                    <div class="bidding-reason-fail hidden alert alert-danger fade in alert-dismissable">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        <span></span>
-                    </div>
-                    <h1 class="clearfix">
-                        <span class="current-price"></span>
-                        <img class="disable-bid bid-decrease" src="<?php //echo $this->getPublicUrl(); ?>/img/minus.png">
-                        <img class="bid-increase" src="<?php //echo $this->getPublicUrl(); ?>/img/plus.png">
-                    </h1>
-                </div>
-                <div class="modal-footer">
-                    <span class="price-step-container">Стъпка на наддаване: <span class="price-step"></span> лв.</span>
-                    <div class="send-buttons clearfix">
-                        <input class="disable-bid btn btn-primary" type="submit" value="Потвърждавам" name="commit" id="bid-submit"/>
-                        <button type="button" class="bid-close btn btn-danger" data-dismiss="modal">Откажи</button>
-                    </div>
-                    <div class="bidding-loading">
-                        <img src="<?php //echo $this->getPublicUrl(); ?>/img/loading.gif">
-                    </div>
-                </div>
-            </form>
+<div class="modal fade" id="add-edit-popup-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content bidding-popup">
+      <form method="post" id="add-edit-element" action="#">
+        <div class="modal-header">
+          <div class="clearfix">
+            <h5 class="col-xs-6 title-container"><span class="title">Автомобил</span></h5>
+          </div>
         </div>
+        <div class="modal-body">
+          <div hidden class="bidding-reason-fail  alert alert-danger fade in alert-dismissable">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <span></span>
+          </div>
+          <div class="form-group row clearfix">
+            <label class="input-group-addon" for="license-number">Регистрационен номер</label>
+            <input type="text"  id="license-number" placeholder="Регистрационен номер">
+          </div>
+
+          <div class="form-group row clearfix">
+            <label class="input-group-addon" for="brand">Марка</label>
+            <select id="brand"></select>
+            <span class="btn btn-success input-group-addon add-new-brand"
+                  data-toggle="modal"
+                  data-target="#add-new-brand-modal">+</span>
+            <label class="input-group-addon" for="brand-model">Модел</label>
+            <select id="brand-model"></select>
+            <span class="btn btn-success input-group-addon add-new-brand-model"
+                  data-toggle="modal"
+                  data-target="#add-new-brand-model-modal">+</span>
+            <label class="input-group-addon" for="year-of-production">Година на производство</label>
+            <input type="number" min="1950" max="2017" id="year-of-production">
+          </div>
+          <div class="form-group row clearfix">
+            <label class="input-group-addon" for="engine-number">Номер на Двигател</label>
+            <input type="text" id="engine-number" placeholder="Двигател">
+            <label class="input-group-addon" for="vin-number">Номер на рама</label>
+            <input type="text" id="vin-number" placeholder="Рама">
+          </div>
+          <div class="form-group row clearfix">
+            <label class="input-group-addon" for="color">Цвят</label>
+            <select id="color"></select>
+            <span class="btn btn-success input-group-addon add-new-color"
+                  data-toggle="modal"
+                  data-target="#add-new-color-modal">+</span>
+            <label class="input-group-addon" for="engine-capacity">Работен обем</label>
+            <input type="number" min="0" max="9999" id="engine-capacity" placeholder="Работен обем">
+            <label class="input-group-addon" for="engine-capacity">cc</label>
+            <label class="input-group-addon" for="client">Собственик</label>
+            <select id="client" ></select>
+            <span class="btn btn-success input-group-addon add-new-client "
+                    data-toggle="modal"
+                    data-target="#add-new-client-modal">+</span>
+          </div>
+          <div class="form-group row clearfix">
+            <label class="input-group-addon" for="description">Описание</label>
+            <textarea id="description" class="desc-textarea" placeholder="Описание"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="send-buttons clearfix">
+            <input class="btn btn-primary" type="submit" value="Потвърждавам" name="commit" id="submit"/>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Откажи</button>
+          </div>
+          <div hidden class="bidding-loading">
+            <img src="<?= OPERATOR_URL_NOPROTOCOL; ?>/public/img/loading.gif">
+          </div>
+        </div>
+      </form>
     </div>
-</div>
+  </div>
+<?php
+$this->loadPartial('addNewClientModal');
+
+$this->loadPartial('addNewColorModal');
+
+$this->loadPartial('addNewBrandModal');
+
+$this->loadPartial('addNewBrandModelModal');
+?></div>
