@@ -21,7 +21,7 @@ class AutomobilePartRepairCard implements IController
 
     public function addItem($params)
     {
-        return $this->model->insertNewItem($params);
+        return JsonView::render($this->model->insertNewItem($params));
     }
 
     public function getCollection(array $params)

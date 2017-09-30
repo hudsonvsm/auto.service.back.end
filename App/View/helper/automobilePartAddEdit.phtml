@@ -1,0 +1,33 @@
+<!-- Automobile Modal -->
+<script src="<?= OPERATOR_URL_NOPROTOCOL . '/public/js/';?>AutomobilePartAddEdit.js"></script>
+
+<div class="modal fade" id="add-edit-popup-modal" tabindex="-1" role="dialog" >
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content bidding-popup">
+      <form method="post" id="add-edit-automobile-part" action="#">
+        <div class="modal-header">
+          <div class="clearfix">
+            <h5 class="col-xs-6 title-container"><span class="title">Автомобил</span></h5>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="form-group row clearfix">
+            <label class="input-group-addon" for="name">Име</label>
+            <input type="text" id="name" placeholder="Част">
+            <label class="input-group-addon" for="price">Цена</label>
+            <input type="number" min="1" step="any" id="price" placeholder="Цена">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="send-buttons clearfix">
+            <input class="btn btn-primary" type="submit" value="Потвърждавам" name="commit" id="submit"/>
+            <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="add-edit-popup-modal">Откажи</button>
+          </div>
+          <div hidden class="bidding-loading">
+            <img src="<?= OPERATOR_URL_NOPROTOCOL; ?>/public/img/loading.gif">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

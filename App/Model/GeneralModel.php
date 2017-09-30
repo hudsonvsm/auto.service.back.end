@@ -127,9 +127,9 @@ abstract class GeneralModel extends AbstractModel
     /**
      * @param array $params
      *
-     * @return bool
+     * @return array
      */
-    public function insertNewItem(array $params)
+    public function insertNewItem(array $params) : array
     {
         $allowedParams = [];
 
@@ -139,7 +139,7 @@ abstract class GeneralModel extends AbstractModel
             }
         }
 
-        return parent::insert($this->getTableName(), $allowedParams);
+        return parent::addEntry($this->getTableName(), $allowedParams);
     }
 
     /**

@@ -1,204 +1,102 @@
 $(document).ready(function() {
-    $('#add-edit-popup-modal').on('show.bs.modal', function (e) {
-        var jqXHR = $.get({ url: 'http://localhost/auto.service.back.end/AutomobileDataConnections' })
-        .done(ajaxSuccess)
-            .fail()
-            .always();
+    $('#add-edit-popup-modal').off().on('show.bs.modal', function (e) {
+        $.getJSON({ url: URL + '/AutomobileDataConnections' }).done(function (data, textStatus, jqXHR) {
+            var addEditElementData = $('#add-edit-automobile').data();
 
-        console.log(jqXHR);
+            $('#license_number').val(addEditElementData.licenseNumber);
+            $('#year_of_production').val(addEditElementData.yearOfProduction);
+            $('#engine_number').val(addEditElementData.engineNumber);
+            $('#vin_number').val(addEditElementData.vinNumber);
+            $('#engine_capacity').val(addEditElementData.engineCapacity);
+            $('#description').val(addEditElementData.automobileDescription);
+
+            var brandSelect = $('#brand');
+            brandSelect.html('');
+            appendNewOptionToSelect(brandSelect, {}, '', 'Избери', true);
+            $.each(data.brands, function (i, brand) {
+                var selected = false;
+                if(brand.name === addEditElementData.brand) selected = true;
+
+                appendNewOptionToSelect(brandSelect, brand, brand.id, brand.name, selected);
+            });
+
+            var selectedBrand = brandSelect.find(":selected").data();
+
+            var brandModelSelect = $('#brand-model');
+            brandModelSelect.data(data.brandModels);
+            brandModelSelect.html('');
+            brandModelSelectorChanger(selectedBrand, brandModelSelect, addEditElementData.model);
+
+            var colorSelect = $('#color');
+            colorSelect.html('');
+            appendNewOptionToSelect(colorSelect, {}, '', 'Избери', true);
+            $.each(data.colors, function (i, color) {
+                var selected = false;
+                if(color.color === addEditElementData.color) selected = true;
+
+                appendNewOptionToSelect(colorSelect, color, color.id, color.color, selected);
+            });
+
+            var clientSelect = $('#client');
+            clientSelect.html('');
+            appendNewOptionToSelect(clientSelect, {}, '', 'Избери', true);
+            $.each(data.clients, function (i, client) {
+                var selected = false;
+
+                client.fullName = client.firstName + ' ' + client.lastName;
+
+                if(client.fullName === addEditElementData.ownerFullName) selected = true;
+
+                appendNewOptionToSelect(clientSelect, client, client.id, client.fullName, selected);
+            });
+        });
+    }).on('hide.bs.modal', function (event) {
+        $('#license_number').val('');
+        $('#year_of_production').val('');
+        $('#engine_number').val('');
+        $('#vin_number').val('');
+        $('#engine_capacity').val('');
+        $('#description').val('');
+        $('#add-edit-automobile').removeData();
     });
 
-    function ajaxSuccess(data, textStatus, jqXHR) {
-        var addEditElementData = $('#add-edit-element').data();
+    $("#add-edit-automobile").on('submit', function (event) {
+        event.preventDefault();
 
-        $('#license-number').val(addEditElementData.licenseNumber);
-        $('#year-of-production').val(addEditElementData.yearOfProduction);
-        $('#engine-number').val(addEditElementData.engineNumber);
-        $('#vin-number').val(addEditElementData.vinNumber);
-        $('#engine-capacity').val(addEditElementData.engineCapacity);
-        $('#description').val(addEditElementData.automobileDescription);
+        var values = objectBuilderFromInputs($('#add-edit-automobile :input'));
 
-        var brandSelect = $('#brand');
-        brandSelect.html('');
-        $.each(data.brands, function (i, brand) {
-            var selected = false;
-            if(brand.name === addEditElementData.brand) selected = true;
+        // TODO POST and PATCH
+        $.post({
+            url: URL + '/Automobile',
+            data: values
+        }, 'json').done(function (data, textStatus, jqXHR) {
+            if (textStatus == "success") {
+                alert('Success');
 
-            brandSelect.append($('<option>', {
-                value: brand.id,
-                text : brand.name,
-                selected: selected
-            }).data(brand));
+                $('#add-edit-popup-modal').modal('toggle');
+
+                return false;
+            }
+
+            alert('fail');
+        })
+        .fail(function (data, textStatus, jqXHR) {
+            console.log('fail big time');
+        })
+        .always(function (data, textStatus, jqXHR) {
+            console.log('always');
         });
+    });
 
-        var selectedBrand = brandSelect.find(":selected").data();
+    $(".row-element").on('click', ".edit-row", function (event) {
+        $('#add-edit-automobile').data($(this).data());
+    });
+
+    $('#brand').on('change', function (event) {
+        var selectedBrand = $(this).find(":selected").data();
 
         var brandModelSelect = $('#brand-model');
         brandModelSelect.html('');
-        $.each(data.brandModels, function (i, model) {
-            var selected = false;
-            if(model.name === addEditElementData.model) selected = true;
-
-            var hidden = true;
-            if(model.brandId === selectedBrand.id) hidden = false;
-
-            brandModelSelect.append($('<option>', {
-                value: model.id,
-                text : model.name,
-                selected: selected,
-                hidden: hidden
-            }).data(model));
-
-        });
-
-        var colorSelect = $('#color');
-        colorSelect.html('');
-        $.each(data.colors, function (i, color) {
-            var selected = false;
-            if(color.color === addEditElementData.color) selected = true;
-
-            colorSelect.append($('<option>', {
-                value: color.id,
-                text : color.color,
-                selected: selected
-            }).data(color));
-        });
-
-        var clientSelect = $('#client');
-        clientSelect.html('');
-        $.each(data.clients, function (i, client) {
-            var selected = false;
-
-            client.fullName = client.firstName + ' ' + client.lastName;
-
-            if(client.fullName === addEditElementData.ownerFullName) selected = true;
-
-            clientSelect.append($('<option>', {
-                value: client.id,
-                text : client.fullName,
-                selected: selected
-            }).data(client));
-        });
-    }
-
-    $(".row-element").on('click', ".edit-row", function (event) {
-        $('#add-edit-element').data($(this).data());
-    });
-
-    $("#new_bidding").on('click', '.bid-decrease', function (event) {
-        if($(this).hasClass('disable-bid')) {
-            return false;
-        }
-
-        var bidding = $("#new_bidding");
-
-        var priceStep = parseInt(bidding.find('.price-step').text());
-        var currentPrice = parseInt(bidding.find('.current-price').text());
-
-        var result = currentPrice - priceStep;
-        bidding.find('.current-price').text(result);
-
-        if ($("#new_bidding").data('minPrice') == result) {
-            $(this).addClass('disable-bid');
-            $('#bid-submit').addClass('disable-bid');
-        }
-
-        return false;
+        brandModelSelectorChanger(selectedBrand, brandModelSelect, '');
     })
-    .on('click', '.bid-close', function (event) {
-        $('.bid-decrease, #bid-submit').addClass('disable-bid');
-    })
-    .on('click', '.bid-increase', function (event) {
-        var bidding = $("#new_bidding");
-
-        var priceStep = parseInt(bidding.find('.price-step').text());
-        var currentPrice = parseInt(bidding.find('.current-price').text());
-
-        var result = currentPrice + priceStep;
-
-        bidding.find('.current-price').text(result);
-
-        if($('.bid-decrease').hasClass('disable-bid')) {
-            $('.bid-decrease').removeClass('disable-bid');
-        }
-
-        if($('#bid-submit').hasClass('disable-bid')) {
-            $('#bid-submit').removeClass('disable-bid');
-        }
-
-        return false;
-    })
-    .on('submit', function (event) {
-        event.preventDefault();
-
-        var bidPrice = parseInt($("#new_bidding .current-price").text());
-        var $this = $(this);
-
-        if ($('#bid-submit').hasClass('disable-bid')
-            || $('.bid-decrease').hasClass('disable-bid')
-            || (parseInt($this.data('minPrice')) == bidPrice)
-        ) {
-            return false;
-        }
-
-        $.ajax({
-            url: window.location,
-            data: {
-                'bidPrice': bidPrice,
-                'offerId': $this.data('offerId'),
-            },
-            dataType: 'json',
-            type: 'PATCH',
-            beforeSend: function() {
-                $(".bidding-loading").show();
-                $('.send-buttons').hide();
-            },
-            success: function (data, textStatus, jqXHR) {
-                var offerElement = $('#' + $this.data('offerIndex'))
-
-                // Success or all ready with highest bid
-                if (data.success || data.errorCode == 1007) {
-                    offerElement
-                        .find('.offer-other-price')
-                        .replaceWith(data.html);
-
-                    $('#bidding-popup-modal').modal('hide');
-                    return false;
-                }
-
-                // show error message
-                $('.bidding-reason-fail')
-                    .removeClass('hidden');
-                $('.bidding-reason-fail span')
-                    .text(data.reason);
-
-                // exit if the error is in SOAP SERVER
-                if (data.errorCode == 'SoapFault') {
-                    return false;
-                }
-
-                offerElement
-                    .attr('data-priceStart', data.newPrice)
-                    .attr('data-winnerId', data.newBidWinnerId)
-                    .find('.offer-other-price div span')
-                    .text(data.newPrice + ' лв.');
-
-                $this
-                    .data('minPrice', data.newPrice)
-                    .find('.current-price')
-                    .text(data.newPrice);
-
-                $('.bid-decrease, #bid-submit').addClass('disable-bid');
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                window.location.reload();
-            },
-            complete: function(response) {
-                $('.send-buttons').show();
-                $(".bidding-loading").hide();
-            }
-        });
-
-        return false;
-    });
 });

@@ -1,8 +1,10 @@
 <!-- addNewBrandModal -->
+<script src="<?= OPERATOR_URL_NOPROTOCOL . '/public/js/'; ?>AddBrand.js"></script>
+
 <div class="modal fade" id="add-new-brand-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content bg-faded border-dark bidding-popup">
-      <form method="post" id="add-new-client" action="#">
+      <form method="post" id="add-new-model">
         <div class="modal-header">
           <div class="clearfix">
             <h5 class="col-xs-6 title-container"><span class="title">Нова Марка</span></h5>
@@ -21,7 +23,7 @@
         <div class="modal-footer">
           <div class="send-buttons clearfix">
             <input class=" btn btn-primary" type="submit" value="Потвърждавам" name="commit" id="submit"/>
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Откажи</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#add-new-brand-modal">Откажи</button>
           </div>
           <div hidden class="bidding-loading">
             <img src="<?= OPERATOR_URL_NOPROTOCOL; ?>/public/img/loading.gif">

@@ -40,19 +40,21 @@ abstract class AbstractModel
     /**
      * Checks for existence of an element and insert the data if not found.
      * IN other case updates the current Date time.
+     *
      * @param string $tableName the name of the table passed from child element.
      * @param array  $data      which will be inserted or updated
+     *
+     * @return array
      */
     protected function addEntry(string $tableName, array $data)
     {
-        $element = $this->findByFilters($tableName, $data);
-
+        $element = $this->findByFilters($tableName, [], [], [], $data);
         if ($element == NULL) {
-            $this->insert($tableName, $data);
+            return $this->insert($tableName, $data);
         } else {
-            $element = $element[0];
-            $data['date_added'] = date('Y-m-d H:i:s', time());
-            $this->update($tableName, $element, $data);
+            $this->update($tableName, [ $element[0]['id'] ], $data);
+
+            return $element[0];
         }
     }
 
@@ -70,7 +72,7 @@ abstract class AbstractModel
     protected function findByFilters(string $tableName, array $columns, array $limits, array $sort, array $search, $like = '=')
     {
 
-        $columns = implode('`, `', $columns);
+        $columns = empty($columns) ? ' * ' : '`' . implode('`, `', $columns) . '`';
 
         $where =  $this->whereBuilder($search, ' AND ', $like);
 
@@ -80,9 +82,9 @@ abstract class AbstractModel
 
         $limits = empty($limits) ? '' : DB_LIMIT_VALUE . " {$limits['start']}, {$limits['count']}";
 
-        $sql = "SELECT `{$columns}` FROM `{$tableName}` {$where} {$sort} {$limits};";
+        $sql = "SELECT {$columns} FROM `{$tableName}` {$where} {$sort} {$limits};";
 
-        return $this->fetchArray($sql);
+        return $this->db->fetchArray($sql);
     }
 
     /**
@@ -118,17 +120,19 @@ abstract class AbstractModel
      * @param string $tableName the name of the table passed from child element.
      * @param array  $data      which will be inserted
      *
-     * @return bool
+     * @return array
      */
-    protected function insert(string $tableName, array $data) : bool
+    protected function insert(string $tableName, array $data) : array
     {
         $keys = '`' . implode('`, `', array_keys($data)) . '`';
 
         $values = implode(", ", array_fill(0, count($data), '?'));
 
-        $sql = "INSERT INTO `{$tableName}` ({$keys}) VALUES ({$values})";
+        $sql = "INSERT INTO `{$tableName}` ({$keys}) VALUES ({$values});";
 
-        return  $this->db->executePreparedStatement($sql, array_values($data));
+        $result = $this->db->executePreparedStatement($sql, array_values($data));
+
+        return $result ? ['id' => $this->db->getConnection()->lastInsertId()] : [];
     }
 
     /**
@@ -140,7 +144,7 @@ abstract class AbstractModel
     {
         $sql = "SELECT COUNT(*) AS `count` FROM `{$tableName}`;";
 
-        return $this->fetchArray($sql);
+        return $this->db->fetchArray($sql);
     }
 
     /**
@@ -173,17 +177,5 @@ abstract class AbstractModel
         }
 
         return implode($whereSeparator, $result);
-    }
-
-    /**
-     * @param string $sql
-     *
-     * @return array
-     */
-    private function fetchArray(string $sql) : array
-    {
-        $result = $this->db->executeQuery($sql);
-
-        return $result->fetchAll($this->db::FETCH_ASSOC);
     }
 }

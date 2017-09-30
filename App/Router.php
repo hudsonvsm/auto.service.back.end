@@ -17,13 +17,13 @@ class Router
                 case 'POST':
                     die(self::post());
                 case 'PATCH':
+                case 'PUT':
                     die(self::patch());
                 case 'DELETE':
                     die(self::delete());
                 case 'GET':
                     die(self::get());
                     break;
-                case 'PUT':
                 default:
                     ErrorController::showErrorPage('Unsupported Request method: ' . $_SERVER['REQUEST_METHOD']);
             }

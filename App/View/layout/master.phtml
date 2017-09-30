@@ -19,8 +19,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="auto.service.back.end/public/css/styles.css">
-    <script src="<?= OPERATOR_URL_NOPROTOCOL . '/public/js/' . $this->response['params']['params']; ?>AddEdit.js"></script>
-
+    <script src="<?= OPERATOR_URL_NOPROTOCOL . '/public/js/'; ?>functions.js"></script>
+    <script>
+      var URL = '<?php echo ($_SERVER['HTTPS']) ? 'https:' : 'http:'; echo OPERATOR_URL_NOPROTOCOL; ?>';
+      var URL_NOPROTOCOL = '<?= OPERATOR_URL_NOPROTOCOL; ?>';
+    </script>
   </head>
   <body>
     <div class="container-fluid">

@@ -1,11 +1,13 @@
 <!-- addNewBrandModelModal -->
+<script src="<?= OPERATOR_URL_NOPROTOCOL . '/public/js/'; ?>AddBrandModel.js"></script>
+
 <div class="modal fade" id="add-new-brand-model-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content bg-faded border-dark bidding-popup">
-      <form method="post" id="add-new-client" action="#">
+      <form method="post" id="add-new-brand-to-model" >
         <div class="modal-header">
           <div class="clearfix">
-            <h5 class="col-xs-6 title-container"><span class="title">Нова Марка</span></h5>
+            <h5 class="col-xs-6 title-container"><span class="title">Нов Модел</span></h5>
           </div>
         </div>
         <div class="modal-body">
@@ -14,16 +16,16 @@
             <span></span>
           </div>
           <div class=" form-group row clearfix">
-            <label class="input-group-addon" for="brand">Марка</label>
-            <input type="text" disabled id="brand" placeholder="Марка">
+            <label class="input-group-addon">Марка</label>
+            <input type="text" disabled id="add-brand-for-model" placeholder="Марка">
             <label class="input-group-addon" for="name">Модел</label>
-            <input type="text" class="disabled" id="name" placeholder="Модел">
+            <input type="text" id="name" placeholder="Модел">
           </div>
         </div>
         <div class="modal-footer">
           <div class="send-buttons clearfix">
             <input class=" btn btn-primary" type="submit" value="Потвърждавам" name="commit" id="submit"/>
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Откажи</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#add-new-brand-model-modal">Откажи</button>
           </div>
           <div hidden class="bidding-loading">
             <img src="<?= OPERATOR_URL_NOPROTOCOL; ?>/public/img/loading.gif">

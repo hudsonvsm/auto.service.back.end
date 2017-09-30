@@ -21,7 +21,7 @@ class Client implements IController
 
     public function addItem($params)
     {
-        return JsonView::render([ 'result' => $this->model->insertNewItem($params) ]);
+        return JsonView::render($this->model->insertNewItem($params));
     }
 
     public function getCollection(array $params)

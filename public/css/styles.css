@@ -13,3 +13,7 @@ table.RepairCardData {
 textarea.desc-textarea {
     width: 70% !important;
 }
+
+span.pointer-cursor{
+    cursor: pointer;
+}

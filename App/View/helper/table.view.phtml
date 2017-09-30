@@ -2,17 +2,21 @@
 
 <table class="<?= $response['params']['params']; ?> table table-hover-custom table-responsive table-bordered table-striped">
   <thead>
-  <tr>
+    <tr>
       <?php foreach ($response['data'][0] as $key => $column) {
           if ($key === 'id') continue;  ?>
         <th><?= $key; ?></th>
       <?php } ?>
-  </tr>
+    </tr>
   </thead>
   <tfoot>
-  <tr>
-    <td colspan="<?= count($response['data'][0]->getColumns()) - 1; ?>"><?php $this->loadPartial('pagination'); ?></td>
-  </tr>
+    <tr>
+      <td colspan="<?= count($response['data'][0]->getColumns()) - 1; ?>">
+        <input class="btn btn-outline-success btn-lg" type="button" value="+" id="add-new"
+               data-toggle="modal"
+               data-target="#add-edit-popup-modal">
+        <?php $this->loadPartial('pagination'); ?></td>
+    </tr>
   </tfoot>
   <tbody class="row-element">
   <?php foreach ($response['data'] as $row) { ?>

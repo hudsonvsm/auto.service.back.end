@@ -10,8 +10,8 @@ $nextStart = $response['params']['start'] + $response['params']['count'];
 
 $counter = (int)ceil($response['count'] / $response['params']['count']);
 ?>
-<nav>
-  <ul class="pagination pagination-lg justify-content-left">
+<nav class="d-inline-block align-top ml-4">
+  <ul class="pagination pagination-lg justify-content-left mb-0">
     <li class="page-item <?php if ($previousStart === (int)$response['params']['start']) echo 'disabled'; ?>">
       <a class="page-link previous" href="<?= $url ?>?start=<?= $previousStart ?>&count=<?= $response['params']['count']; ?>" >&lt;</a>
     </li>

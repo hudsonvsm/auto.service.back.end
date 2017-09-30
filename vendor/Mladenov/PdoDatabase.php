@@ -12,7 +12,7 @@ class PdoDatabase implements IDatabase
 {
     private $connection;
     private static $_instance; //The single instance
-    const FETCH_ASSOC = \PDO::FETCH_ASSOC;
+    //const FETCH_ASSOC = \PDO::FETCH_ASSOC;
 
     /**
      * Get an instance of the Database
@@ -80,5 +80,22 @@ class PdoDatabase implements IDatabase
         $prepared = $this->getConnection()->prepare($preparedSql);
 
         return $prepared->execute($data);
+    }
+
+    public function fetch()
+    {
+        return $this->getConnection()->fetch();
+    }
+
+    /**
+     * @param string $sql
+     *
+     * @return array
+     */
+    public function fetchArray(string $sql) : array
+    {
+        $result = $this->executeQuery($sql);
+
+        return $result->fetchAll(\PDO::FETCH_ASSOC);
     }
 }
