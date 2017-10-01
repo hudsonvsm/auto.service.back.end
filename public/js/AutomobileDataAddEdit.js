@@ -22,22 +22,22 @@ $(document).ready(function() {
 
             var selectedBrand = brandSelect.find(":selected").data();
 
-            var brandModelSelect = $('#brand-model');
+            var brandModelSelect = $('#model_id');
             brandModelSelect.data(data.brandModels);
             brandModelSelect.html('');
             brandModelSelectorChanger(selectedBrand, brandModelSelect, addEditElementData.model);
 
-            var colorSelect = $('#color');
+            var colorSelect = $('#color_id');
             colorSelect.html('');
             appendNewOptionToSelect(colorSelect, {}, '', 'Избери', true);
             $.each(data.colors, function (i, color) {
                 var selected = false;
-                if(color.color === addEditElementData.color) selected = true;
+                if(color.name === addEditElementData.color) selected = true;
 
-                appendNewOptionToSelect(colorSelect, color, color.id, color.color, selected);
+                appendNewOptionToSelect(colorSelect, color, color.id, color.name, selected);
             });
 
-            var clientSelect = $('#client');
+            var clientSelect = $('#owner_id');
             clientSelect.html('');
             appendNewOptionToSelect(clientSelect, {}, '', 'Избери', true);
             $.each(data.clients, function (i, client) {
@@ -60,18 +60,36 @@ $(document).ready(function() {
         $('#add-edit-automobile').removeData();
     });
 
-    $("#add-edit-automobile").on('submit', function (event) {
+    $("#add-edit-automobile").off().on('submit', function (event) {
         event.preventDefault();
 
+        var $this = $(this);
         var values = objectBuilderFromInputs($('#add-edit-automobile :input'));
 
-        // TODO POST and PATCH
-        $.post({
-            url: URL + '/Automobile',
-            data: values
+
+
+        var method = 'POST';
+        var id = '';
+        if (typeof $this.data('id') !== 'undefined') {
+            method = 'PATCH';
+            id = '/' + $this.data('id');
+        }
+
+        $.ajax({
+            url: URL + '/Automobile' + id,
+            method: method,
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(values)
         }, 'json').done(function (data, textStatus, jqXHR) {
             if (textStatus == "success") {
                 alert('Success');
+
+                if (method === 'PATCH') {
+                    var row = $('.edit-row[data-id="' + $this.data('id') + '"]');
+
+                    assignNewValuesToTableRowAndData(row, values, 'td.');
+                }
 
                 $('#add-edit-popup-modal').modal('toggle');
 
@@ -95,7 +113,7 @@ $(document).ready(function() {
     $('#brand').on('change', function (event) {
         var selectedBrand = $(this).find(":selected").data();
 
-        var brandModelSelect = $('#brand-model');
+        var brandModelSelect = $('#model_id');
         brandModelSelect.html('');
         brandModelSelectorChanger(selectedBrand, brandModelSelect, '');
     })

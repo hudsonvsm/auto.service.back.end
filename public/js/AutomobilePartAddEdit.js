@@ -2,7 +2,7 @@ $(document).ready(function() {
     // automobile part
     $(".row-element").on('click', ".edit-row", function (event) {
         $('#add-edit-automobile-part').data($(this).data());
-    });
+    })
 
     $('#add-edit-popup-modal').off().on('show.bs.modal', function (e) {
         $(this).find('input#name').val($('#add-edit-automobile-part').data('name'));
@@ -28,7 +28,7 @@ $(document).ready(function() {
         }
 
         $.ajax({
-            url: URL + '/AutomobilePart' + id,
+            url: CURRENT_URL + id,
             method: method,
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
@@ -37,21 +37,11 @@ $(document).ready(function() {
             if (textStatus == "success") {
                 alert('Success');
 
-                if (method === 'POST') {
-                    location.reload();
+                if (method === 'PATCH') {
+                    var row = $('.edit-row[data-id="' + $this.data('id') + '"]');
+
+                    assignNewValuesToTableRowAndData(row, values, 'td.');
                 }
-
-                console.log('.edit-row[data-id="' + $this.data('id') + '"]');
-
-                var row = $('.edit-row[data-id="' + $this.data('id') + '"]');
-
-                row.data('name', values.name);
-                row.data('price', values.price);
-
-                var tableData = row.find('td');
-
-                tableData.eq(0).html(values.name);
-                tableData.eq(1).html(values.price);
 
                 $('#add-edit-popup-modal').modal('toggle');
 

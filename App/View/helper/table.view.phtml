@@ -11,7 +11,7 @@
   </thead>
   <tfoot>
     <tr>
-      <td colspan="<?= count($response['data'][0]->getColumns()) - 1; ?>">
+      <td colspan="<?= count($response['data'][0]->getColumns()); ?>">
         <input class="btn btn-outline-success btn-lg" type="button" value="+" id="add-new"
                data-toggle="modal"
                data-target="#add-edit-popup-modal">
@@ -21,16 +21,19 @@
   <tbody class="row-element">
   <?php foreach ($response['data'] as $row) { ?>
     <tr class="edit-row"
-        data-toggle="modal"
-        data-target="#add-edit-popup-modal"
         <?php foreach ($row as $key => $column) { ?>
           data-<?= $this->camelCaseToHyphen($key); ?>="<?= $column; ?>"
         <?php } ?>
     >
         <?php foreach ($row as $key => $column) {
             if ($key === 'id') continue; ?>
-          <td><?= $column; ?></td>
+          <td class="edit-current-element <?= $key; ?>"
+              data-toggle="modal"
+              data-target="#add-edit-popup-modal"><?= $column; ?></td>
         <?php } ?>
+        <td class="delete">
+          <input class="btn btn-outline-danger delete-element" type="button" value="Изтрий">
+        </td>
     </tr>
   <?php } ?>
   </tbody>

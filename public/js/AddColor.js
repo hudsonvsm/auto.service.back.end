@@ -19,15 +19,15 @@ $(document).ready(function() {
             if (textStatus == "success") {
                 alert('Success');
 
-                var color = $('#color');
+                var color = $('#color_id');
                 color.val(data.id);
                 if (Object.keys(data).length === 1) {
                     data.name = inputColor.val();
 
-                    appendNewOptionToSelect(client, data, data.id, data.name, true);
+                    appendNewOptionToSelect(color, data, data.id, data.name, true);
                 }
 
-                $('#add-new-brand-modal').modal('toggle');
+                $('#add-new-color-modal').modal('toggle');
 
                 return false;
             }

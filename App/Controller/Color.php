@@ -22,7 +22,7 @@ class Color implements IController
 
     public function addItem($params)
     {
-        throw new ControllerException("Unsupported Request method: Forbidden.");
+        return JsonView::render($this->model->insertNewItem($params));
     }
 
     public function getCollection(array $params)

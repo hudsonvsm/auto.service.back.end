@@ -23,8 +23,48 @@ function objectBuilderFromInputs($inputs) {
     var values = {};
 
     $inputs.each(function () {
-        values[this.id] = $(this).val();
+        if (this.id !== '') {
+            values[this.id] = $(this).val();
+        }
     });
 
     return values;
 }
+
+function assignNewValuesToTableRowAndData(row, values, where) {
+    $.each(values, function (i, value) {
+        row.data(i, value)
+
+        row.find('td.' + i).html(value);
+    });
+}
+
+$(document).ready(function() {
+    $(".row-element").on('click', ".delete-element", function (event) {
+        if (!confirm("Наистина ли искате да изтриете този елемент")) {
+            return false;
+        }
+
+        var row = $(this).closest('.edit-row');
+
+        var rowData = row.data();
+
+        var url = CURRENT_URL;
+        if (url.endsWith('Data')) url = url.slice(0, -'Data'.length);
+
+        $.ajax({
+            url: url + '/' + rowData.id,
+            method: "DELETE",
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8'
+        }).done(function (data, textStatus, jqXHR) {
+            if (data.deleted && textStatus == "success") {
+                row.remove();
+
+                return false;
+            }
+
+            alert('fail');
+        });
+    });
+});

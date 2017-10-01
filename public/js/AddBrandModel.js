@@ -29,7 +29,7 @@ $(document).ready(function() {
             if (textStatus == "success") {
                 alert('Success');
 
-                var brandModel = $('#brand-model');
+                var brandModel = $('#model_id');
                 brandModel.val(data.id);
                 if (Object.keys(data).length === 1) {
                     data.name = inputName.val();

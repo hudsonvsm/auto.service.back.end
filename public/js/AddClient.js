@@ -25,7 +25,7 @@ $(document).ready(function() {
             if (textStatus == "success") {
                 alert('Success');
 
-                var client = $('#client');
+                var client = $('#owner_id');
                 client.val(data.id);
                 if (Object.keys(data).length === 1) {
                     data.fullName = inputFirstName.val() + ' ' + inputLastName.val();

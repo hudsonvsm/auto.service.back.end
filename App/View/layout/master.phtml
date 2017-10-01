@@ -23,6 +23,7 @@
     <script>
       var URL = '<?php echo ($_SERVER['HTTPS']) ? 'https:' : 'http:'; echo OPERATOR_URL_NOPROTOCOL; ?>';
       var URL_NOPROTOCOL = '<?= OPERATOR_URL_NOPROTOCOL; ?>';
+      var CURRENT_URL = URL + '/<?= $this->response['params']['params']; ?>';
     </script>
   </head>
   <body>

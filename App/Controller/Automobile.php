@@ -49,7 +49,7 @@ class Automobile implements IController
 
     public function deleteItem($id)
     {
-        return JsonView::render([ 'result' => $this->model->deleteItem($id) ]);
+        return JsonView::render([ 'deleted' => $this->model->deleteItem($id) ]);
     }
 
     public function updateItem($id, $params)

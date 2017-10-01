@@ -53,19 +53,11 @@ class AutomobilePart implements IController
 
     public function deleteItem($id)
     {
-        return $this->model->deleteItem($id);
+        return JsonView::render([ 'deleted' => $this->model->deleteItem($id) ]);
     }
 
     public function updateItem($id, $params)
     {
         return $this->model->updateItem($id, $params);
-    }
-
-    /**
-     * @return \App\Model\GeneralModel
-     */
-    public function getModel() : GeneralModel
-    {
-        return $this->model;
     }
 }

@@ -33,7 +33,7 @@ return [
     ],
     'color' => [
         'id' => 'id',
-        'color'
+        'name'
     ],
     'repair_card' => [
         'id' => 'id',
