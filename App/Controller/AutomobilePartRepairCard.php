@@ -7,6 +7,7 @@ use Mladenov\IController;
 use App\Model\AutomobilePartRepairCard as Model;
 use Mladenov\IDatabase;
 use Mladenov\JsonView;
+use Mladenov\View;
 
 class AutomobilePartRepairCard implements IController
 {
@@ -27,13 +28,26 @@ class AutomobilePartRepairCard implements IController
     public function getCollection(array $params)
     {
         $out['params'] = $params;
-        $out['data'] = $this->model->getCollection($params);
 
-        $out['count'] = $this->model->getCount();
+        if ($params['search']) {
+            $key = key($params['search']);
+
+            $out['data'] = $this->model->getCustomCollection($key, $params['search'][$key],'IN');
+        } else {
+            $out['data'] = $this->model->getCollection($params,'=');
+        }
+
+        $out['count'] = $this->model->getCount($params);
 
         $out['count'] = $out['count'][0]['count'];
 
-        return JsonView::render($out);
+        switch ($params['returnDataType']) {
+            case 'json':
+                return JsonView::render($out);
+            case null;
+                $view = new View('', '', $out);
+                $view->loadPartial('table.view.part.card');
+        };
     }
 
     public function getItem($id)
@@ -43,7 +57,7 @@ class AutomobilePartRepairCard implements IController
 
     public function deleteItem($id)
     {
-        return $this->model->deleteItem($id);
+        return JsonView::render([ 'deleted' => $this->model->deleteItem($id) ]);
     }
 
     public function updateItem($id, $params)

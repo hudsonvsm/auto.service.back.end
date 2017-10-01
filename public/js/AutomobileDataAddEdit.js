@@ -65,9 +65,6 @@ $(document).ready(function() {
 
         var $this = $(this);
         var values = objectBuilderFromInputs($('#add-edit-automobile :input'));
-
-
-
         var method = 'POST';
         var id = '';
         if (typeof $this.data('id') !== 'undefined') {

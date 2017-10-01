@@ -48,7 +48,7 @@ class AutomobilePart implements IController
 
     public function getItem($id)
     {
-        return json_encode($this->model->getOne($id));
+        return JsonView::render($this->model->getOne($id));
     }
 
     public function deleteItem($id)

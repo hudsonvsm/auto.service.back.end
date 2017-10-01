@@ -6,9 +6,21 @@ return [
         'sortBy' => 'id',
         'sortDirection' => 'ASC',
     ],
+    'AutomobilePartRepairCard' => [
+        'start' => 0,
+        'count' => 1000,
+        'sortBy' => 'id',
+        'sortDirection' => 'ASC',
+    ],
     'RepairCardData' => [
         'start' => 0,
         'count' => 4,
+        'sortBy' => 'id',
+        'sortDirection' => 'ASC',
+    ],
+    'RepairCard' => [
+        'start' => 0,
+        'count' => 1000,
         'sortBy' => 'id',
         'sortDirection' => 'ASC',
     ],
@@ -18,7 +30,19 @@ return [
         'sortBy' => 'id',
         'sortDirection' => 'ASC',
     ],
+    'Automobile' => [
+        'start' => 0,
+        'count' => 1000,
+        'sortBy' => 'id',
+        'sortDirection' => 'ASC',
+    ],
     'AutomobileDataConnections' => [
+        'start' => 0,
+        'count' => 1000,
+        'sortBy' => 'id',
+        'sortDirection' => 'ASC',
+    ],
+    'Worker' => [
         'start' => 0,
         'count' => 1000,
         'sortBy' => 'id',

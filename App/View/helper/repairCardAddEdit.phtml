@@ -1,0 +1,80 @@
+<!-- RepairCard Modal -->
+<script src="<?= OPERATOR_URL_NOPROTOCOL . '/public/js/';?>RepairCardDataAddEdit.js"></script>
+
+<div class="modal fade" id="add-edit-popup-modal" tabindex="-1" role="dialog" >
+  <div class="modal-dialog " role="document">
+    <div class="modal-content bidding-popup">
+      <form method="post" id="add-edit-repair-card" action="#">
+        <div class="modal-header">
+          <div class="clearfix">
+            <h5 class="col-xs-6 title-container"><span class="title">Работна крта</span></h5>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div hidden class="bidding-reason-fail  alert alert-danger fade in alert-dismissable">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <span></span>
+          </div>
+          <div class="form-group row clearfix">
+            <label class="input-group-addon" for="number">Номер</label>
+            <input type="text" disabled id="number" placeholder="Номер">
+          </div>
+
+          <div class="form-group row clearfix">
+            <label class="input-group-addon" for="acceptance_date">Дата на приемане</label>
+            <input type="datetime-local" id="acceptance_date" value=""/>
+          </div>
+
+          <div class="form-group row clearfix">
+            <label class="input-group-addon" for="start_date">Дата на започване</label>
+            <input type="datetime-local" id="start_date" value=""/>
+          </div>
+
+          <div class="form-group row clearfix">
+            <label class="input-group-addon" for="end_date">Дата на завършване</label>
+            <input type="datetime-local" id="end_date" value=""/>
+          </div>
+          <div class="form-group row clearfix">
+            <label class="input-group-addon" for="automobile_id">Автомобил</label>
+            <select id="automobile_id"></select>
+            <label class="input-group-addon" for="worker_id">Работник</label>
+            <select id="worker_id"></select>
+          </div>
+          <div class="form-group row clearfix">
+            <label class="input-group-addon" for="description">Описание</label>
+            <textarea id="description" class="desc-textarea" placeholder="Описание"></textarea>
+          </div>
+        </div>
+      </form>
+      <div class="modal-header" id="add-part-for-card-header">
+        <div class="clearfix">
+          <h6 class="col-xs-6 title-container"><span class="title">Вложени части</span></h6>
+        </div>
+      </div>
+      <div class="modal-body">
+        <form method="post" id="add-part-for-card" action="#">
+          <div class="form-group row clearfix">
+            <label class="input-group-addon" for="automobile_part_id">Вложи нова част</label>
+            <select id="automobile_part_id"></select>
+            <input type="hidden" id="repair_card_id">
+            <input class="btn input-group-addon btn-outline-success" type="submit" value="+" />
+          </div>
+        </form>
+        <div id="part-card-container"></div>
+        <div class="form-group row clearfix">
+          <label class="input-group-addon" for="total_price">Пълна цена:</label>
+          <input type="number" step="any" disabled id="total_price">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="send-buttons clearfix">
+          <input class="btn btn-primary" type="submit" value="Потвърждавам" form="add-edit-repair-card" id="submit"/>
+          <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="add-edit-popup-modal">Откажи</button>
+        </div>
+        <div hidden class="bidding-loading">
+          <img src="<?= OPERATOR_URL_NOPROTOCOL; ?>/public/img/loading.gif">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

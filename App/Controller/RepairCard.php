@@ -7,6 +7,7 @@ use Mladenov\Config;
 use Mladenov\IController;
 use App\Model\RepairCard as Model;
 use Mladenov\IDatabase;
+use Mladenov\JsonView;
 
 class RepairCard implements IController
 {
@@ -21,7 +22,7 @@ class RepairCard implements IController
 
     public function addItem($params)
     {
-        return $this->model->insertNewItem($params);
+        return JsonView::render($this->model->insertNewItem($params));
     }
 
     public function getCollection(array $params)
@@ -33,29 +34,21 @@ class RepairCard implements IController
 
         $out['count'] = $out['count'][0]['count'];
 
-        return json_encode($out);
+        return JsonView::render($out);
     }
 
     public function getItem($id)
     {
-        return json_encode($this->model->getOne($id));
+        return JsonView::render($this->model->getOne($id));
     }
 
     public function deleteItem($id)
     {
-        return $this->model->deleteItem($id);
+        return JsonView::render(['deleted'=>$this->model->deleteItem($id) ]);
     }
 
     public function updateItem($id, $params)
     {
-        return $this->model->updateItem($id, $params);
-    }
-
-    /**
-     * @return \App\Model\GeneralModel
-     */
-    public function getModel() : GeneralModel
-    {
-        return $this->model;
+        return JsonView::render($this->model->updateItem($id, $params));
     }
 }

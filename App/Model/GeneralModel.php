@@ -63,19 +63,27 @@ abstract class GeneralModel extends AbstractModel
     }
 
     /**
-     * @return array
-     */
-    public function getCount()
-    {
-        return parent::countRows($this->getTableName());
-    }
-
-    /**
-     * @param array $params
+     * @param array  $params
+     * @param string $like
      *
      * @return array
      */
-    public function getCollection(array $params)
+    public function getCount($params = [], $like = '=')
+    {
+        $search = (!key_exists('search', $params) && is_null($params['search']))
+            ? []
+            : $params['search'];
+
+        return parent::countRows($this->getTableName(), $search, $like);
+    }
+
+    /**
+     * @param array  $params
+     * @param string $like
+     *
+     * @return array
+     */
+    public function getCollection(array $params, $like = 'LIKE')
     {
         $limits = [
             'start' => $params['start'],
@@ -89,14 +97,11 @@ abstract class GeneralModel extends AbstractModel
 
         ];
 
-        $search = (!key_exists('searchBy', $params) || !key_exists('search', $params)
-            || is_null($params['searchBy']) || is_null($params['search']))
+        $search = (!key_exists('search', $params) && is_null($params['search']))
             ? []
-            : [
-                $params['searchBy'] => $params['search'],
-            ];
+            : $params['search'];
 
-        $result = parent::findByFilters($this->getTableName(), $this->getColumns(), $limits, $sort, $search, 'LIKE');
+        $result = parent::findByFilters($this->getTableName(), $this->getColumns(), $limits, $sort, $search, $like);
 
         return $this->assignReturnValuesToObject($result);
     }

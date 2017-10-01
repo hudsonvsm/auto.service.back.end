@@ -1,0 +1,31 @@
+<?php $response = $this->getResponse(); ?>
+
+<script src="<?= OPERATOR_URL_NOPROTOCOL . '/public/js/';?>PartCardAddDelete.js"></script>
+
+<table class="<?= $response['params']['params']; ?> table table-hover-custom table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Име</th>
+      <th>Цена</th>
+    </tr>
+  </thead>
+  <tbody class="part-card-row">
+  <?php foreach ($response['data'] as $row) { ?>
+    <tr class="edit-row"
+        <?php foreach ($row as $key => $column) { ?>
+          data-<?= $this->camelCaseToHyphen($key); ?>="<?= $column; ?>"
+        <?php } ?>
+    >
+        <?php
+          $forbidden = [ 'id', 'automobilePartId', 'repairCardId' ];
+        foreach ($row as $key => $column) {
+            if (in_array($key, $forbidden)) continue; ?>
+          <td class="<?= $key; ?>"><?= $column; ?></td>
+        <?php } ?>
+        <td class="delete">
+          <input class="btn btn-outline-danger delete-element" type="button" value="Изтрий">
+        </td>
+    </tr>
+  <?php } ?>
+  </tbody>
+</table>

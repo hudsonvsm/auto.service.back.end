@@ -33,13 +33,7 @@ class Automobile implements IController
 
         $out['count'] = $out['count'][0]['count'];
 
-        switch ($params['returnDataType']) {
-            case 'json':
-                return JsonView::render($out);
-            case null;
-                $view = new VieW('error404', 'index', $out);
-                $view->render();
-        }
+        return JsonView::render($out);
     }
 
     public function getItem($id)

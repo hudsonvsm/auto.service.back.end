@@ -114,9 +114,8 @@ class Router
 
         $params = $basicConfigs[$_GET['params']];
         foreach ($_GET as $key => $value) {
-            $params[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_MAGIC_QUOTES);
+            $params[self::sanitizeMagicQuotes($key)] = self::sanitizeMagicQuotes($value);
         }
-
 
         return $controller->getCollection($params);
     }
@@ -124,5 +123,20 @@ class Router
     private static function getEntity(IController $controller, string $id) : string
     {
         return $controller->getItem($id);
+    }
+
+    private static function sanitizeMagicQuotes($value)
+    {
+        if (is_array($value)) {
+            $params = [];
+
+            foreach ($value as $k => $v) {
+                $params[self::sanitizeMagicQuotes($k)] = self::sanitizeMagicQuotes($v);
+            }
+
+            return $params;
+        }
+
+        return filter_var($value, FILTER_SANITIZE_MAGIC_QUOTES);
     }
 }

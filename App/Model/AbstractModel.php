@@ -137,12 +137,18 @@ abstract class AbstractModel
 
     /**
      * @param string $tableName the name of the table passed from child element.
+     * @param array  $search
+     * @param string $like
      *
      * @return array
      */
-    protected function countRows(string $tableName) : array
+    protected function countRows(string $tableName, array $search, $like = '=') : array
     {
-        $sql = "SELECT COUNT(*) AS `count` FROM `{$tableName}`;";
+        $where =  $this->whereBuilder($search, ' AND ', $like);
+
+        $where = empty($where) ? '' : DB_WHERE_VALUE . ' ' . $where;
+
+        $sql = "SELECT COUNT(*) AS `count` FROM `{$tableName}` $where;";
 
         return $this->db->fetchArray($sql);
     }

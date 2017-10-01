@@ -3,9 +3,12 @@
 <table class="<?= $response['params']['params']; ?> table table-hover-custom table-responsive table-bordered table-striped">
   <thead>
     <tr>
-      <?php foreach ($response['data'][0] as $key => $column) {
-          if ($key === 'id') continue;  ?>
-        <th><?= $key; ?></th>
+      <?php
+      if (!empty($response['data'])) {
+        foreach ($response['data'][0] as $key => $column) {
+            if ($key === 'id') continue;  ?>
+          <th><?= $key; ?></th>
+        <?php } ?>
       <?php } ?>
     </tr>
   </thead>
