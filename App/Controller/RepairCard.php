@@ -44,11 +44,11 @@ class RepairCard implements IController
 
     public function deleteItem($id)
     {
-        return JsonView::render(['deleted'=>$this->model->deleteItem($id) ]);
+        return JsonView::render(['deleted' => $this->model->deleteItem($id) ]);
     }
 
     public function updateItem($id, $params)
     {
-        return JsonView::render($this->model->updateItem($id, $params));
+        return JsonView::render(['result' => $this->model->updateItem($id, $params) ]);
     }
 }

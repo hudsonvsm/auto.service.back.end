@@ -17,3 +17,7 @@ textarea.desc-textarea {
 span.pointer-cursor{
     cursor: pointer;
 }
+
+.autoservice-navigation {
+    width: 100%;
+}

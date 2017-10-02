@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $('#add-edit-popup-modal').off().on('show.bs.modal', function (e) {
-
+        var $this = $(this);
         var addEditElementData = $('#add-edit-repair-card').data();
 
         if (Object.keys(addEditElementData).length !== 0) {
@@ -19,11 +19,11 @@ $(document).ready(function() {
             });
         } else {
             $('#add-part-for-card').hide();
-            $('#add-part-for-card-header    ').hide();
+            $('#add-part-for-card-header').hide();
         }
 
         $.getJSON(URL + '/Worker', function (data, textStatus, jqXHR) {
-            var select = $('#worker_id');
+            var select = $this.find('#worker_id');
             select.html('');
             appendNewOptionToSelect(select, {}, '', 'Избери', true);
             $.each(data.data, function (i, worker) {
@@ -38,7 +38,7 @@ $(document).ready(function() {
         });
 
         $.getJSON(URL + '/Automobile', function (data, textStatus, jqXHR) {
-            var select = $('#automobile_id');
+            var select = $this.find('#automobile_id');
             select.html('');
             appendNewOptionToSelect(select, {}, '', 'Избери', true);
             $.each(data.data, function (i, automobile) {
@@ -50,7 +50,7 @@ $(document).ready(function() {
         });
 
         $.getJSON(URL + '/AutomobilePart?returnDataType=json', function (data, textStatus, jqXHR) {
-            var select = $('#automobile_part_id');
+            var select = $this.find('#automobile_part_id');
             select.html('');
             appendNewOptionToSelect(select, {}, '', 'Избери', true);
             $.each(data.data, function (i, part) {
@@ -69,6 +69,7 @@ $(document).ready(function() {
             row.find('.totalPrice').html(totalPrice);
         }
 
+        $('#part-card-container').html('');
         $('#number').val('');
         $('#acceptance_date').val('');
         $('#start_date').val('');
@@ -98,12 +99,14 @@ $(document).ready(function() {
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(values)
         }, 'json').done(function (data, textStatus, jqXHR) {
-            if (textStatus == "success") {
-                alert('Success');
+            if (textStatus !== "success") {
+                alert('fail');
+            }
+            alert('Success');
 
-                if (method === 'POST') {
-                    location.reload();
-                }
+            if (method === 'PATCH') {
+                if ($this.data('afterPost')) location.reload();
+
                 var row = $('.edit-row[data-id="' + $this.data('id') + '"]');
 
                 assignNewValuesToTableRowAndData(row, values, 'td.');
@@ -113,14 +116,29 @@ $(document).ready(function() {
                 return false;
             }
 
-            alert('fail');
-        })
-            .fail(function (data, textStatus, jqXHR) {
-                console.log('fail big time');
-            })
-            .always(function (data, textStatus, jqXHR) {
-                console.log('always');
+            $('#add-part-for-card').show();
+            $('#add-part-for-card-header').show();
+            $('#total_price').val('0.00');
+            $('#repair_card_id').val(data.id);
+
+            var search = 'search[repair_card_id]='+ data.id;
+
+            $.get(URL + '/AutomobilePartRepairCard?' + search, function (html, textStatus, jqXHR) {
+                $('#part-card-container').html(html);
             });
+
+            $.getJSON(URL + '/RepairCard/' + data.id, function( json ) {
+                $this.data(json);
+                $this.data('afterPost', true);
+                $('#number').val(json.number);
+            });
+        })
+        .fail(function (data, textStatus, jqXHR) {
+            console.log('fail big time');
+        })
+        .always(function (data, textStatus, jqXHR) {
+            console.log('always');
+        });
     });
 
     $(".row-element").on('click', ".edit-row", function (event) {

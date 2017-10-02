@@ -59,11 +59,8 @@ return [
         'brand',
         'model',
         'year_of_production',
-        'engine_number',
-        'vin_number',
         'color',
         'engine_capacity',
-        'automobile_description',
         'owner_full_name'
     ],
     'automobile_data' => [

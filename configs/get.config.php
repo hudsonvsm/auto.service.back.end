@@ -14,9 +14,9 @@ return [
     ],
     'RepairCardData' => [
         'start' => 0,
-        'count' => 4,
+        'count' => 10,
         'sortBy' => 'id',
-        'sortDirection' => 'ASC',
+        'sortDirection' => 'DESC',
     ],
     'RepairCard' => [
         'start' => 0,

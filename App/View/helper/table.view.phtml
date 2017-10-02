@@ -1,17 +1,7 @@
 <?php $response = $this->getResponse(); ?>
 
 <table class="<?= $response['params']['params']; ?> table table-hover-custom table-responsive table-bordered table-striped">
-  <thead>
-    <tr>
-      <?php
-      if (!empty($response['data'])) {
-        foreach ($response['data'][0] as $key => $column) {
-            if ($key === 'id') continue;  ?>
-          <th><?= $key; ?></th>
-        <?php } ?>
-      <?php } ?>
-    </tr>
-  </thead>
+  <?php $this->loadPartial('table.view.header' . $response['params']['params']); ?>
   <tfoot>
     <tr>
       <td colspan="<?= count($response['data'][0]->getColumns()); ?>">
