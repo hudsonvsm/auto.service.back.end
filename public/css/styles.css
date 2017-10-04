@@ -6,10 +6,6 @@
     background-color: rgba(0,150,150,.175) !important;
 }
 
-table.RepairCardData {
-    font-size: 0.77rem;
-}
-
 textarea.desc-textarea {
     width: 70% !important;
 }
@@ -20,4 +16,21 @@ span.pointer-cursor{
 
 .autoservice-navigation {
     width: 100%;
+}
+
+.border {
+    border: 1px solid rgba(0, 0, 0, 0.15)!important;
+}
+
+.rounded-left-custom {
+    border-top-left-radius: 0.25rem!important;
+    border-bottom-left-radius: 0.25rem!important;
+}
+.rounded-right-custom {
+    border-top-right-radius: 0.25rem!important;
+    border-bottom-right-radius: 0.25rem!important;
+}
+
+#add-edit-automobile input {
+    padding-left: 0.25rem;
 }

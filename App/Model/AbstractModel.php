@@ -74,7 +74,7 @@ abstract class AbstractModel
 
         $columns = empty($columns) ? ' * ' : '`' . implode('`, `', $columns) . '`';
 
-        $where =  $this->whereBuilder($search, ' AND ', $like);
+        $where = $this->whereBuilder($search, ' AND ', $like);
 
         $where = empty($where) ? '' : DB_WHERE_VALUE . ' ' . $where;
 

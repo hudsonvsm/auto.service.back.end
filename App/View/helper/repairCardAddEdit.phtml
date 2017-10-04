@@ -16,33 +16,33 @@
             <span></span>
           </div>
           <div class="form-group row clearfix">
-            <label class="input-group-addon" for="number">Номер</label>
-            <input type="text" disabled id="number" placeholder="Номер">
+            <label class="input-group-addon ml-3" for="number">Номер</label>
+            <input class="rounded-right-custom border" type="text" disabled id="number" placeholder="Номер">
           </div>
 
           <div class="form-group row clearfix">
-            <label class="input-group-addon" for="acceptance_date">Дата на приемане</label>
-            <input type="date" id="acceptance_date" value=""/>
+            <label class="input-group-addon ml-3" for="acceptance_date">Дата на приемане</label>
+            <input class="rounded-right-custom border" type="date" id="acceptance_date" value=""/>
           </div>
 
           <div class="form-group row clearfix">
-            <label class="input-group-addon" for="start_date">Дата на започване</label>
-            <input type="date" id="start_date" value=""/>
+            <label class="input-group-addon ml-3" for="start_date">Дата на започване</label>
+            <input class="rounded-right-custom border" type="date" id="start_date" value=""/>
           </div>
 
           <div class="form-group row clearfix">
-            <label class="input-group-addon" for="end_date">Дата на завършване</label>
-            <input type="date" id="end_date" value=""/>
+            <label class="input-group-addon ml-3" for="end_date">Дата на завършване</label>
+            <input class="rounded-right-custom border" type="date" id="end_date" value=""/>
           </div>
           <div class="form-group row clearfix">
-            <label class="input-group-addon" for="automobile_id">Автомобил</label>
-            <select id="automobile_id"></select>
-            <label class="input-group-addon" for="worker_id">Работник</label>
-            <select id="worker_id"></select>
+            <label class="input-group-addon ml-3" for="automobile_id">Автомобил</label>
+            <select class="rounded-right-custom border" id="automobile_id"></select>
+            <label class="rounded-left-custom input-group-addon ml-3" for="worker_id">Работник</label>
+            <select class="rounded-right-custom border" id="worker_id"></select>
           </div>
           <div class="form-group row clearfix">
-            <label class="input-group-addon" for="description">Описание</label>
-            <textarea id="description" class="desc-textarea" placeholder="Описание"></textarea>
+            <label class="input-group-addon ml-3" for="description">Описание</label>
+            <textarea id="description" class="rounded-right-custom border desc-textarea" placeholder="Описание"></textarea>
           </div>
         </div>
       </form>
@@ -54,7 +54,7 @@
       <div class="modal-body">
         <form method="post" id="add-part-for-card" action="#">
           <div class="form-group row clearfix">
-            <label class="input-group-addon" for="automobile_part_id">Вложи нова част</label>
+            <label class="input-group-addon ml-3" for="automobile_part_id">Вложи нова част</label>
             <select id="automobile_part_id"></select>
             <input type="hidden" id="repair_card_id">
             <input class="btn input-group-addon btn-outline-success" type="submit" value="+" />
@@ -62,8 +62,8 @@
         </form>
         <div id="part-card-container"></div>
         <div class="form-group row clearfix">
-          <label class="input-group-addon" for="total_price">Пълна цена:</label>
-          <input type="number" step="any" disabled id="total_price">
+          <label class="input-group-addon ml-3" for="total_price">Пълна цена:</label>
+          <input class="rounded-right-custom border" type="number" step="any" disabled id="total_price">
         </div>
       </div>
       <div class="modal-footer">

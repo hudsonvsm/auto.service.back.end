@@ -4,7 +4,7 @@
   <?php $this->loadPartial('table.view.header' . $response['params']['params']); ?>
   <tfoot>
     <tr>
-      <td colspan="<?= count($response['data'][0]->getColumns()); ?>">
+      <td colspan="<?php if (!empty($response['data'])) echo count($response['data'][0]->getColumns()); ?>">
         <input class="btn btn-outline-success btn-lg" type="button" value="+" id="add-new"
                data-toggle="modal"
                data-target="#add-edit-popup-modal">
@@ -24,7 +24,7 @@
               data-toggle="modal"
               data-target="#add-edit-popup-modal"><?= $column; ?></td>
         <?php } ?>
-        <td class="delete">
+        <td class="delete" align="center">
           <input class="btn btn-outline-danger delete-element" type="button" value="Изтрий">
         </td>
     </tr>

@@ -34,7 +34,7 @@ class RepairCardData implements IController
         $out['params'] = $params;
         $out['data'] = $this->model->getCollection($params);
 
-        $out['count'] = $this->model->getCount();
+        $out['count'] = $this->model->getCount($params);
 
         $out['count'] = $out['count'][0]['count'];
 

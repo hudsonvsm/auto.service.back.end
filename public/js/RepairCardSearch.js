@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $.getJSON(URL + '/Automobile', function (data, textStatus, jqXHR) {
-        var select = $('#search-form').find('#automobile_id');
+        var select = $('#search-form').find('#license_number');
         var selectedId = select.data('selected');
 
         select.html('');
@@ -9,9 +9,9 @@ $(document).ready(function() {
 
         $.each(data.data, function (i, automobile) {
             var selected = false;
-            if(automobile.id == selectedId) selected = true;
+            if(automobile.licenseNumber == selectedId) selected = true;
 
-            appendNewOptionToSelect(select, automobile, automobile.id, automobile.licenseNumber, selected);
+            appendNewOptionToSelect(select, automobile, automobile.licenseNumber, automobile.licenseNumber, selected);
         });
     });
 
