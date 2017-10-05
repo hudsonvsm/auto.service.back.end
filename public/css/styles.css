@@ -40,16 +40,32 @@ span.pointer-cursor{
     margin-top: .25rem;
     font-size: .875rem;
     color: #dc3545;
+    position: absolute;
 }
 
-.is-invalid~.invalid-feedback,
-.is-invalid~.invalid-tooltip {
+.error+.invalid-feedback {
     display: block;
 }
 
-.custom-select.is-invalid,
-.form-control.is-invalid,
-.was-validated .custom-select:invalid,
-.was-validated .form-control:invalid {
-    border-color: #dc3545;
+.error {
+    border-color: #dc3545!important;
+}
+
+#license_number, #vin_number, #engine_number {
+    position: relative;
+}
+
+#license_number~.invalid-feedback {
+    top: 3rem;
+    left: 5rem;
+}
+
+#engine_number~.invalid-feedback {
+    top: 10rem;
+    left: 2rem;
+}
+
+#vin_number~.invalid-feedback {
+    top: 10rem;
+    left: 28rem;
 }

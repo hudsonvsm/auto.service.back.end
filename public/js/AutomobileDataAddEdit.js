@@ -58,10 +58,13 @@ $(document).ready(function() {
         $('#engine_capacity').val('');
         $('#description').val('');
         $('#add-edit-automobile').removeData();
+        $('.error').removeClass('error');
     });
 
     $("#add-edit-automobile").off().on('submit', function (event) {
         event.preventDefault();
+
+        $('.error').removeClass('error');
 
         var $this = $(this);
         var values = objectBuilderFromInputs($('#add-edit-automobile :input'));
@@ -79,8 +82,8 @@ $(document).ready(function() {
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(values)
         }, 'json').done(function (data, textStatus, jqXHR) {
-            if (textStatus == "success") {
-                alert('Success');
+            if (typeof data.error == 'undefined' && textStatus == "success") {
+                alert('УСПЕХ');
 
                 if (method === 'PATCH') {
                     var row = $('.edit-row[data-id="' + $this.data('id') + '"]');
@@ -93,7 +96,10 @@ $(document).ready(function() {
                 return false;
             }
 
-            alert('fail');
+            $('#' + data.error).addClass('error');
+            $('label[for=' + data.error + ']').addClass('error');
+
+            alert('ГРЕШКА');
         })
         .fail(function (data, textStatus, jqXHR) {
             console.log('fail big time');

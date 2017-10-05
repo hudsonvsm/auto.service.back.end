@@ -21,7 +21,24 @@ class Automobile implements IController
 
     public function addItem($params)
     {
-        return JsonView::render([ 'result' => $this->model->insertNewItem($params) ]);
+        try {
+            $out = [ 'result' => $this->model->insertNewItem($params) ];
+        } catch (\PDOException $ex) {
+            $errorKeys = ['engine_number', 'vin_number', 'license_number'];
+
+            $field = '';
+            foreach ($errorKeys as $errorKey) {
+                if (strpos($ex->getMessage(), $errorKey)) {
+                    $field = $errorKey;
+
+                    break;
+                }
+            }
+
+            $out = [ 'error' => $field ];
+        }
+
+        return JsonView::render($out);
     }
 
     public function getCollection(array $params)

@@ -15,7 +15,7 @@
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             <span></span>
           </div>
-          <div class="form-group row ">
+          <div class="form-group row mb-4">
             <label class="input-group-addon ml-5" for="license_number" >Регистрационен номер</label>
             <input type="text"
                    class="rounded-right-custom border"
@@ -23,7 +23,11 @@
                    placeholder="Регистрационен номер"
                    required pattern=".{8,}"
                    oninvalid="this.setCustomValidity('Регистрационният номер е задължителен поне 8 символа.')"
-                   oninput="this.setCustomValidity('')">
+                   oninput="this.setCustomValidity('')"
+            >
+            <div class="invalid-feedback">
+              Регистрационният номер вече го има в Базата данни.
+            </div>
           </div>
           <div class="form-group row">
             <label class="input-group-addon ml-2" for="brand">Марка</label>
@@ -39,7 +43,7 @@
             <label class="input-group-addon ml-2 rounded-left-custom border" for="year_of_production">Година на производство</label>
             <input class="rounded-right-custom border" type="number" min="1950" max="2017" id="year_of_production">
           </div>
-          <div class="form-group row clearfix">
+          <div class="form-group row mb-4">
             <label class="input-group-addon ml-2" for="engine_number">Номер на Двигател</label>
             <input class="rounded-right-custom border"
                    type="text" id="engine_number"
@@ -48,7 +52,9 @@
                    oninvalid="this.setCustomValidity('Номера на двигателят е задължителен поне 15 цифри.')"
                    oninput="this.setCustomValidity('')"
             >
-            <span></span>
+            <div class="invalid-feedback">
+              Номера на двигателят вече го има в Базата данни.
+            </div>
             <label class="input-group-addon ml-5 rounded-left-custom" for="vin_number">Номер на рама</label>
             <input class="rounded-right-custom border"
                    type="text"
@@ -58,6 +64,9 @@
                    oninvalid="this.setCustomValidity('Номера на рамата е задължителен поне 15 цифри.')"
                    oninput="this.setCustomValidity('')"
             >
+            <div class="invalid-feedback">
+              Номера на рамата вече го има в Базата данни.
+            </div>
           </div>
 
 
