@@ -13,11 +13,23 @@
         <div class="modal-body">
           <div class="form-group row">
             <label class="input-group-addon ml-4" for="name">Име</label>
-            <input type="text" id="name" placeholder="Част">
+            <input type="text"
+                   id="name"
+                   placeholder="Част"
+                   required
+                   oninvalid="this.setCustomValidity('Името е задължително.')"
+                   oninput="this.setCustomValidity('')">
           </div>
           <div class="form-group row">
             <label class="input-group-addon ml-4" for="price">Цена</label>
-            <input type="number" min="1" step="any" id="price" placeholder="Цена">
+            <input type="number"
+                   min="1"
+                   step="any"
+                   id="price"
+                   placeholder="Цена"
+                   required
+                   oninvalid="this.setCustomValidity('Задължително е да има цена.')"
+                   oninput="this.setCustomValidity('')">
             <label class="input-group-addon" for="price">.лв</label>
           </div>
         </div>

@@ -11,13 +11,14 @@
           </div>
         </div>
         <div class="modal-body">
-          <div hidden class="bidding-reason-fail alert alert-danger fade in alert-dismissable">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <span></span>
-          </div>
           <div class="form-group row clearfix">
             <label class="input-group-addon" for="name">Марка</label>
-            <input type="text" id="name" placeholder="Марка">
+            <input type="text"
+                   id="name"
+                   placeholder="Марка"
+                   oninvalid="this.setCustomValidity('Името на марката е задължително.')"
+                   oninput="this.setCustomValidity('')"
+            >
           </div>
         </div>
         <div class="modal-footer">

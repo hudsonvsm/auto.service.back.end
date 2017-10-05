@@ -11,21 +11,31 @@
           </div>
         </div>
         <div class="modal-body">
-          <div hidden class="bidding-reason-fail alert alert-danger fade in alert-dismissable">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <span></span>
-          </div>
           <div class="form-group row clearfix">
             <label class="input-group-addon" for="first-name">Първо име</label>
-            <input type="text"  id="first-name" placeholder="Първо име">
+            <input type="text"
+                   id="first-name"
+                   placeholder="Първо име"
+                   oninvalid="this.setCustomValidity('Първото име е задължително поле.')"
+                   oninput="this.setCustomValidity('')"
+            >
           </div>
           <div class="form-group row clearfix">
-            <label class="input-group-addon" for="last-name">Фамлия</label>
-            <input type="text"  id="last-name" placeholder="Фамлия">
+            <label class="input-group-addon required-field" for="last-name">Фамлия</label>
+            <input type="text"
+                   id="last-name"
+                   placeholder="Фамлия"
+                   oninvalid="this.setCustomValidity('Фамилията е задължително поле.')"
+                   oninput="this.setCustomValidity('')"
+            >
           </div>
           <div class="form-group row clearfix">
-            <label class="input-group-addon" for="phone-number">Телефон</label>
-            <input type="text"  id="phone-number" placeholder="Телефон">
+            <label class="input-group-addon required-field" for="phone-number">Телефон</label>
+            <input type="text"
+                   id="phone-number"
+                   placeholder="Телефон"
+                   oninvalid="this.setCustomValidity('Телефонът е задължително поле.')"
+                   oninput="this.setCustomValidity('')">
           </div>
         </div>
         <div class="modal-footer">

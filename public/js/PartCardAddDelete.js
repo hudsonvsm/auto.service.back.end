@@ -39,7 +39,7 @@ $(document).ready(function() {
                 });
 
                 tableRow.append(
-                    $('<td class="delete"><input class="btn btn-outline-danger delete-element" type="button" value="Изтрий"></td>')
+                    $('<td class="delete" align="center"><input class="btn btn-outline-danger delete-element" type="button" value="Изтрий"></td>')
                 );
 
                 $(".part-card-row").append(tableRow);

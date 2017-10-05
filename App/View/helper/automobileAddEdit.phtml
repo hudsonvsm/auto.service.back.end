@@ -16,43 +16,62 @@
             <span></span>
           </div>
           <div class="form-group row ">
-            <label class="input-group-addon ml-5" for="license_number">Регистрационен номер</label>
-            <input type="text" class="rounded-right-custom border" id="license_number" placeholder="Регистрационен номер">
+            <label class="input-group-addon ml-5" for="license_number" >Регистрационен номер</label>
+            <input type="text"
+                   class="rounded-right-custom border"
+                   id="license_number"
+                   placeholder="Регистрационен номер"
+                   required pattern=".{8,}"
+                   oninvalid="this.setCustomValidity('Регистрационният номер е задължителен поне 8 символа.')"
+                   oninput="this.setCustomValidity('')">
           </div>
           <div class="form-group row">
             <label class="input-group-addon ml-2" for="brand">Марка</label>
-            <select id="brand"></select>
+            <select id="brand" class="custom-select" required></select>
             <span class="btn btn-success rounded-right-custom border input-group-addon add-new-brand pointer-cursor"
                   data-toggle="modal"
                   data-target="#add-new-brand-modal">+</span>
-            <label class="input-group-addon ml-3 rounded-left-custom border" for="model_id">Модел</label>
-            <select id="model_id"></select>
+            <label class="input-group-addon ml-2 rounded-left-custom border" for="model_id">Модел</label>
+            <select id="model_id" required></select>
             <span class="btn btn-success rounded-right-custom border input-group-addon add-new-brand-model pointer-cursor"
                   data-toggle="modal"
                   data-target="#add-new-brand-model-modal">+</span>
-            <label class="input-group-addon ml-3 rounded-left-custom border" for="year_of_production">Година на производство</label>
+            <label class="input-group-addon ml-2 rounded-left-custom border" for="year_of_production">Година на производство</label>
             <input class="rounded-right-custom border" type="number" min="1950" max="2017" id="year_of_production">
           </div>
           <div class="form-group row clearfix">
             <label class="input-group-addon ml-2" for="engine_number">Номер на Двигател</label>
-            <input class="rounded-right-custom border" type="text" id="engine_number" placeholder="Двигател">
+            <input class="rounded-right-custom border"
+                   type="text" id="engine_number"
+                   placeholder="Двигател"
+                   required pattern=".{15,}"
+                   oninvalid="this.setCustomValidity('Номера на двигателят е задължителен поне 15 цифри.')"
+                   oninput="this.setCustomValidity('')"
+            >
             <span></span>
             <label class="input-group-addon ml-5 rounded-left-custom" for="vin_number">Номер на рама</label>
-            <input class="rounded-right-custom border" type="text" id="vin_number" placeholder="Рама">
+            <input class="rounded-right-custom border"
+                   type="text"
+                   id="vin_number"
+                   placeholder="Рама"
+                   required pattern=".{15,}"
+                   oninvalid="this.setCustomValidity('Номера на рамата е задължителен поне 15 цифри.')"
+                   oninput="this.setCustomValidity('')"
+            >
           </div>
 
 
           <div class="form-group row clearfix">
             <label class="input-group-addon ml-2" for="color_id">Цвят</label>
-            <select id="color_id"></select>
+            <select id="color_id" required></select>
             <span class="btn btn-success input-group-addon add-new-color pointer-cursor rounded-right-custom border"
                   data-toggle="modal"
                   data-target="#add-new-color-modal">+</span>
-            <label class="input-group-addon ml-2 rounded-left-custom border" for="engine_capacity">Работен обем</label>
+            <label class="input-group-addon ml-1 rounded-left-custom border" for="engine_capacity">Работен обем</label>
             <input type="number" min="0" max="9999" id="engine_capacity" placeholder="Работен обем">
             <label class="input-group-addon rounded-right-custom border" for="engine_capacity">cc</label>
-            <label class="input-group-addon ml-2 rounded-left-custom border" for="owner_id">Собственик</label>
-            <select id="owner_id" ></select>
+            <label class="input-group-addon ml-1 rounded-left-custom border" for="owner_id">Собственик</label>
+            <select id="owner_id" required></select>
             <span class="btn btn-success input-group-addon add-new-client pointer-cursor"
                     data-toggle="modal"
                     data-target="#add-new-client-modal">+</span>

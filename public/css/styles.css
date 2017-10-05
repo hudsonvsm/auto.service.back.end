@@ -31,6 +31,25 @@ span.pointer-cursor{
     border-bottom-right-radius: 0.25rem!important;
 }
 
-#add-edit-automobile input {
-    padding-left: 0.25rem;
+#add-edit-popup-modal input {
+    padding-left: 1rem;
+}
+
+.invalid-feedback {
+    display: none;
+    margin-top: .25rem;
+    font-size: .875rem;
+    color: #dc3545;
+}
+
+.is-invalid~.invalid-feedback,
+.is-invalid~.invalid-tooltip {
+    display: block;
+}
+
+.custom-select.is-invalid,
+.form-control.is-invalid,
+.was-validated .custom-select:invalid,
+.was-validated .form-control:invalid {
+    border-color: #dc3545;
 }
