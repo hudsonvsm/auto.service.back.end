@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Model\GeneralModel;
 use Mladenov\Config;
 use Mladenov\IController;
 use App\Model\AutomobilePart as Model;
@@ -53,7 +52,17 @@ class AutomobilePart implements IController
 
     public function deleteItem($id)
     {
-        return JsonView::render([ 'deleted' => $this->model->deleteItem($id) ]);
+        try {
+            $out = [ 'deleted' => $this->model->deleteItem($id) ];
+        } catch (\PDOException $ex) {
+            if (strpos($ex->getMessage(), "Cannot delete or update")) {
+                $out = [ 'error' => 'Елементът не може да бъде изтрит. Има свързани Ремонтни карти към него' ];
+            } else {
+                $out = [ 'error' => $ex->getMessage() ];
+            }
+        }
+
+        return JsonView::render($out);
     }
 
     public function updateItem($id, $params)

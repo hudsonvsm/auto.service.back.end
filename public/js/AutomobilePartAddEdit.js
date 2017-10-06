@@ -1,8 +1,12 @@
 $(document).ready(function() {
     // automobile part
     $(".row-element").on('click', ".edit-row", function (event) {
+        if ($(event.target).hasClass('delete-element')) {
+            return false;
+        }
+
         $('#add-edit-automobile-part').data($(this).data());
-    })
+    });
 
     $('#add-edit-popup-modal').off().on('show.bs.modal', function (e) {
         $(this).find('input#name').val($('#add-edit-automobile-part').data('name'));
@@ -18,7 +22,7 @@ $(document).ready(function() {
         event.preventDefault();
 
         var $this = $(this);
-        var values = objectBuilderFromInputs($('#add-edit-automobile-part :input'));
+        var values = objectBuilderFromInputs($('#add-edit-automobile-part').find(':input'));
 
         var method = 'POST';
         var id = '';
@@ -34,16 +38,20 @@ $(document).ready(function() {
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(values)
         }).done(function (data, textStatus, jqXHR) {
-            if (textStatus == "success") {
+            if (textStatus === "success") {
                 alert('Success');
 
                 if (method === 'PATCH') {
                     var row = $('.edit-row[data-id="' + $this.data('id') + '"]');
 
                     assignNewValuesToTableRowAndData(row, values, 'td.');
+
+                    $('#add-edit-popup-modal').modal('toggle');
+
+                    return false;
                 }
 
-                $('#add-edit-popup-modal').modal('toggle');
+                location.reload();
 
                 return false;
             }

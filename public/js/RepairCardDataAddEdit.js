@@ -1,4 +1,12 @@
 $(document).ready(function() {
+    $(".row-element").on('click', ".edit-row", function (event) {
+        if ($(event.target).hasClass('delete-element')) {
+            return false;
+        }
+
+        $('#add-edit-repair-card').data($(this).data());
+    });
+
     $('#add-edit-popup-modal').off().on('show.bs.modal', function (e) {
         var $this = $(this);
         var addEditElementData = $('#add-edit-repair-card').data();
@@ -139,9 +147,5 @@ $(document).ready(function() {
         .always(function (data, textStatus, jqXHR) {
             console.log('always');
         });
-    });
-
-    $(".row-element").on('click', ".edit-row", function (event) {
-        $('#add-edit-repair-card').data($(this).data());
     });
 });

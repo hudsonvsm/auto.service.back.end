@@ -45,6 +45,7 @@ $(document).ready(function() {
             return false;
         }
 
+        $('.error-message').addClass('sr-only');
         var row = $(this).closest('.edit-row');
 
         var rowData = row.data();
@@ -64,7 +65,16 @@ $(document).ready(function() {
                 return false;
             }
 
-            alert('fail');
+            $('.error-message')
+                .removeClass('sr-only')
+                .find('span')
+                .text('ГРЕШКА!!! ' + data.error);
+
+            alert('ГРЕШКА!!! ' + data.error);
         });
+    });
+
+    $('.error-message').on('click', '.close', function (event) {
+        $('.error-message').addClass('sr-only');
     });
 });

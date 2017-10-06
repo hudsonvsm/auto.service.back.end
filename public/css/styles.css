@@ -69,3 +69,35 @@ span.pointer-cursor{
     top: 10rem;
     left: 28rem;
 }
+
+form#add-part-for-card select#automobile_part_id {
+    width: 14rem;
+}
+
+form#add-edit-automobile select#owner_id {
+    width: 10rem;
+}
+
+form#add-edit-automobile select#color_id {
+    width: 6rem;
+}
+
+form#add-edit-automobile select#model_id {
+    width: 6rem;
+}
+
+form#add-edit-automobile select#brand {
+    width: 8rem;
+}
+
+.add-new-button {
+    color: #fff!important;
+    background-color:#5cb85c!important;
+    border-color: #5cb85c!important;
+}
+
+.add-new-button:hover {
+    color: #fff!important;
+    background-color: #449d44!important;
+    border-color: #419641!important;
+}

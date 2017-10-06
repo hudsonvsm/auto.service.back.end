@@ -11,10 +11,6 @@
           </div>
         </div>
         <div class="modal-body">
-          <div hidden class="bidding-reason-fail alert alert-danger fade in alert-dismissable">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <span></span>
-          </div>
           <div class="form-group row mb-4">
             <label class="input-group-addon ml-5" for="license_number" >Регистрационен номер</label>
             <input type="text"
@@ -31,13 +27,13 @@
           </div>
           <div class="form-group row">
             <label class="input-group-addon ml-2" for="brand">Марка</label>
-            <select id="brand" class="custom-select" required></select>
-            <span class="btn btn-success rounded-right-custom border input-group-addon add-new-brand pointer-cursor"
+            <select id="brand" required></select>
+            <span class="btn add-new-button rounded-right-custom border input-group-addon add-new-brand pointer-cursor"
                   data-toggle="modal"
                   data-target="#add-new-brand-modal">+</span>
             <label class="input-group-addon ml-2 rounded-left-custom border" for="model_id">Модел</label>
             <select id="model_id" required></select>
-            <span class="btn btn-success rounded-right-custom border input-group-addon add-new-brand-model pointer-cursor"
+            <span class="btn add-new-button rounded-right-custom border input-group-addon add-new-brand-model pointer-cursor"
                   data-toggle="modal"
                   data-target="#add-new-brand-model-modal">+</span>
             <label class="input-group-addon ml-2 rounded-left-custom border" for="year_of_production">Година на производство</label>
@@ -73,7 +69,7 @@
           <div class="form-group row clearfix">
             <label class="input-group-addon ml-2" for="color_id">Цвят</label>
             <select id="color_id" required></select>
-            <span class="btn btn-success input-group-addon add-new-color pointer-cursor rounded-right-custom border"
+            <span class="btn add-new-button input-group-addon add-new-color pointer-cursor rounded-right-custom border"
                   data-toggle="modal"
                   data-target="#add-new-color-modal">+</span>
             <label class="input-group-addon ml-1 rounded-left-custom border" for="engine_capacity">Работен обем</label>
@@ -81,7 +77,7 @@
             <label class="input-group-addon rounded-right-custom border" for="engine_capacity">cc</label>
             <label class="input-group-addon ml-1 rounded-left-custom border" for="owner_id">Собственик</label>
             <select id="owner_id" required></select>
-            <span class="btn btn-success input-group-addon add-new-client pointer-cursor"
+            <span class="btn add-new-button input-group-addon add-new-client pointer-cursor"
                     data-toggle="modal"
                     data-target="#add-new-client-modal">+</span>
           </div>

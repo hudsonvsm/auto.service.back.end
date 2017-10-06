@@ -1,5 +1,10 @@
 <?php $response = $this->getResponse(); ?>
 
+<div  class="sr-only error-message alert alert-danger alert-dismissable">
+  <a class="close" aria-label="close">&times;</a>
+  <span></span>
+</div>
+
 <table class="<?= $response['params']['params']; ?> table table-hover-custom table-responsive table-bordered table-striped">
   <?php $this->loadPartial('table.view.header' . $response['params']['params']); ?>
   <tfoot>

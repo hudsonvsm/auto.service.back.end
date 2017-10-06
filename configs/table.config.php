@@ -58,10 +58,9 @@ return [
         'license_number',
         'brand',
         'model',
-        'year_of_production',
         'color',
-        'engine_capacity',
-        'owner_full_name'
+        'owner_full_name',
+        'phone_number'
     ],
     'automobile_data' => [
         'id' => 'id',
@@ -74,7 +73,8 @@ return [
         'color',
         'engine_capacity',
         'automobile_description',
-        'owner_full_name'
+        'owner_full_name',
+        'phone_number'
     ],
     'client' => [
         'id' => 'id',

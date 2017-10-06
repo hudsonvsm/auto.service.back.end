@@ -1,4 +1,12 @@
 $(document).ready(function() {
+    $(".row-element").on('click', ".edit-row", function (event) {
+        if ($(event.target).hasClass('delete-element')) {
+            return false;
+        }
+
+        $('#add-edit-automobile').data($(this).data());
+    });
+
     $('#add-edit-popup-modal').off().on('show.bs.modal', function (e) {
         $.getJSON({ url: URL + '/AutomobileDataConnections' }).done(function (data, textStatus, jqXHR) {
             var addEditElementData = $('#add-edit-automobile').data();
@@ -67,7 +75,7 @@ $(document).ready(function() {
         $('.error').removeClass('error');
 
         var $this = $(this);
-        var values = objectBuilderFromInputs($('#add-edit-automobile :input'));
+        var values = objectBuilderFromInputs($('#add-edit-automobile').find(':input'));
         var method = 'POST';
         var id = '';
         if (typeof $this.data('id') !== 'undefined') {
@@ -82,7 +90,7 @@ $(document).ready(function() {
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(values)
         }, 'json').done(function (data, textStatus, jqXHR) {
-            if (typeof data.error == 'undefined' && textStatus == "success") {
+            if (typeof data.error === 'undefined' && textStatus === "success") {
                 alert('УСПЕХ');
 
                 if (method === 'PATCH') {
@@ -99,7 +107,7 @@ $(document).ready(function() {
             $('#' + data.error).addClass('error');
             $('label[for=' + data.error + ']').addClass('error');
 
-            alert('ГРЕШКА');
+            alert('ГРЕШКА!!!');
         })
         .fail(function (data, textStatus, jqXHR) {
             console.log('fail big time');
@@ -107,10 +115,6 @@ $(document).ready(function() {
         .always(function (data, textStatus, jqXHR) {
             console.log('always');
         });
-    });
-
-    $(".row-element").on('click', ".edit-row", function (event) {
-        $('#add-edit-automobile').data($(this).data());
     });
 
     $('#brand').on('change', function (event) {

@@ -4,7 +4,7 @@ return [
         'start' => 0,
         'count' => 10,
         'sortBy' => 'id',
-        'sortDirection' => 'ASC',
+        'sortDirection' => 'DESC',
     ],
     'AutomobilePartRepairCard' => [
         'start' => 0,
@@ -28,7 +28,7 @@ return [
         'start' => 0,
         'count' => 10,
         'sortBy' => 'id',
-        'sortDirection' => 'ASC',
+        'sortDirection' => 'DESC',
     ],
     'Automobile' => [
         'start' => 0,
