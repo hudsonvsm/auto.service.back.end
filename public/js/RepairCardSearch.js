@@ -33,4 +33,14 @@ $(document).ready(function() {
             location.replace(URL + '/RepairCardData');
         }
     })
+    .on('change', '#unfinished', function (event) {
+        var disabled = $(this).prop('checked') === '' ? true : false;
+
+        $('#end_date_before').prop('disabled', disabled);
+    })
+    .on('change', '#end_date_before', function (event) {
+        var disabled = $(this).val() !== '' ? true : false;
+
+        $('#unfinished').prop('disabled', disabled);
+    });
 });
