@@ -25,6 +25,9 @@ $(document).ready(function() {
             $.get(URL + '/AutomobilePartRepairCard?' + search, function (data, textStatus, jqXHR) {
                 $('#part-card-container').html(data);
             });
+
+            $('#add-part-for-card').show();
+            $('#add-part-for-card-header').show();
         } else {
             $('#add-part-for-card').hide();
             $('#add-part-for-card-header').hide();
