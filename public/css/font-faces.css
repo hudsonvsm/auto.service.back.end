@@ -1,0 +1,55 @@
+@font-face {
+	font-family: LibraSansModern;
+	src: url(/public/fonts/LibraSansModern.woff);
+	font-style: normal;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: LibraSansModern;
+	src: url(/public/fonts/LibraSansModern-Bold.woff);
+	font-style: normal;
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: LibraSansModern;
+	src: url(/public/fonts/LibraSansModern-Italic.woff);
+	font-style: italic;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family:LibraSansModern;
+	src:url(/public/fonts/LibraSansModern-BoldItalic.woff);
+	font-style:italic;
+	font-weight:bold;
+}
+
+@font-face {
+	font-family: LibraSerifModern;
+	src: url(/public/fonts/LibraSerifModern-Regular.woff);
+	font-style: normal;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: LibraSerifModern;
+	src: url(/public/fonts/LibraSerifModern-Bold.woff);
+	font-style: normal;
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: LibraSerifModern;
+	src: url(/public/fonts/LibraSerifModern-Italic.woff);
+	font-style: italic;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family:LibraSerifModern;
+	src:url(/public/fonts/LibraSerifModern-BoldItalic.woff);
+	font-style:italic;
+	font-weight:bold;
+}
