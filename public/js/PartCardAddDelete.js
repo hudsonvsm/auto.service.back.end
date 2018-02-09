@@ -4,7 +4,7 @@ $(document).ready(function() {
 
         var values = objectBuilderFromInputs($('#add-part-for-card :input'));
 
-        var partData = $('#automobile_part_id :selected').data();
+        var partData = Object.assign(true, {}, $('#automobile_part_id :selected').data());
 
         if (!values.automobile_part_id || !values.repair_card_id) {
             return false;
