@@ -7,5 +7,5 @@ return [
     'dbUser' => 'root',
     'dbPassword' => 'mysql',
     'dbCharset' => 'utf8',
-
+    'dbSSL' => ROOT_DIR . DS . 'file_path'
 ];

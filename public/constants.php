@@ -4,6 +4,7 @@ define('DS', DIRECTORY_SEPARATOR);
 
 define('ROOT_DIR', __DIR__ . DS . '..');
 define('VIEW_DIR', ROOT_DIR . DS . 'App' . DS . 'View' . DS);
+define('IS_DEBUG_INSTANCE', false);
 
 define('OPERATOR_URL_NOPROTOCOL', '//' . rtrim($_SERVER['HTTP_HOST'] . dirname(str_replace("public", "", $_SERVER['PHP_SELF'])), '\\'));
 
@@ -18,7 +19,6 @@ define('DB_TABLE_COLOR', 'color');
 define('DB_TABLE_REPAIR_CARD', 'repair_card');
 define('DB_TABLE_REPAIR_CARD_DATA', 'repair_card_data');
 define('DB_TABLE_WORKER', 'worker');
-
 
 define('DB_EXPRESSION_NOW', 'NOW()');
 define('DB_NULL_VALUE', 'NULL');
