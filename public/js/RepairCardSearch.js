@@ -34,9 +34,9 @@ $(document).ready(function() {
         }
     })
     .on('change', '#unfinished', function (event) {
-        var disabled = $(this).prop('checked') === '' ? true : false;
+        //var disabled = $(this).prop('checked') === '' ? true : false;
 
-        $('#end_date_before').prop('disabled', disabled);
+        $('#end_date_before').prop('disabled', $(this).prop('checked'));
     })
     .on('change', '#end_date_before', function (event) {
         var disabled = $(this).val() !== '' ? true : false;
