@@ -45,14 +45,19 @@ class PdoDatabase implements IDatabase
 
         $connectionString .= (empty($dbConfig['dbCharset'])) ? '' : ';charset=' . $dbConfig['dbCharset'];
 
+        $dbOptions = array(
+            \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
+        );
+
+        if (!is_null($dbConfig['dbSSL'])) {
+            $dbOptions[\PDO::MYSQL_ATTR_SSL_CA] = $dbConfig['dbSSL'];
+        }
+
         $this->connection = new \PDO(
             $connectionString,
             $dbConfig['dbUser'],
             $dbConfig['dbPassword'],
-            [
-                \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
-                //\PDO::MYSQL_ATTR_SSL_CA => $dbConfig['dbSSL'],
-            ]
+            $dbOptions
         );
     }
 
