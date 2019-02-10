@@ -1,7 +1,7 @@
 <?php $response = $this->getResponse(); ?>
 
 <div>
-<nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
+<nav class="navbar navbar-expand-lg navbar-toggleable-md navbar-dark bg-primary">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -19,5 +19,6 @@
         <a class="nav-link <?php if ($response['params']['params'] == 'RepairCardData') echo 'active';?>" href="<?= OPERATOR_URL_NOPROTOCOL . '/RepairCardData'; ?>">Ремонтни карти</a>
       </li>
     </ul>
+    <a class="btn btn-danger my-2 my-sm-0 " href="<?= OPERATOR_URL_NOPROTOCOL . '/Logout'; ?>">Излез</a>
   </div>
 </nav>

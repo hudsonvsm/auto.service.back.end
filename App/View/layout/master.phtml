@@ -14,33 +14,41 @@
       crossorigin="anonymous"></script>
 
     <!-- BOOTSTRAP! Latest compiled and minified CSS -->
-    <link 
-        rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" 
-        integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" 
-        crossorigin="anonymous">
+      <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+            crossorigin="anonymous">
     <script 
         src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" 
         integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" 
         crossorigin="anonymous"></script>
-    <script 
-        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" 
-        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" 
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js"
+        integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP"
         crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="<?= OPERATOR_URL_NOPROTOCOL; ?>/public/css/font-faces.css">
     <link rel="stylesheet" href="<?= OPERATOR_URL_NOPROTOCOL; ?>/public/css/styles.css">
     <script src="<?= OPERATOR_URL_NOPROTOCOL; ?>/public/js/functions.js"></script>
     <script>
-      var URL = '<?php echo ($_SERVER['HTTPS'] !== 'off' || $_SERVER['HTTPS'] === true) ? 'https:' : 'http:'; echo OPERATOR_URL_NOPROTOCOL; ?>';
+      var URL = '<?php echo (!is_null($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] !== 'off' || $_SERVER['HTTPS'] === true)) ? 'https:' : 'http:'; echo OPERATOR_URL_NOPROTOCOL; ?>';
       var URL_NOPROTOCOL = '<?= OPERATOR_URL_NOPROTOCOL; ?>';
-      var CURRENT_URL = URL + '/<?= $this->response['params']['params']; ?>';
+      var CURRENT_URL = URL + '<?= $this->response['params']['params']; ?>';
+      var AUTH_TOKEN =  '<?= \App\Controller\Authenticator::$access_token; ?>';
     </script>
   </head>
   <body>
     <div class="container-fluid">
       <?php $this->loadPartial('navigation'); ?>
       <?php echo $this->content; ?>
+        <!-- Footer -->
+        <footer class="page-footer font-small bg-primary pt-4">
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">
+                <p class="text-white">&copy; Valentin Mladenov 2015-2019</p>
+            </div>
+            <!-- Copyright -->
+        </footer>
+        <!-- Footer -->
     </div>
   </body>
 </html>

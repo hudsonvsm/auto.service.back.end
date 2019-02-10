@@ -2,13 +2,9 @@
 
 namespace Mladenov;
 
-interface IController
+interface IController extends IGetController
 {
     function addItem($post);
-
-    function getCollection(array $params);
-
-    function getItem($id);
 
     function deleteItem($id);
 

@@ -7,5 +7,9 @@ if (IS_DEBUG_INSTANCE) {
     error_reporting(E_ALL);
 }
 
+session_start();
+
+\App\Controller\Authenticator::Authorize();
+
 \App\Router::route();
 

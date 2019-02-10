@@ -19,6 +19,10 @@ class AutomobileDataConnections implements IController
     private $brandModelModel;
     private $brandModel;
 
+    /**
+     * AutomobileDataConnections constructor.
+     * @param IDatabase $db
+     */
     public function __construct(IDatabase $db)
     {
         $dbTableColumns = Config::getProperty('tables');
@@ -29,11 +33,19 @@ class AutomobileDataConnections implements IController
         $this->brandModel = new AutomobileBrandModel($db, DB_TABLE_AUTOMOBILE_BRAND, $dbTableColumns[DB_TABLE_AUTOMOBILE_BRAND]);
     }
 
+    /**
+     * @param $params
+     * @throws ControllerException
+     */
     public function addItem($params)
     {
         throw new ControllerException("Unsupported Request method: Forbidden.");
     }
 
+    /**
+     * @param array $params
+     * @return false|string
+     */
     public function getCollection(array $params)
     {
         $out['params'] = $params;
@@ -45,16 +57,29 @@ class AutomobileDataConnections implements IController
         return JsonView::render($out);
     }
 
+    /**
+     * @param $id
+     * @throws ControllerException
+     */
     public function getItem($id)
     {
         throw new ControllerException("Unsupported Request method: Forbidden.");
     }
 
+    /**
+     * @param $id
+     * @throws ControllerException
+     */
     public function deleteItem($id)
     {
         throw new ControllerException("Unsupported Request method: Forbidden.");
     }
 
+    /**
+     * @param $id
+     * @param $params
+     * @throws ControllerException
+     */
     public function updateItem($id, $params)
     {
         throw new ControllerException("Unsupported Request method: Forbidden.");

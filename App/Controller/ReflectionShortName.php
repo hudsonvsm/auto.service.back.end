@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-
 trait ReflectionShortName
 {
     static function getClassShortName(string $className)

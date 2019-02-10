@@ -7,6 +7,7 @@ return [
     'templatePath' => VIEW_DIR,
     'masterLayout' => VIEW_DIR . 'layout' . DS . 'master.phtml',
     'db' => include 'db.config.php',
+    'oauth' => include 'oauth.config.php',
     'basicGet' => include 'get.config.php',
     'picThumbnailWidth' => 150,
     'picThumbnailHeight' => 150,

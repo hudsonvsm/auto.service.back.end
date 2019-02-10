@@ -88,9 +88,10 @@ abstract class AbstractModel
     }
 
     /**
-     * @param string $tableName         the name of the table passed from child element.
-     * @param array  $identification    with data as array
-     * @param array  $data              which will be updated
+     * @param string $tableName the name of the table passed from child element.
+     * @param array $identification with data as array
+     * @param array $data which will be updated
+     * @return bool
      */
     protected function update(string $tableName, array $identification, array $data)
     {

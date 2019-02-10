@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Controller\ErrorController;
+use App\Exceptions\AccessException;
 use App\Exceptions\ControllerException;
 use App\Exceptions\RouterException;
 use Mladenov\Config;
@@ -23,7 +24,6 @@ class Router
                     die(self::delete());
                 case 'GET':
                     die(self::get());
-                    break;
                 default:
                     ErrorController::showErrorPage('Unsupported Request method: ' . $_SERVER['REQUEST_METHOD']);
             }
