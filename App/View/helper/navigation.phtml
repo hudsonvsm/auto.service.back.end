@@ -19,15 +19,15 @@ $country = \App\Router::$lang === 'en' ? 'GB' : \App\Router::$lang;
   <div class="collapse navbar-collapse" id="navbarSupportedContent" role="tabpanel">
     <ul class="autoservice-navigation navbar-nav nav mr-auto" role="tablist">
       <li class="nav-item ">
-        <a class="nav-link <?php if ($response['params']['params'] == 'AutomobilePart') echo 'active';?>" href="<?= ROUTER_URL_NOPROTOCOL . '/AutomobilePart'; ?>"
+        <a class="nav-link <?php if ($response['params']['params'] == \App\Router::$lang.'/AutomobilePart') echo 'active';?>" href="<?= ROUTER_URL_NOPROTOCOL . '/AutomobilePart'; ?>"
         >Резервни части</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link <?php if ($response['params']['params'] == 'AutomobileData') echo 'active';?>" href="<?= ROUTER_URL_NOPROTOCOL . '/AutomobileData'; ?>"
+        <a class="nav-link <?php if ($response['params']['params'] == \App\Router::$lang.'/AutomobileData') echo 'active';?>" href="<?= ROUTER_URL_NOPROTOCOL . '/AutomobileData'; ?>"
         >Автомобили</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link <?php if ($response['params']['params'] == 'RepairCardData') echo 'active';?>" href="<?= ROUTER_URL_NOPROTOCOL . '/RepairCardData'; ?>"
+        <a class="nav-link <?php if ($response['params']['params'] == \App\Router::$lang.'/RepairCardData') echo 'active';?>" href="<?= ROUTER_URL_NOPROTOCOL . '/RepairCardData'; ?>"
         >Ремонтни карти</a>
       </li>
     </ul>

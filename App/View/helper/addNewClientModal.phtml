@@ -1,52 +1,59 @@
 <!-- addNewClientModal -->
 <script src="<?= OPERATOR_URL_NOPROTOCOL . '/public/js/'; ?>AddClient.js"></script>
 
+<?= $this->localizeUi(array(
+    'new_client',
+    'first_name',
+    'last_name',
+    'telephone',
+    'first_name_mandatory',
+    'last_name_mandatory',
+    'telephone_mandatory',
+
+));?>
+
 <div class="modal fade" id="add-new-client-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content bg-faded border-dark bidding-popup">
       <form method="post" id="add-new-client" action="#">
         <div class="modal-header">
           <div class="clearfix">
-            <h5 class="col-xs-6 title-container"><span class="title">Нов Клиент</span></h5>
+            <h5 class="col-xs-6 title-container text-capitalize">
+              <span class="title"><?= $this->getUiLocaleField('new_client'); ?></span></h5>
           </div>
         </div>
         <div class="modal-body">
           <div class="form-group row clearfix">
-            <label class="input-group-addon" for="first-name">Първо име</label>
+            <label class="input-group-addon text-capitalize"
+                   for="first-name"><?= $this->getUiLocaleField('first_name'); ?></label>
             <input type="text"
                    id="first-name"
-                   placeholder="Първо име"
-                   oninvalid="this.setCustomValidity('Първото име е задължително поле.')"
+                   placeholder="<?= $this->getUiLocaleField('first_name'); ?>"
+                   oninvalid="this.setCustomValidity('<?= $this->getUiLocaleField('first_name_mandatory'); ?>')"
                    oninput="this.setCustomValidity('')"
             >
           </div>
           <div class="form-group row clearfix">
-            <label class="input-group-addon required-field" for="last-name">Фамлия</label>
+            <label class="input-group-addon required-field text-capitalize"
+                   for="last-name"><?= $this->getUiLocaleField('last_name'); ?></label>
             <input type="text"
                    id="last-name"
-                   placeholder="Фамлия"
-                   oninvalid="this.setCustomValidity('Фамилията е задължително поле.')"
+                   placeholder="<?= $this->getUiLocaleField('last_name'); ?>"
+                   oninvalid="this.setCustomValidity('<?= $this->getUiLocaleField('last_name_mandatory'); ?>')"
                    oninput="this.setCustomValidity('')"
             >
           </div>
           <div class="form-group row clearfix">
-            <label class="input-group-addon required-field" for="phone-number">Телефон</label>
+            <label class="input-group-addon required-field text-capitalize"
+                   for="phone-number"><?= $this->getUiLocaleField('telephone'); ?></label>
             <input type="text"
                    id="phone-number"
-                   placeholder="Телефон"
-                   oninvalid="this.setCustomValidity('Телефонът е задължително поле.')"
+                   placeholder="<?= $this->getUiLocaleField('telephone'); ?>"
+                   oninvalid="this.setCustomValidity('<?= $this->getUiLocaleField('telephone_mandatory'); ?>')"
                    oninput="this.setCustomValidity('')">
           </div>
         </div>
-        <div class="modal-footer">
-          <div class="send-buttons clearfix">
-            <input class=" btn btn-primary" type="submit" value="Потвърждавам" name="commit" id="submit"/>
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Откажи</button>
-          </div>
-          <div hidden class="bidding-loading">
-            <img src="<?= OPERATOR_URL_NOPROTOCOL; ?>/public/img/loading.gif">
-          </div>
-        </div>
+        <?php $this->loadPartial('addComponent.footerModal'); ?>
       </form>
     </div>
   </div>

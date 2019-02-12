@@ -1,6 +1,8 @@
 <!-- addNewBrandModal -->
 <script src="<?= OPERATOR_URL_NOPROTOCOL . '/public/js/'; ?>AddBrand.js"></script>
 
+<?= $this->localizeUi(array('new_brand', 'brand', 'brand_name_mandatory'));?>
+
 <!-- TODO CHANGE LOCALE Needed all helpers-->
 <div class="modal fade" id="add-new-brand-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-sm" role="document">
@@ -8,29 +10,24 @@
       <form method="post" id="add-new-model">
         <div class="modal-header">
           <div class="clearfix">
-            <h5 class="col-xs-6 title-container"><span class="title">Нова Марка</span></h5>
+            <h5 class="col-xs-6 title-container">
+              <span class="title text-capitalize"><?= $this->getUiLocaleField('new_brand'); ?></span>
+            </h5>
           </div>
         </div>
         <div class="modal-body">
           <div class="form-group row clearfix">
-            <label class="input-group-addon" for="name">Марка</label>
+            <label class="input-group-addon text-capitalize" for="name"><?= $this->getUiLocaleField('brand'); ?></label>
             <input type="text"
                    id="name"
-                   placeholder="Марка"
-                   oninvalid="this.setCustomValidity('Името на марката е задължително.')"
+                   class="text-capitalize"
+                   placeholder="<?= $this->getUiLocaleField('brand'); ?>"
+                   oninvalid="this.setCustomValidity('<?= $this->getUiLocaleField('brand_name_mandatory'); ?>')"
                    oninput="this.setCustomValidity('')"
             >
           </div>
         </div>
-        <div class="modal-footer">
-          <div class="send-buttons clearfix">
-            <input class=" btn btn-primary" type="submit" value="Потвърждавам" name="commit" id="submit"/>
-            <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#add-new-brand-modal">Откажи</button>
-          </div>
-          <div hidden class="bidding-loading">
-            <img src="<?= OPERATOR_URL_NOPROTOCOL; ?>/public/img/loading.gif">
-          </div>
-        </div>
+          <?php $this->loadPartial('addComponent.footerModal'); ?>
       </form>
     </div>
   </div>

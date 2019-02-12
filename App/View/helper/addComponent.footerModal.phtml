@@ -1,0 +1,13 @@
+<?= $this->localizeUi(array('confirm', 'deny'));?>
+
+<div class="modal-footer">
+  <div class="send-buttons clearfix">
+    <input class=" btn btn-primary text-capitalize" type="submit"
+           value="<?= $this->getUiLocaleField('confirm'); ?>" name="commit" id="submit"/>
+    <button type="button" class="btn btn-danger text-capitalize" data-dismiss="modal"
+            data-toggle="modal" data-target="#add-new-brand-model-modal"><?= $this->getUiLocaleField('deny'); ?></button>
+  </div>
+  <div hidden class="bidding-loading">
+    <img src="<?= OPERATOR_URL_NOPROTOCOL; ?>/public/img/loading.gif">
+  </div>
+</div>

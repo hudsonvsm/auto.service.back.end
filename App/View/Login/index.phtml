@@ -1,12 +1,14 @@
 <!-- Login form -->
 <script src="<?= OPERATOR_URL_NOPROTOCOL . '/public/js/';?>Login.js"></script>
 <?php
+$this->localizeUi(array('enter_please', 'password', 'user_name', 'sign_in', 'error'));
+
 $response = $this->getResponse();
 
 if($response[0] !== null) {
 ?>
-<div class="mt-3 alert alert-danger" role="alert">
-    Error: <?= $response[0];?>
+<div class="mt-3 alert alert-danger text-capitalize" role="alert">
+    <?= $this->getUiLocaleField('error').': '.$response[0];?>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -16,15 +18,15 @@ if($response[0] !== null) {
 <!-- TODO CHANGE LOCALE Needed -->
 <div class="container mb-5">
     <form id="form-signin" method="post">
-        <h1 class="h3 mt-5 mb-3 font-weight-normal">Моля влезте.</h1>
+        <h1 class="h3 mt-5 mb-3 font-weight-normal text-capitalize"><?= $this->getUiLocaleField('enter_please'); ?></h1>
         <div class="form-group">
-            <label for="userName" >Потребителско Име</label>
-            <input type="text" id="userName" name="userName" class="form-control" placeholder="User Name" required autofocus>
+            <label for="userName" class="text-capitalize"><?= $this->getUiLocaleField('user_name'); ?></label>
+            <input type="text" id="userName" name="userName" class="form-control " placeholder="<?= $this->getUiLocaleField('user_name'); ?>" required autofocus>
         </div>
         <div class="form-group">
-            <label for="inputPassword" >Парола</label>
-            <input type="password" name="password"  id="password" class="form-control" placeholder="Password" required>
+            <label for="inputPassword" class="text-capitalize"><?= $this->getUiLocaleField('password'); ?></label>
+            <input type="password" name="password" id="password" class="form-control text-capitalize" placeholder="<?= $this->getUiLocaleField('password'); ?>" required>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block text-capitalize" type="submit"><?= $this->getUiLocaleField('sign_in'); ?></button>
     </form>
 </div>

@@ -1,12 +1,12 @@
 <?php $response = $this->getResponse(); ?>
 
-<div  class="sr-only error-message alert alert-danger alert-dismissable">
+<div class="sr-only error-message alert alert-danger alert-dismissable">
   <a class="close" aria-label="close">&times;</a>
   <span></span>
 </div>
 
 <table class="<?= $response['params']['params']; ?> table table-hover-custom table-responsive table-bordered table-striped">
-  <?php $this->loadPartial('table.view.header' . $response['params']['params']); ?>
+  <?php $this->loadPartial('table.view.header' . \App\Router::$controllerName); ?>
   <tfoot>
     <tr>
       <td colspan="<?php if (!empty($response['data'])) echo count($response['data'][0]->getColumns()); ?>">
@@ -19,9 +19,9 @@
   <tbody class="row-element">
   <?php foreach ($response['data'] as $row) { ?>
     <tr class="edit-row"
-        <?php foreach ($row as $key => $column) { ?>
-          data-<?= $this->camelCaseToHyphen($key); ?>="<?= $column; ?>"
-        <?php } ?>
+        <?php foreach ($row as $key => $column) {
+          echo 'data-' . $this->camelCaseToHyphen($key) . '="' . $column . '"';
+        } ?>
     >
         <?php foreach ($row as $key => $column) {
             if ($key === 'id') continue; ?>

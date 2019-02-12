@@ -81,7 +81,7 @@ class Authenticator
                 case 'json':
                     return JsonView::render($out);
                 case null;
-                    $view = new View($getParams[0], 'index', $out);
+                    $view = new View($getParams[1], 'index', $out);
                     $view->render();
             }
         }

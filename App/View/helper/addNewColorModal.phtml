@@ -20,15 +20,7 @@
             <input type="text" id="color" placeholder="Цвят">
           </div>
         </div>
-        <div class="modal-footer">
-          <div class="send-buttons clearfix">
-            <input class=" btn btn-primary" type="submit" value="Потвърждавам" name="commit" id="submit"/>
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Откажи</button>
-          </div>
-          <div hidden class="bidding-loading">
-            <img src="<?= OPERATOR_URL_NOPROTOCOL; ?>/public/img/loading.gif">
-          </div>
-        </div>
+        <?php $this->loadPartial('addComponent.footerModal'); ?>
       </form>
     </div>
   </div>

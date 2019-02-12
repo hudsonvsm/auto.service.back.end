@@ -97,4 +97,13 @@ class View
     {
         return $this->uiLocale;
     }
+
+    /**
+     * @param string $key
+     * @return string
+     */
+    public function getUiLocaleField(string $key) : string
+    {
+        return $this->uiLocale[$key];
+    }
 }
