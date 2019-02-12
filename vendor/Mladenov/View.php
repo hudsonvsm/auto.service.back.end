@@ -4,6 +4,9 @@
  */
 namespace Mladenov;
 
+use App\Model\I18N;
+use App\Router;
+
 /**
  * Class View
  * @package Mladenov
@@ -13,6 +16,8 @@ class View
     private $content;
     protected $templatePath;
     private $response;
+    private $uiLocale = array();
+    private $localization;
 
     /**
      * @return array
@@ -24,6 +29,14 @@ class View
 
     public function __construct(string $folderName, string $fileName, array $response)
     {
+        $db = Config::getProperty('db');
+
+        $dbDriver = $db['dbDriver'];
+
+        $dbTableColumns = Config::getProperty('tables');
+
+        $this->localization = new I18N($dbDriver::getInstance($db), DB_TABLE_I18N, $dbTableColumns[DB_TABLE_I18N]);
+
         $this->response = $response;
 
         $this->templatePath = Config::getProperty('templatePath')
@@ -31,6 +44,13 @@ class View
             . DIRECTORY_SEPARATOR
             . strtolower($fileName)
             . '.phtml';
+    }
+
+    public function localizeUi(array $fields) : void
+    {
+        $result = $this->localization->getLocalization(Router::$lang, $fields);
+
+        $this->uiLocale += $result;
     }
 
     public function render()
@@ -68,5 +88,13 @@ class View
 
     function camelCaseToHyphen(string $string) {
         return strtolower(preg_replace('/([a-zA-Z])(?=[A-Z])/', '$1-', $string));
+    }
+
+    /**
+     * @return array
+     */
+    public function getUiLocale(): array
+    {
+        return $this->uiLocale;
     }
 }

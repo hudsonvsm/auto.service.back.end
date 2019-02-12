@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+      <!-- TODO CHANGE LOCALE Needed -->
     <title>Автосервиз</title>
     <base href="/">
     <meta http-equiv="X-UA-Compatible" content="IE=edge; IE=9; IE=8; IE=7" />
@@ -28,12 +29,16 @@
 
     <link rel="stylesheet" href="<?= OPERATOR_URL_NOPROTOCOL; ?>/public/css/font-faces.css">
     <link rel="stylesheet" href="<?= OPERATOR_URL_NOPROTOCOL; ?>/public/css/styles.css">
+    <link rel="stylesheet" href="<?= OPERATOR_URL_NOPROTOCOL; ?>/public/css/flags.css">
+
     <script src="<?= OPERATOR_URL_NOPROTOCOL; ?>/public/js/functions.js"></script>
+    <script src="<?= OPERATOR_URL_NOPROTOCOL; ?>/public/js/jquery.flagstrap.min.js"></script>
     <script>
-      var URL = '<?php echo (!is_null($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] !== 'off' || $_SERVER['HTTPS'] === true)) ? 'https:' : 'http:'; echo OPERATOR_URL_NOPROTOCOL; ?>';
-      var URL_NOPROTOCOL = '<?= OPERATOR_URL_NOPROTOCOL; ?>';
+      var URL = '<?php echo (!is_null($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] !== 'off' || $_SERVER['HTTPS'] === true)) ? 'https:' : 'http:'; echo ROUTER_URL_NOPROTOCOL; ?>';
+      var URL_NOPROTOCOL = '<?= ROUTER_URL_NOPROTOCOL; ?>';
       var CURRENT_URL = URL + '<?= $this->response['params']['params']; ?>';
       var AUTH_TOKEN =  '<?= \App\Controller\Authenticator::$access_token; ?>';
+      var LANG =  '<?= \App\Router::$lang; ?>';
     </script>
   </head>
   <body>
@@ -44,6 +49,7 @@
         <footer class="page-footer font-small bg-primary pt-4">
             <!-- Copyright -->
             <div class="footer-copyright text-center py-3">
+                <!-- TODO CHANGE LOCALE Needed -->
                 <p class="text-white">&copy; Valentin Mladenov 2015-2019</p>
             </div>
             <!-- Copyright -->

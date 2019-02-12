@@ -3,9 +3,7 @@ namespace App\Controller;
 
 use App\Exceptions\AccessException;
 use App\Service\Authorize;
-use App\Service\LoginResponse;
 use Mladenov\JsonView;
-use Mladenov\Service;
 use Mladenov\View;
 
 class Authenticator
@@ -21,9 +19,9 @@ class Authenticator
         $getParams = explode('/', filter_input(INPUT_GET, 'params', FILTER_SANITIZE_MAGIC_QUOTES));
         $returnDataType = filter_input(INPUT_GET, 'returnDataType', FILTER_SANITIZE_MAGIC_QUOTES);
 
-        if ($getParams[0] == 'Login') {
+        if ($getParams[1] == 'Login') {
             die(self::login($getParams, $returnDataType));
-        } elseif ($getParams[0] == 'Logout'){
+        } elseif ($getParams[1] == 'Logout'){
             die(self::logout());
         }
 
@@ -53,7 +51,7 @@ class Authenticator
         $out = array();
 
         if (empty($params)) {
-            $view = new View($getParams[0], 'index', $out);
+            $view = new View($getParams[1], 'index', $out);
             $view->render();
             return;
         }
@@ -73,7 +71,7 @@ class Authenticator
                 case null;
                     $_SESSION['Token'] = $out['access_token'];
 
-                    header('Location: '. OPERATOR_URL_NOPROTOCOL .'/RepairCardData');
+                    header('Location: '. ROUTER_URL_NOPROTOCOL .'/RepairCardData');
             }
         } catch (AccessException $ex) {
             http_response_code($ex->getCode());
@@ -127,7 +125,7 @@ class Authenticator
                     return JsonView::render($out);
                 case null;
                     $_SESSION['Token'] = null;
-                    header('Location: '. OPERATOR_URL_NOPROTOCOL .'/Login');
+                    header('Location: '. ROUTER_URL_NOPROTOCOL .'/Login');
             }
         }
 
@@ -138,6 +136,6 @@ class Authenticator
         $_SESSION['Token'] = null;
         session_destroy();
 
-        header('Location: '. OPERATOR_URL_NOPROTOCOL .'/Login');
+        header('Location: '. ROUTER_URL_NOPROTOCOL .'/Login');
     }
 }

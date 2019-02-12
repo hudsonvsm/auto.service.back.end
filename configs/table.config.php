@@ -87,4 +87,10 @@ return [
         'first_name',
         'last_name'
     ],
+    'i18n' => [
+        'id' => 'id',
+        'key',
+        'name_bg',
+        'name_en',
+    ],
 ];

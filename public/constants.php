@@ -7,6 +7,7 @@ define('VIEW_DIR', ROOT_DIR . DS . 'App' . DS . 'View' . DS);
 define('IS_DEBUG_INSTANCE', false);
 
 define('OPERATOR_URL_NOPROTOCOL', '//' . rtrim($_SERVER['HTTP_HOST'] . dirname(str_replace("public", "", $_SERVER['PHP_SELF'])), '\\'));
+define('ROUTER_URL_NOPROTOCOL', OPERATOR_URL_NOPROTOCOL . '/' . explode('/', filter_input(INPUT_GET, 'params', FILTER_SANITIZE_MAGIC_QUOTES))[0]);
 
 define('DB_TABLE_AUTOMOBILE', 'automobile');
 define('DB_TABLE_AUTOMOBILE_BRAND', 'automobile_brand');
@@ -19,6 +20,7 @@ define('DB_TABLE_COLOR', 'color');
 define('DB_TABLE_REPAIR_CARD', 'repair_card');
 define('DB_TABLE_REPAIR_CARD_DATA', 'repair_card_data');
 define('DB_TABLE_WORKER', 'worker');
+define('DB_TABLE_I18N', 'i18n');
 
 define('DB_EXPRESSION_NOW', 'NOW()');
 define('DB_NULL_VALUE', 'NULL');
