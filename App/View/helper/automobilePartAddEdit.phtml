@@ -1,46 +1,49 @@
 <!-- Automobile Modal -->
 <script src="<?= OPERATOR_URL_NOPROTOCOL . '/public/js/';?>AutomobilePartAddEdit.js"></script>
 
+<?php $this->localizeUi(array(
+    'price',
+    'price_required',
+    'name',
+    'name_required',
+    'spare_part',
+    'part',
+    'currency'
+));?>
+
 <div class="modal fade" id="add-edit-popup-modal" tabindex="-1" role="dialog" >
   <div class="modal-dialog" role="document">
     <div class="modal-content bidding-popup">
       <form method="post" id="add-edit-automobile-part" action="#">
         <div class="modal-header">
           <div class="clearfix">
-            <h5 class="col-xs-6 title-container"><span class="title">Автомобил</span></h5>
+            <h5 class="col-xs-6 title-container"><span class="title"><?= $this->getUiLocaleField('spare_part'); ?></span></h5>
           </div>
         </div>
         <div class="modal-body">
           <div class="form-group row">
-            <label class="input-group-addon ml-4" for="name">Име</label>
+            <label class="input-group-addon ml-4" for="name"><?= $this->getUiLocaleField('name'); ?></label>
             <input type="text"
                    id="name"
-                   placeholder="Част"
+                   placeholder="<?= $this->getUiLocaleField('part'); ?>"
                    required
-                   oninvalid="this.setCustomValidity('Името е задължително.')"
+                   oninvalid="this.setCustomValidity('<?= $this->getUiLocaleField('name_required'); ?>')"
                    oninput="this.setCustomValidity('')">
           </div>
           <div class="form-group row">
-            <label class="input-group-addon ml-4" for="price">Цена</label>
+            <label class="input-group-addon ml-4" for="price"><?= $this->getUiLocaleField('price'); ?></label>
             <input type="number"
                    min="1"
                    step="any"
                    id="price"
-                   placeholder="Цена"
+                   placeholder="<?= $this->getUiLocaleField('price'); ?>"
                    required
-                   oninvalid="this.setCustomValidity('Задължително е да има цена.')"
+                   oninvalid="this.setCustomValidity('<?= $this->getUiLocaleField('price_required'); ?>')"
                    oninput="this.setCustomValidity('')">
-            <label class="input-group-addon" for="price">.лв</label>
+            <label class="input-group-addon" for="price"><?= $this->getUiLocaleField('currency'); ?></label>
           </div>
         </div>
-        <div class="modal-footer">
-          <div class="send-buttons clearfix">
-            <input class="btn btn-primary" type="submit" value="Потвърждавам" name="commit" id="submit"/>
-            <input type="button" class="btn btn-danger" value="Откажи" data-dismiss="modal" data-toggle="modal" data-target="add-edit-popup-modal" />
-          </div>
-          <div hidden class="bidding-loading">
-            <img src="<?= OPERATOR_URL_NOPROTOCOL; ?>/public/img/loading.gif">
-          </div>
+        <?php $this->loadPartial('addComponent.footerModal', 'add-edit-popup-modal'); ?>
         </div>
       </form>
     </div>

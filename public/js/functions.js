@@ -1,5 +1,5 @@
 function brandModelSelectorChanger (selectedBrand, brandModelSelect, selectedData) {
-    appendNewOptionToSelect(brandModelSelect, {}, '', 'Избери', true);
+    appendNewOptionToSelect(brandModelSelect, {}, '', i18n['choose'], true);
 
     $.each(brandModelSelect.data(), function (i, model) {
         var selected = false;
@@ -41,7 +41,7 @@ function assignNewValuesToTableRowAndData(row, values, where) {
 
 $(document).ready(function() {
     $(".row-element").on('click', ".delete-element", function (event) {
-        if (!confirm("Наистина ли искате да изтриете този елемент")) {
+        if (!confirm(i18n['delete_confirmation'])) {
             return false;
         }
 
@@ -59,18 +59,20 @@ $(document).ready(function() {
             dataType: 'json',
             contentType: 'application/json; charset=utf-8'
         }).done(function (data, textStatus, jqXHR) {
-            if (data.deleted && textStatus == "success") {
+            if (data.deleted && textStatus === "success") {
                 row.remove();
 
                 return false;
             }
 
+            const errorMessage = i18n['error'].toUpperCase() + '!!! ' + data.error;
+
             $('.error-message')
                 .removeClass('sr-only')
                 .find('span')
-                .text('ГРЕШКА!!! ' + data.error);
+                .text(errorMessage);
 
-            alert('ГРЕШКА!!! ' + data.error);
+            alert(errorMessage);
         });
     });
 

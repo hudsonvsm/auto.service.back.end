@@ -1,22 +1,45 @@
+<?php
+
+$this->localizeUi(array(
+    'work_card',
+    'automobile',
+    'client',
+    'number',
+    'acceptance_date',
+    'start_date',
+    'end_date',
+    'description',
+    'price',
+    'worker',
+    'license_number',
+    'brand',
+    'model',
+    'color',
+    'owner',
+    'telephone',
+));
+
+?>
+
 <thead>
   <tr>
-    <th colspan="7"  class="text-center">Карта</th>
-    <th colspan="4"  class="text-center">Автомобил</th>
-    <th colspan="2"  class="text-center">Клиент</th>
+    <th colspan="7"  class="text-center text-capitalize"><?= $this->getUiLocaleField('work_card'); ?></th>
+    <th colspan="4"  class="text-center text-capitalize"><?= $this->getUiLocaleField('automobile'); ?></th>
+    <th colspan="2"  class="text-center text-capitalize"><?= $this->getUiLocaleField('client'); ?></th>
   </tr>
   <tr>
-    <th>Номер</th>
-    <th>Дата на приемане</th>
-    <th>Дата на започване</th>
-    <th>Дата на завършване</th>
-    <th>Описание</th>
-    <th>Цена</th>
-    <th>Работник</th>
-    <th>Регистрационен номер</th>
-    <th>Марка</th>
-    <th>Модел</th>
-    <th>Цвят</th>
-    <th>Собственик</th>
-    <th>Телефон</th>
+    <th class="text-capitalize"><?= $this->getUiLocaleField('number'); ?></th>
+    <th class="text-capitalize"><?= $this->getUiLocaleField('acceptance_date'); ?></th>
+    <th class="text-capitalize"><?= $this->getUiLocaleField('start_date'); ?></th>
+    <th class="text-capitalize"><?= $this->getUiLocaleField('end_date'); ?></th>
+    <th class="text-capitalize"><?= $this->getUiLocaleField('description'); ?></th>
+    <th class="text-capitalize"><?= $this->getUiLocaleField('price'); ?></th>
+    <th class="text-capitalize"><?= $this->getUiLocaleField('worker')?></th>
+    <th class="text-capitalize"><?= $this->getUiLocaleField('license_number'); ?></th>
+    <th class="text-capitalize"><?= $this->getUiLocaleField('brand')?></th>
+    <th class="text-capitalize"><?= $this->getUiLocaleField('model'); ?></th>
+    <th class="text-capitalize"><?= $this->getUiLocaleField('color'); ?></th>
+    <th class="text-capitalize"><?= $this->getUiLocaleField('owner'); ?></th>
+    <th class="text-capitalize"><?= $this->getUiLocaleField('telephone'); ?></th>
   </tr>
 </thead>

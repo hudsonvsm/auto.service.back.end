@@ -1,5 +1,20 @@
 <!-- RepairCard Modal -->
 <script src="<?= OPERATOR_URL_NOPROTOCOL . '/public/js/';?>RepairCardDataAddEdit.js"></script>
+<?php
+$this->localizeUi(array(
+    'work_card',
+    'number',
+    'automobile',
+    'worker',
+    'acceptance_date',
+    'start_date',
+    'end_date',
+    'description',
+    'inserted_parts',
+    'add_new_part',
+    'add',
+    'total_price'
+));?>
 
 <div class="modal fade" id="add-edit-popup-modal" tabindex="-1" role="dialog" >
   <div class="modal-dialog " role="document">
@@ -7,76 +22,68 @@
       <form method="post" id="add-edit-repair-card" action="#">
         <div class="modal-header">
           <div class="clearfix">
-            <h5 class="col-xs-6 title-container"><span class="title">Работна крта</span></h5>
+            <h5 class="col-xs-6 title-container"><span class="title text-capitalize"><?= $this->getUiLocaleField('work_card'); ?></span></h5>
           </div>
         </div>
         <div class="modal-body">
           <div class="form-group row clearfix">
-            <label class="input-group-addon ml-3" for="number">Номер</label>
-            <input class="rounded-right-custom border" type="text" disabled id="number" placeholder="Номер">
+            <label class="input-group-addon ml-3 text-capitalize" for="number"><?= $this->getUiLocaleField('number'); ?></label>
+            <input class="rounded-right-custom border" type="text" disabled id="number" placeholder="<?= $this->getUiLocaleField('number'); ?>">
           </div>
 
           <div class="form-group row clearfix">
-            <label class="input-group-addon ml-3" for="acceptance_date">Дата на приемане</label>
+            <label class="input-group-addon ml-3" for="acceptance_date"><?= $this->getUiLocaleField('acceptance_date'); ?></label>
             <input class="rounded-right-custom border" type="date" id="acceptance_date" value=""/>
           </div>
 
           <div class="form-group row clearfix">
-            <label class="input-group-addon ml-3" for="start_date">Дата на започване</label>
+            <label class="input-group-addon ml-3" for="start_date"><?= $this->getUiLocaleField('start_date'); ?></label>
             <input class="rounded-right-custom border" type="date" id="start_date" value=""/>
           </div>
 
           <div class="form-group row clearfix">
-            <label class="input-group-addon ml-3" for="end_date">Дата на завършване</label>
+            <label class="input-group-addon ml-3" for="end_date"><?= $this->getUiLocaleField('end_date'); ?></label>
             <input class="rounded-right-custom border" type="date" id="end_date" value=""/>
           </div>
           <div class="form-group row clearfix">
-            <label class="input-group-addon ml-3" for="automobile_id">Автомобил</label>
-            <select class="rounded-right-custom border"
+            <label class="input-group-addon ml-3" for="automobile_id"><?= $this->getUiLocaleField('automobile'); ?></label>
+            <select class="rounded-right-custom text-capitalize border"
                     id="automobile_id"
                     required
             ></select>
-            <label class="rounded-left-custom input-group-addon ml-3" for="worker_id">Работник</label>
-            <select class="rounded-right-custom border"
+            <label class="rounded-left-custom input-group-addon text-capitalize ml-3" for="worker_id"><?= $this->getUiLocaleField('worker'); ?></label>
+            <select class="rounded-right-custom text-capitalize border"
                     id="worker_id"
                     required
             ></select>
           </div>
           <div class="form-group row clearfix">
-            <label class="input-group-addon ml-3" for="description">Описание</label>
-            <textarea id="description" class="rounded-right-custom border desc-textarea" placeholder="Описание"></textarea>
+            <label class="input-group-addon ml-3" for="description"><?= $this->getUiLocaleField('description'); ?></label>
+            <textarea id="description" class="rounded-right-custom border desc-textarea" placeholder="<?= $this->getUiLocaleField('description'); ?>"></textarea>
           </div>
         </div>
       </form>
       <div class="modal-header" id="add-part-for-card-header">
         <div class="clearfix">
-          <h6 class="col-xs-6 title-container"><span class="title">Вложени части</span></h6>
+          <h6 class="col-xs-6 title-container"><span class="title"><?= $this->getUiLocaleField('inserted_parts'); ?></span></h6>
         </div>
       </div>
       <div class="modal-body">
         <form method="post" id="add-part-for-card" action="#">
           <div class="form-group row clearfix">
-            <label class="input-group-addon ml-3" for="automobile_part_id">Вложи нова част</label>
+            <label class="input-group-addon ml-3" for="automobile_part_id"><?= $this->getUiLocaleField('add_new_part'); ?></label>
             <select id="automobile_part_id"></select>
             <input type="hidden" id="repair_card_id">
-            <input class="btn input-group-addon add-new-button" type="submit" value="Добави" />
+            <input class="btn input-group-addon add-new-button" type="submit" value="<?= $this->getUiLocaleField('add'); ?>" />
           </div>
         </form>
         <div id="part-card-container"></div>
         <div class="form-group row clearfix">
-          <label class="input-group-addon ml-3" for="total_price">Пълна цена:</label>
+          <label class="input-group-addon ml-3" for="total_price"><?= $this->getUiLocaleField('total_price'); ?>:</label>
           <input class="rounded-right-custom border" type="number" step="any" disabled id="total_price">
         </div>
       </div>
-      <div class="modal-footer">
-        <div class="send-buttons clearfix">
-          <input class="btn btn-primary" type="submit" value="Потвърждавам" form="add-edit-repair-card" id="submit"/>
-          <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="add-edit-popup-modal">Откажи</button>
-        </div>
-        <div hidden class="bidding-loading">
-          <img src="<?= OPERATOR_URL_NOPROTOCOL; ?>/public/img/loading.gif">
-        </div>
-      </div>
+        <?php $this->loadPartial('addComponent.footerModal', 'add-edit-popup-modal'); ?>
     </div>
   </div>
 </div>

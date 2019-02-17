@@ -5,7 +5,7 @@ $(document).ready(function() {
 
         select.html('');
 
-        appendNewOptionToSelect(select, {}, '', 'Избери', true);
+        appendNewOptionToSelect(select, {}, '', i18n.choose, true);
 
         $.each(data.data, function (i, automobile) {
             var selected = false;

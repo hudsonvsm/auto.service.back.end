@@ -1,7 +1,7 @@
 <!-- addNewBrandModal -->
 <script src="<?= OPERATOR_URL_NOPROTOCOL . '/public/js/'; ?>AddBrand.js"></script>
 
-<?= $this->localizeUi(array('new_brand', 'brand', 'brand_name_mandatory'));?>
+<?php $this->localizeUi(array('new_brand', 'brand', 'brand_name_mandatory')); ?>
 
 <!-- TODO CHANGE LOCALE Needed all helpers-->
 <div class="modal fade" id="add-new-brand-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -27,7 +27,7 @@
             >
           </div>
         </div>
-          <?php $this->loadPartial('addComponent.footerModal'); ?>
+          <?php $this->loadPartial('addComponent.footerModal', 'add-new-brand-modal'); ?>
       </form>
     </div>
   </div>

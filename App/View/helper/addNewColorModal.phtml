@@ -1,13 +1,15 @@
 <!-- addNewColorModal -->
 <script src="<?= OPERATOR_URL_NOPROTOCOL . '/public/js/'; ?>AddColor.js"></script>
 
+<?= $this->localizeUi(array('new_color', 'color'));?>
+
 <div class="modal fade" id="add-new-color-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content bg-faded border-dark bidding-popup">
       <form method="post" id="add-new-color" action="#">
         <div class="modal-header">
           <div class="clearfix">
-            <h5 class="col-xs-6 title-container"><span class="title">Нов Цвят</span></h5>
+            <h5 class="col-xs-6 title-container text-capitalize"><span class="title"><?= $this->getUiLocaleField('new_color'); ?></span></h5>
           </div>
         </div>
         <div class="modal-body">
@@ -16,11 +18,11 @@
             <span></span>
           </div>
           <div class="form-group row clearfix">
-            <label class="input-group-addon required-field" for="color">Цвят</label>
-            <input type="text" id="color" placeholder="Цвят">
+            <label class="input-group-addon required-field text-capitalize" for="color"><?= $this->getUiLocaleField('color'); ?></label>
+            <input type="text" id="color" placeholder="<?= $this->getUiLocaleField('color'); ?>">
           </div>
         </div>
-        <?php $this->loadPartial('addComponent.footerModal'); ?>
+        <?php $this->loadPartial('addComponent.footerModal', 'add-new-color-modal'); ?>
       </form>
     </div>
   </div>

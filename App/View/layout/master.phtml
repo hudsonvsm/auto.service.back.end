@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+  <?php $this->localizeUi(array('auto_service', 'developer', 'error', 'choose', 'delete_confirmation', 'currency')); ?>
   <head>
       <!-- TODO CHANGE LOCALE Needed -->
-    <title>Автосервиз</title>
+    <title><?= $this->getUiLocaleField('auto_service'); ?></title>
+    <link rel="shortcut icon" type="image/png" sizes="32x32" href="<?= OPERATOR_URL_NOPROTOCOL; ?>/public/img/favicon-32x32.png"/>
     <base href="/">
     <meta http-equiv="X-UA-Compatible" content="IE=edge; IE=9; IE=8; IE=7" />
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
@@ -37,24 +39,25 @@
       var URL = '<?php echo (!is_null($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] !== 'off' || $_SERVER['HTTPS'] === true)) ? 'https:' : 'http:'; echo ROUTER_URL_NOPROTOCOL; ?>';
       var URL_NOPROTOCOL = '<?= ROUTER_URL_NOPROTOCOL; ?>';
       var CURRENT_URL = URL + '<?= $this->response['params']['params']; ?>';
-      var AUTH_TOKEN =  '<?= \App\Controller\Authenticator::$access_token; ?>';
-      var LANG =  '<?= \App\Router::$lang; ?>';
+      var AUTH_TOKEN = '<?= \App\Controller\Authenticator::$access_token; ?>';
+      var LANG = '<?= \App\Router::$lang; ?>';
+      var i18n = JSON.parse('<?= json_encode((object)$this->getUiLocale());?>');
+
     </script>
   </head>
   <body>
     <div class="container-fluid">
       <?php $this->loadPartial('navigation'); ?>
       <?php echo $this->content; ?>
-        <!-- Footer -->
-        <footer class="page-footer font-small bg-primary pt-4">
-            <!-- Copyright -->
-            <div class="footer-copyright text-center py-3">
-                <!-- TODO CHANGE LOCALE Needed -->
-                <p class="text-white">&copy; Valentin Mladenov 2015-2019</p>
-            </div>
-            <!-- Copyright -->
-        </footer>
-        <!-- Footer -->
+      <!-- Footer -->
+      <footer class="page-footer font-small bg-primary pt-4">
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">
+          <p class="text-white"><?= $this->getUiLocaleField('developer'); ?></p>
+        </div>
+        <!-- Copyright -->
+      </footer>
+      <!-- Footer -->
     </div>
   </body>
 </html>

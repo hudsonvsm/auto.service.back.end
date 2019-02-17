@@ -20,7 +20,7 @@ $(document).ready(function() {
 
             var brandSelect = $('#brand');
             brandSelect.html('');
-            appendNewOptionToSelect(brandSelect, {}, '', 'Избери', true);
+            appendNewOptionToSelect(brandSelect, {}, '', i18n['choose'], true);
             $.each(data.brands, function (i, brand) {
                 var selected = false;
                 if(brand.name === addEditElementData.brand) selected = true;
@@ -37,7 +37,7 @@ $(document).ready(function() {
 
             var colorSelect = $('#color_id');
             colorSelect.html('');
-            appendNewOptionToSelect(colorSelect, {}, '', 'Избери', true);
+            appendNewOptionToSelect(colorSelect, {}, '', i18n['choose'], true);
             $.each(data.colors, function (i, color) {
                 var selected = false;
                 if(color.name === addEditElementData.color) selected = true;
@@ -47,7 +47,7 @@ $(document).ready(function() {
 
             var clientSelect = $('#owner_id');
             clientSelect.html('');
-            appendNewOptionToSelect(clientSelect, {}, '', 'Избери', true);
+            appendNewOptionToSelect(clientSelect, {}, '', i18n['choose'], true);
             $.each(data.clients, function (i, client) {
                 var selected = false;
 
@@ -91,7 +91,7 @@ $(document).ready(function() {
             data: JSON.stringify(values)
         }, 'json').done(function (data, textStatus, jqXHR) {
             if (typeof data.error === 'undefined' && textStatus === "success") {
-                alert('УСПЕХ');
+                alert(i18n[textStatus].toUpperCase());
 
                 if (method === 'PATCH') {
                     var row = $('.edit-row[data-id="' + $this.data('id') + '"]');
@@ -107,7 +107,7 @@ $(document).ready(function() {
             $('#' + data.error).addClass('error');
             $('label[for=' + data.error + ']').addClass('error');
 
-            alert('ГРЕШКА!!!');
+            alert(i18n['error'].toUpperCase() + '!!!');
         })
         .fail(function (data, textStatus, jqXHR) {
             console.log('fail big time');

@@ -22,8 +22,8 @@ $(document).ready(function() {
                 phone_number: inputPhoneNumber.val()
             }
         }, 'json').done(function (data, textStatus, jqXHR) {
-            if (textStatus == "success") {
-                alert('Success');
+            if (textStatus === "success") {
+                alert(i18n[textStatus].toUpperCase());
 
                 var client = $('#owner_id');
                 client.val(data.id);
@@ -41,13 +41,13 @@ $(document).ready(function() {
                 return false;
             }
 
-            alert('fail');
+            alert(i18n['error'].toUpperCase());
         })
-            .fail(function (data, textStatus, jqXHR) {
-                console.log('fail big time');
-            })
-            .always(function (data, textStatus, jqXHR) {
-                console.log('always');
-            });
+        .fail(function (data, textStatus, jqXHR) {
+            console.log('fail big time');
+        })
+        .always(function (data, textStatus, jqXHR) {
+            console.log('always');
+        });
     });
 });

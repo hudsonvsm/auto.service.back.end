@@ -1,4 +1,9 @@
-<?php $response = $this->getResponse(); ?>
+<?php $response = $this->getResponse();
+
+$this->localizeUi(array(
+    'delete'
+));
+?>
 
 <div class="sr-only error-message alert alert-danger alert-dismissable">
   <a class="close" aria-label="close">&times;</a>
@@ -30,7 +35,7 @@
               data-target="#add-edit-popup-modal"><?= $column; ?></td>
         <?php } ?>
         <td class="delete" align="center" valign="middle">
-          <input class="btn btn-outline-danger delete-element" type="button" value="Изтрий">
+          <input class="btn text-capitalize btn-outline-danger delete-element" type="button" value="<?= $this->getUiLocaleField('delete'); ?>">
         </td>
     </tr>
   <?php } ?>

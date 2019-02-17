@@ -48,6 +48,10 @@ class View
 
     public function localizeUi(array $fields) : void
     {
+        $fields = array_keys(array_diff_key(array_flip($fields), $this->uiLocale));
+
+        if (count($fields) == 0) return;
+
         $result = $this->localization->getLocalization(Router::$lang, $fields);
 
         $this->uiLocale += $result;
@@ -77,7 +81,7 @@ class View
         }
     }
 
-    public function loadPartial($nameFile)
+    public function loadPartial($nameFile, string $modalId = null)
     {
         $file = Config::getProperty('templatePath') . DIRECTORY_SEPARATOR . 'helper' . DIRECTORY_SEPARATOR . $nameFile .'.phtml';
 

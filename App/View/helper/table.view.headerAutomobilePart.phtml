@@ -1,6 +1,15 @@
+<?php
+
+$this->localizeUi(array(
+    'spare_part',
+    'price'
+));
+
+?>
+
 <thead>
   <tr>
-    <th>Резервна част</th>
-    <th>Цена</th>
+    <th class="text-capitalize"><?= $this->getUiLocaleField('spare_part'); ?></th>
+    <th class="text-capitalize"><?= $this->getUiLocaleField('price'); ?></th>
   </tr>
 </thead>

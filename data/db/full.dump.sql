@@ -201,17 +201,93 @@ INSERT INTO `color` (`id`, `name`) VALUES
 -- Дъмп структура за таблица auto_service.i18n
 CREATE TABLE IF NOT EXISTS `i18n` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+	`key` VARCHAR(50) NOT NULL DEFAULT '0',
   `name_en` varchar(50) NOT NULL DEFAULT '0',
   `name_bg` varchar(50) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  FULLTEXT KEY `name_en_name_bg` (`name_en`,`name_bg`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+	UNIQUE INDEX `key` (`key`)
+)
+	COLLATE='utf8_general_ci'
+  ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Дъмп данни за таблица auto_service.i18n: ~2 rows (approximately)
+-- Дъмп данни за таблица auto_service.i18n: ~75 rows (approximately)
 DELETE FROM `i18n`;
-INSERT INTO `i18n` (`id`, `name_en`, `name_bg`) VALUES
-	(1, 'id', 'ид'),
-	(2, 'license_number', 'регистрационнен номер');
+INSERT IGNORE INTO `i18n` (`id`, `key`, `name_en`, `name_bg`) VALUES
+(1, 'id', 'id', 'ид'),
+(2, 'license_number', 'license plate', 'регистрационнен номер'),
+(3, 'number', 'number', 'номер'),
+(4, 'acceptance_date', 'acceptance date', 'дата на приемане'),
+(5, 'delete', 'delete', 'изтрий'),
+(6, 'exit', 'exit', 'излез'),
+(7, 'auto_service', 'auto service', 'автосервиз'),
+(8, 'repair_cards', 'repair cards', 'ремонтни карти'),
+(9, 'page404', 'oops... The page was not found', 'опаa... Страницата не е намерена'),
+(10, 'enter_please', 'lease enter.', 'моля влезте.'),
+(11, 'user_name', 'user name', 'потребителско име'),
+(12, 'password', 'password', 'парола'),
+(13, 'sign_in', 'sign in', 'впиши се'),
+(14, 'error', 'error', 'грешка'),
+(15, 'brand', 'brand', 'марка'),
+(16, 'new_brand', 'new brand', 'новa марка'),
+(17, 'brand_name_mandatory', 'brand name is mandatory', 'името на марката е задължително'),
+(18, 'confirm', 'confirm', 'потвърждавам'),
+(19, 'deny', 'deny', 'откажи'),
+(20, 'model_name_mandatory', 'model name is mandatory', 'името на моделът е задължителен'),
+(21, 'model', 'model', 'модел'),
+(22, 'new_model', 'new model', 'нов модел'),
+(23, 'new_client', 'new client', 'нов клиент'),
+(24, 'first_name', 'first name', 'първо име'),
+(25, 'last_name', 'last name', 'фамилия'),
+(26, 'telephone', 'telephone', 'телефон'),
+(27, 'telephone_mandatory', 'the telephone is mandatory field', 'телефонът е задължително поле'),
+(28, 'first_name_mandatory', 'the first name is mandatory field', 'първото име е задължително поле'),
+(29, 'last_name_mandatory', 'the last name is mandatory field', 'фамилията е задължително поле'),
+(30, 'color', 'color', 'цвят'),
+(31, 'new_color', 'new color', 'нов цвят'),
+(32, 'automobile', 'automobile', 'автомобил'),
+(33, 'reg_num_required', 'The registration number is required, at least 8 ch', 'Регистрационният номер е задължителен, поне 8 симв'),
+(34, 'reg_num_exists', 'The registration number is already in the Database', 'Регистрационният номер вече го има в Базата данни.'),
+(35, 'year_of_manufacture', 'Year of manufacture', 'Година на производство'),
+(36, 'engine_number', 'engine number', 'номер на двигател'),
+(37, 'engine', 'engine', 'двигател'),
+(38, 'eng_num_required', 'The engine number is mandatory, at least 15 digits', 'номера на двигателят е задължителен поне 15 цифри.'),
+(39, 'eng_num_exists', 'the engine number already exists in the Database.', 'номера на двигателят вече го има в базата данни.'),
+(40, 'vin_num', 'frame number', 'номер на рама'),
+(41, 'vin_num_required', 'frame number is mandatory, at least 15 digits', 'номера на рамата е задължителен поне 15 цифри'),
+(42, 'vin_num_exists', 'the frame number already exists in the database.', 'номера на рамата вече го има в базата данни'),
+(43, 'vin', 'frame', 'рама'),
+(44, 'engine_capacity', 'displacement', 'работен обем'),
+(45, 'engine_measurement', 'cc', 'м³'),
+(46, 'owner', 'owner', 'собственик'),
+(47, 'description', 'description', 'описание'),
+(48, 'name', 'name', 'име'),
+(49, 'name_required', 'name is required', 'името е задължително'),
+(50, 'price', 'price', 'цена'),
+(51, 'price_required', 'price is required', 'цената е задължителна'),
+(52, 'part', 'part', 'част'),
+(53, 'currency', '$', '.лв'),
+(54, 'spare_part', 'spare part', 'резервна част'),
+(55, 'spare_parts', 'spare parts', 'резервни части'),
+(56, 'automobiles', 'automobiles', 'автомобили'),
+(57, 'work_card', 'work card', 'работна карта'),
+(58, 'worker', 'worker', 'работник'),
+(59, 'developer', '© Valentin Mladenov 2015-2019', '© Валентин Младенов 2015-2019'),
+(60, 'start_date', 'start date', 'Дата на започване'),
+(61, 'end_date', 'end date', 'Дата на завършване'),
+(62, 'inserted_parts', 'inserted parts', 'Вложени части'),
+(63, 'add_new_part', 'Put a new part', 'Вложи нова част'),
+(64, 'add', 'add', 'добави'),
+(65, 'total_price', 'total price', 'пълна цена'),
+(66, 'start_date_after', 'Started after', 'Започнат след'),
+(67, 'end_date_before', 'Finished before', 'Завършен преди'),
+(68, 'unfinished_repairs', 'Unfinished repairs', 'Неприключени ремонти'),
+(69, 'search', 'search', 'търси'),
+(70, 'delete_alt', 'delete', 'изтрий'),
+(71, 'client', 'client', 'клиент'),
+(72, 'manufacture_date', 'Date of manufacture', 'Дата на производство'),
+(73, 'choose', 'choose', 'избери'),
+(74, 'delete_confirmation', 'Are you sure you want to delete this item', 'Наистина ли искате да изтриете този елемент'),
+(75, 'success', 'success', 'успех');
 
 -- Дъмп структура за таблица auto_service.repair_card
 CREATE TABLE IF NOT EXISTS `repair_card` (

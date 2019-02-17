@@ -36,7 +36,7 @@ $(document).ready(function() {
         $.getJSON(URL + '/Worker', function (data, textStatus, jqXHR) {
             var select = $this.find('#worker_id');
             select.html('');
-            appendNewOptionToSelect(select, {}, '', 'Избери', true);
+            appendNewOptionToSelect(select, {}, '', i18n['choose'], true);
             $.each(data.data, function (i, worker) {
                 var selected = false;
 
@@ -51,7 +51,7 @@ $(document).ready(function() {
         $.getJSON(URL + '/Automobile', function (data, textStatus, jqXHR) {
             var select = $this.find('#automobile_id');
             select.html('');
-            appendNewOptionToSelect(select, {}, '', 'Избери', true);
+            appendNewOptionToSelect(select, {}, '', i18n['choose'], true);
             $.each(data.data, function (i, automobile) {
                 var selected = false;
                 if(automobile.licenseNumber === addEditElementData.licenseNumber) selected = true;
@@ -63,9 +63,9 @@ $(document).ready(function() {
         $.getJSON(URL + '/AutomobilePart?returnDataType=json', function (data, textStatus, jqXHR) {
             var select = $this.find('#automobile_part_id');
             select.html('');
-            appendNewOptionToSelect(select, {}, '', 'Избери', true);
+            appendNewOptionToSelect(select, {}, '', i18n['choose'], true);
             $.each(data.data, function (i, part) {
-                appendNewOptionToSelect(select, part, part.id, part.name + ': ' + part.price + ' лв.', false);
+                appendNewOptionToSelect(select, part, part.id, part.name + ': ' + part.price + ' ' + i18n['currency'], false);
             });
         });
     }).on('hide.bs.modal', function (event) {
@@ -86,7 +86,7 @@ $(document).ready(function() {
         $('#start_date').val('');
         $('#end_date').val('');
         $('#description').val('');
-        $('#repair_card_id').val('')
+        $('#repair_card_id').val('');
         $('#total_price').val('');
         $('#add-edit-repair-card').removeData();
     });
@@ -110,10 +110,9 @@ $(document).ready(function() {
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(values)
         }, 'json').done(function (data, textStatus, jqXHR) {
-            if (textStatus !== "success") {
-                alert('fail');
-            }
-            alert('Success');
+            const message = (textStatus !== "success") ? i18n['error'].toUpperCase() : i18n[textStatus].toUpperCase();
+
+            alert(message + '!!!');
 
             if (method === 'PATCH') {
                 if ($this.data('afterPost')) location.reload();

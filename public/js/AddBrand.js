@@ -16,8 +16,8 @@ $(document).ready(function() {
                 name: inputName.val()
             }
         }, 'json').done(function (data, textStatus, jqXHR) {
-            if (textStatus == "success") {
-                alert('Success');
+            if (textStatus === "success") {
+                alert(i18n[textStatus].toUpperCase());
 
                 var brand = $('#brand');
                 brand.val(data.id);
@@ -32,7 +32,7 @@ $(document).ready(function() {
                 return false;
             }
 
-            alert('fail');
+            alert(i18n['error'].toUpperCase());
         })
             .fail(function (data, textStatus, jqXHR) {
                 console.log('fail big time');

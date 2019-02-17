@@ -1,100 +1,111 @@
 <!-- Automobile Modal -->
 <script src="<?= OPERATOR_URL_NOPROTOCOL . '/public/js/';?>AutomobileDataAddEdit.js"></script>
 
+<?php
+$this->localizeUi(array(
+    'license_number',
+    'brand',
+    'model',
+    'automobile',
+    'reg_num_required',
+    'reg_num_exists',
+    'year_of_manufacture',
+    'engine_number',
+    'engine',
+    'eng_num_required',
+    'eng_num_exists',
+    'vin_num',
+    'vin_num_required',
+    'vin_num_exists',
+    'vin',
+    'color',
+    'engine_capacity',
+    'engine_measurement',
+    'owner',
+    'description'
+    ));?>
+
 <div class="modal fade" id="add-edit-popup-modal" tabindex="-1" role="dialog" >
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content bidding-popup">
       <form method="post" id="add-edit-automobile" action="#">
         <div class="modal-header">
           <div class="clearfix">
-            <h5 class="col-xs-6 title-container"><span class="title">Автомобил</span></h5>
+            <h5 class="col-xs-6 title-container"><span class="title text-capitalize"><?= $this->getUiLocaleField('automobile'); ?></span></h5>
           </div>
         </div>
         <div class="modal-body">
           <div class="form-group row mb-4">
-            <label class="input-group-addon ml-5" for="license_number" >Регистрационен номер</label>
+            <label class="input-group-addon ml-5 text-capitalize" for="license_number" ><?= $this->getUiLocaleField('license_number'); ?></label>
             <input type="text"
                    class="rounded-right-custom border"
                    id="license_number"
-                   placeholder="Регистрационен номер"
+                   placeholder="<?= $this->getUiLocaleField('reg_num_required'); ?>"
                    required pattern=".{8,}"
-                   oninvalid="this.setCustomValidity('Регистрационният номер е задължителен поне 8 символа.')"
+                   oninvalid="this.setCustomValidity('')"
                    oninput="this.setCustomValidity('')"
             >
-            <div class="invalid-feedback">
-              Регистрационният номер вече го има в Базата данни.
-            </div>
+            <div class="invalid-feedback text-capitalize"><?= $this->getUiLocaleField('reg_num_exists'); ?></div>
           </div>
           <div class="form-group row">
-            <label class="input-group-addon ml-2" for="brand">Марка</label>
-            <select id="brand" required></select>
-            <span class="btn add-new-button rounded-right-custom border input-group-addon add-new-brand pointer-cursor"
+            <label class="input-group-addon ml-2" for="brand"><?= $this->getUiLocaleField('brand'); ?></label>
+            <select id="brand" class="text-capitalize" required></select>
+            <span class="btn add-new-button rounded-right-custom border text-capitalize input-group-addon add-new-brand pointer-cursor"
                   data-toggle="modal"
                   data-target="#add-new-brand-modal">+</span>
-            <label class="input-group-addon ml-2 rounded-left-custom border" for="model_id">Модел</label>
-            <select id="model_id" required></select>
+            <label class="input-group-addon ml-2 rounded-left-custom border text-capitalize" for="model_id"><?= $this->getUiLocaleField('model'); ?></label>
+            <select id="model_id" class="text-capitalize" required></select>
             <span class="btn add-new-button rounded-right-custom border input-group-addon add-new-brand-model pointer-cursor"
                   data-toggle="modal"
                   data-target="#add-new-brand-model-modal">+</span>
-            <label class="input-group-addon ml-2 rounded-left-custom border" for="year_of_production">Година на производство</label>
+            <label class="input-group-addon ml-2 rounded-left-custom border" for="year_of_production"><?= $this->getUiLocaleField('year_of_manufacture'); ?></label>
             <input class="rounded-right-custom border" type="number" min="1950" max="2017" id="year_of_production">
           </div>
           <div class="form-group row mb-4">
-            <label class="input-group-addon ml-2" for="engine_number">Номер на Двигател</label>
+            <label class="input-group-addon ml-2 text-capitalize" for="engine_number"><?= $this->getUiLocaleField('engine_number'); ?></label>
             <input class="rounded-right-custom border"
                    type="text" id="engine_number"
-                   placeholder="Двигател"
+                   placeholder="<?= $this->getUiLocaleField('engine'); ?>"
                    required pattern=".{15,}"
-                   oninvalid="this.setCustomValidity('Номера на двигателят е задължителен поне 15 цифри.')"
+                   oninvalid="this.setCustomValidity('<?= $this->getUiLocaleField('eng_num_required'); ?>')"
                    oninput="this.setCustomValidity('')"
             >
-            <div class="invalid-feedback">
-              Номера на двигателят вече го има в Базата данни.
-            </div>
-            <label class="input-group-addon ml-5 rounded-left-custom" for="vin_number">Номер на рама</label>
+            <div class="invalid-feedback text-capitalize"><?= $this->getUiLocaleField('eng_num_exists'); ?></div>
+            <label class="input-group-addon ml-5 rounded-left-custom text-capitalize" for="vin_number"><?= $this->getUiLocaleField('vin_num'); ?></label>
             <input class="rounded-right-custom border"
                    type="text"
                    id="vin_number"
-                   placeholder="Рама"
+                   placeholder="<?= $this->getUiLocaleField('vin'); ?>"
                    required pattern=".{15,}"
-                   oninvalid="this.setCustomValidity('Номера на рамата е задължителен поне 15 цифри.')"
+                   oninvalid="this.setCustomValidity('<?= $this->getUiLocaleField('vin_num_required'); ?>')"
                    oninput="this.setCustomValidity('')"
             >
-            <div class="invalid-feedback">
-              Номера на рамата вече го има в Базата данни.
-            </div>
+            <div class="invalid-feedback"><?= $this->getUiLocaleField('vin_num_exists'); ?></div>
           </div>
 
 
           <div class="form-group row clearfix">
-            <label class="input-group-addon ml-2" for="color_id">Цвят</label>
-            <select id="color_id" required></select>
+            <label class="input-group-addon ml-2 text-capitalize" for="color_id"><?= $this->getUiLocaleField('color'); ?></label>
+            <select id="color_id" class="text-capitalize" required></select>
             <span class="btn add-new-button input-group-addon add-new-color pointer-cursor rounded-right-custom border"
                   data-toggle="modal"
                   data-target="#add-new-color-modal">+</span>
-            <label class="input-group-addon ml-1 rounded-left-custom border" for="engine_capacity">Работен обем</label>
-            <input type="number" min="0" max="9999" id="engine_capacity" placeholder="Работен обем">
-            <label class="input-group-addon rounded-right-custom border" for="engine_capacity">cc</label>
-            <label class="input-group-addon ml-1 rounded-left-custom border" for="owner_id">Собственик</label>
-            <select id="owner_id" required></select>
-            <span class="btn add-new-button input-group-addon add-new-client pointer-cursor"
-                    data-toggle="modal"
-                    data-target="#add-new-client-modal">+</span>
+            <label class="input-group-addon ml-1 rounded-left-custom border text-capitalize" for="engine_capacity"><?= $this->getUiLocaleField('engine_capacity'); ?></label>
+            <input type="number" min="0" max="9999" id="engine_capacity" placeholder="<?= $this->getUiLocaleField('engine_capacity'); ?>">
+            <label class="input-group-addon rounded-right-custom border" for="engine_capacity"><?= $this->getUiLocaleField('engine_measurement'); ?></label>
+            <label class="input-group-addon ml-1 rounded-left-custom border text-capitalize" for="owner_id"><?= $this->getUiLocaleField('owner'); ?></label>
+            <select id="owner_id" class="text-capitalize" required></select>
+            <span
+                class="btn add-new-button input-group-addon add-new-client pointer-cursor"
+                data-toggle="modal"
+                data-target="#add-new-client-modal">+</span>
           </div>
           <div class="form-group row clearfix">
-            <label class="input-group-addon ml-2" for="description">Описание</label>
-            <textarea id="description" class="desc-textarea rounded-right-custom border" placeholder="Описание"></textarea>
+            <label class="input-group-addon ml-2 text-capitalize" for="description"><?= $this->getUiLocaleField('description'); ?></label>
+            <textarea id="description" class="desc-textarea rounded-right-custom border" placeholder="<?= $this->getUiLocaleField('description'); ?>"></textarea>
           </div>
         </div>
-        <div class="modal-footer">
-          <div class="send-buttons clearfix">
-            <input class="btn btn-primary" type="submit" value="Потвърждавам" name="commit" id="submit"/>
-            <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="add-edit-popup-modal">Откажи</button>
-          </div>
-          <div hidden class="bidding-loading">
-            <img src="<?= OPERATOR_URL_NOPROTOCOL; ?>/public/img/loading.gif">
-          </div>
-        </div>
+        <?php $this->loadPartial('addComponent.footerModal', 'add-edit-popup-modal'); ?>
       </form>
     </div>
   </div>

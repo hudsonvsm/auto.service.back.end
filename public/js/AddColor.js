@@ -16,8 +16,8 @@ $(document).ready(function() {
                 name: inputColor.val()
             }
         }, 'json').done(function (data, textStatus, jqXHR) {
-            if (textStatus == "success") {
-                alert('Success');
+            if (textStatus === "success") {
+                alert(i18n[textStatus].toUpperCase());
 
                 var color = $('#color_id');
                 color.val(data.id);
@@ -32,7 +32,7 @@ $(document).ready(function() {
                 return false;
             }
 
-            alert('fail');
+            alert(i18n['error'].toUpperCase());
         })
         .fail(function (data, textStatus, jqXHR) {
             console.log('fail big time');

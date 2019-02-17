@@ -1,7 +1,7 @@
 <!-- addNewBrandModelModal -->
 <script src="<?= OPERATOR_URL_NOPROTOCOL . '/public/js/'; ?>AddBrandModel.js"></script>
 
-<?= $this->localizeUi(array('new_model', 'brand', 'model', 'model_name_mandatory'));?>
+<?php $this->localizeUi(array('new_model', 'brand', 'model', 'model_name_mandatory')); ?>
 
 <div class="modal fade" id="add-new-brand-model-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-sm" role="document">
@@ -25,7 +25,7 @@
             >
           </div>
         </div>
-        <?php $this->loadPartial('addComponent.footerModal'); ?>
+        <?php $this->loadPartial('addComponent.footerModal', 'add-new-brand-model-modal'); ?>
       </form>
     </div>
   </div>

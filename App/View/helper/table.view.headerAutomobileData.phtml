@@ -1,19 +1,40 @@
+<?php
+
+$this->localizeUi(array(
+    'automobile',
+    'client',
+    'license_number',
+    'brand',
+    'model',
+    'manufacture_date',
+    'engine_number',
+    'vin_num',
+    'color',
+    'engine_capacity',
+    'engine_measurement',
+    'description',
+    'owner',
+    'telephone',
+));
+
+?>
+
 <thead>
 <tr>
-  <th colspan="9" class="text-center">Автомобил</th>
-  <th colspan="2" class="text-center">Клиент</th>
+  <th colspan="9" class="text-center text-capitalize"><?= $this->getUiLocaleField('automobile'); ?></th>
+  <th colspan="2" class="text-center text-capitalize"><?= $this->getUiLocaleField('client'); ?></th>
 </tr>
   <tr>
-    <th>Регистрационен номер</th>
-    <th>Марка</th>
-    <th>Модел</th>
-    <th>Дата на производство</th>
-    <th>Номер на двигател</th>
-    <th>Номер на рама</th>
-    <th>Цвят</th>
-    <th>Капацитет</th>
-    <th>Описание</th>
-    <th>Собственик</th>
-    <th>Телефон</th>
+    <th class="text-capitalize"><?= $this->getUiLocaleField('license_number'); ?></th>
+    <th class="text-capitalize"><?= $this->getUiLocaleField('brand'); ?></th>
+    <th class="text-capitalize"><?= $this->getUiLocaleField('model'); ?></th>
+    <th class="text-capitalize"><?= $this->getUiLocaleField('manufacture_date'); ?></th>
+    <th class="text-capitalize"><?= $this->getUiLocaleField('engine_number'); ?></th>
+    <th class="text-capitalize"><?= $this->getUiLocaleField('vin_num'); ?></th>
+    <th class="text-capitalize"><?= $this->getUiLocaleField('color'); ?></th>
+    <th class="text-capitalize"><?= $this->getUiLocaleField('engine_capacity').' ('.$this->getUiLocaleField('engine_measurement'). ')'; ?></th>
+    <th class="text-capitalize"><?= $this->getUiLocaleField('description'); ?></th>
+    <th class="text-capitalize"><?= $this->getUiLocaleField('owner'); ?></th>
+    <th class="text-capitalize"><?= $this->getUiLocaleField('telephone'); ?></th>
   </tr>
 </thead>

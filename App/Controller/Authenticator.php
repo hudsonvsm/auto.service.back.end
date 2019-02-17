@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Exceptions\AccessException;
+use App\Router;
 use App\Service\Authorize;
 use Mladenov\JsonView;
 use Mladenov\View;
@@ -18,6 +19,8 @@ class Authenticator
     {
         $getParams = explode('/', filter_input(INPUT_GET, 'params', FILTER_SANITIZE_MAGIC_QUOTES));
         $returnDataType = filter_input(INPUT_GET, 'returnDataType', FILTER_SANITIZE_MAGIC_QUOTES);
+
+        Router::$lang = $getParams[0];
 
         if ($getParams[1] == 'Login') {
             die(self::login($getParams, $returnDataType));

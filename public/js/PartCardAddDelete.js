@@ -17,8 +17,8 @@ $(document).ready(function() {
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(values)
         }, 'json').done(function (data, textStatus, jqXHR) {
-            if (textStatus == "success") {
-                alert('Success');
+            if (textStatus === "success") {
+                alert(i18n[textStatus].toUpperCase());
 
                 partData.id = data.id;
                 partData.partPrice = partData.price;
@@ -53,7 +53,7 @@ $(document).ready(function() {
                 return false;
             }
 
-            alert('fail');
+            alert(i18n['error']);
         })
         .fail(function (data, textStatus, jqXHR) {
             console.log('fail big time');
@@ -79,7 +79,7 @@ $(document).ready(function() {
             dataType: 'json',
             contentType: 'application/json; charset=utf-8'
         }).done(function (data, textStatus, jqXHR) {
-            if (data.deleted && textStatus == "success") {
+            if (data.deleted && textStatus === "success") {
                 var totalPrice = $('#total_price');
 
                 var total = parseFloat(totalPrice.val());
@@ -94,7 +94,7 @@ $(document).ready(function() {
                 return false;
             }
 
-            alert('fail');
+            alert(i18n['error']);
         });
     });
 });
