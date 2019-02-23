@@ -36,73 +36,121 @@ $this->localizeUi(array(
         </div>
         <div class="modal-body">
           <div class="form-group row mb-4">
-            <label class="input-group-addon ml-5 text-capitalize" for="license_number" ><?= $this->getUiLocaleField('license_number'); ?></label>
-            <input type="text"
-                   class="rounded-right-custom border"
+            <label class="col-sm-4 col-form-label text-capitalize" for="license_number" ><?= $this->getUiLocaleField('license_number'); ?></label>
+            <div class="col-sm-8">
+              <input type="text"
+                   class="rounded-right-custom form-control border"
                    id="license_number"
                    placeholder="<?= $this->getUiLocaleField('reg_num_required'); ?>"
                    required pattern=".{8,}"
                    oninvalid="this.setCustomValidity('')"
                    oninput="this.setCustomValidity('')"
-            >
-            <div class="invalid-feedback text-capitalize"><?= $this->getUiLocaleField('reg_num_exists'); ?></div>
+              >
+              <div class="invalid-feedback text-capitalize"><?= $this->getUiLocaleField('reg_num_exists'); ?></div>
+            </div>
           </div>
+            <hr />
           <div class="form-group row">
-            <label class="input-group-addon ml-2" for="brand"><?= $this->getUiLocaleField('brand'); ?></label>
-            <select id="brand" class="text-capitalize" required></select>
-            <span class="btn add-new-button rounded-right-custom border text-capitalize input-group-addon add-new-brand pointer-cursor"
-                  data-toggle="modal"
-                  data-target="#add-new-brand-modal">+</span>
-            <label class="input-group-addon ml-2 rounded-left-custom border text-capitalize" for="model_id"><?= $this->getUiLocaleField('model'); ?></label>
-            <select id="model_id" class="text-capitalize" required></select>
-            <span class="btn add-new-button rounded-right-custom border input-group-addon add-new-brand-model pointer-cursor"
-                  data-toggle="modal"
-                  data-target="#add-new-brand-model-modal">+</span>
-            <label class="input-group-addon ml-2 rounded-left-custom border" for="year_of_production"><?= $this->getUiLocaleField('year_of_manufacture'); ?></label>
-            <input class="rounded-right-custom border" type="number" min="1950" max="2017" id="year_of_production">
+            <label class="col-sm-4 col-form-label text-capitalize" for="brand"><?= $this->getUiLocaleField('brand'); ?></label>
+            <div class="input-group col-sm-8">
+                <select id="brand" class="custom-select form-control text-capitalize" required ></select>
+                <div class="input-group-append">
+                    <span class="btn btn-success add-new-brand "
+                          data-toggle="modal"
+                          data-target="#add-new-brand-modal">+</span>
+                </div>
+            </div>
+
           </div>
-          <div class="form-group row mb-4">
-            <label class="input-group-addon ml-2 text-capitalize" for="engine_number"><?= $this->getUiLocaleField('engine_number'); ?></label>
-            <input class="rounded-right-custom border"
+            <hr />
+          <div class="form-group row clearfix">
+            <label class="col-sm-4 col-form-label text-capitalize" for="model_id"><?= $this->getUiLocaleField('model'); ?></label>
+            <div class="input-group col-sm-8">
+              <select id="model_id" class="custom-select form-control text-capitalize" required ></select>
+              <div class="input-group-append">
+                <span class="btn btn-success add-new-brand-model"
+                        data-toggle="modal"
+                        data-target="#add-new-brand-model-modal">+</span>
+              </div>
+            </div>
+          </div>
+            <hr />
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label text-capitalize" for="year_of_production"><?= $this->getUiLocaleField('year_of_manufacture'); ?></label>
+            <div class="col-sm-8">
+              <input class="form-control" type="number" min="1950" max="2017" id="year_of_production">
+            </div>
+          </div>
+            <hr />
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label text-capitalize" for="engine_capacity"><?= $this->getUiLocaleField('engine_capacity'); ?></label>
+            <div class="input-group col-sm-8">
+              <input class="form-control" type="number" min="0" max="9999" id="engine_capacity" placeholder="<?= $this->getUiLocaleField('engine_capacity'); ?>">
+              <div class="input-group-append">
+                  <span class="input-group-text" ><?= $this->getUiLocaleField('engine_measurement'); ?></span>
+              </div>
+            </div>
+          </div>
+            <hr />
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label text-capitalize" for="engine_number"><?= $this->getUiLocaleField('engine_number'); ?></label>
+            <div class="col-sm-8">
+              <input class="form-control"
                    type="text" id="engine_number"
                    placeholder="<?= $this->getUiLocaleField('engine'); ?>"
                    required pattern=".{15,}"
                    oninvalid="this.setCustomValidity('<?= $this->getUiLocaleField('eng_num_required'); ?>')"
                    oninput="this.setCustomValidity('')"
-            >
-            <div class="invalid-feedback text-capitalize"><?= $this->getUiLocaleField('eng_num_exists'); ?></div>
-            <label class="input-group-addon ml-5 rounded-left-custom text-capitalize" for="vin_number"><?= $this->getUiLocaleField('vin_num'); ?></label>
-            <input class="rounded-right-custom border"
+              >
+              <div class="invalid-feedback text-capitalize"><?= $this->getUiLocaleField('eng_num_exists'); ?></div>
+            </div>
+          </div>
+            <hr />
+          <div class="form-group row">
+            <label class="col-sm-4 col-form-label text-capitalize" for="vin_number"><?= $this->getUiLocaleField('vin_num'); ?></label>
+            <div class="col-sm-8">
+              <input class="form-control"
                    type="text"
                    id="vin_number"
                    placeholder="<?= $this->getUiLocaleField('vin'); ?>"
                    required pattern=".{15,}"
                    oninvalid="this.setCustomValidity('<?= $this->getUiLocaleField('vin_num_required'); ?>')"
                    oninput="this.setCustomValidity('')"
-            >
-            <div class="invalid-feedback"><?= $this->getUiLocaleField('vin_num_exists'); ?></div>
+              >
+              <div class="invalid-feedback text-capitalize"><?= $this->getUiLocaleField('vin_num_exists'); ?></div>
+            </div>
           </div>
-
-
+            <hr />
           <div class="form-group row clearfix">
-            <label class="input-group-addon ml-2 text-capitalize" for="color_id"><?= $this->getUiLocaleField('color'); ?></label>
-            <select id="color_id" class="text-capitalize" required></select>
-            <span class="btn add-new-button input-group-addon add-new-color pointer-cursor rounded-right-custom border"
-                  data-toggle="modal"
-                  data-target="#add-new-color-modal">+</span>
-            <label class="input-group-addon ml-1 rounded-left-custom border text-capitalize" for="engine_capacity"><?= $this->getUiLocaleField('engine_capacity'); ?></label>
-            <input type="number" min="0" max="9999" id="engine_capacity" placeholder="<?= $this->getUiLocaleField('engine_capacity'); ?>">
-            <label class="input-group-addon rounded-right-custom border" for="engine_capacity"><?= $this->getUiLocaleField('engine_measurement'); ?></label>
-            <label class="input-group-addon ml-1 rounded-left-custom border text-capitalize" for="owner_id"><?= $this->getUiLocaleField('owner'); ?></label>
-            <select id="owner_id" class="text-capitalize" required></select>
-            <span
-                class="btn add-new-button input-group-addon add-new-client pointer-cursor"
-                data-toggle="modal"
-                data-target="#add-new-client-modal">+</span>
+            <label class="col-sm-4 col-form-label text-capitalize" for="color_id"><?= $this->getUiLocaleField('color'); ?></label>
+            <div class="input-group col-sm-8">
+              <select id="color_id" class="form-control custom-select text-capitalize" required></select>
+              <div class="input-group-append">
+                <span class="btn btn-success add-new-color "
+                      data-toggle="modal"
+                      data-target="#add-new-color-modal">+</span>
+              </div>
+            </div>
           </div>
+            <hr />
           <div class="form-group row clearfix">
-            <label class="input-group-addon ml-2 text-capitalize" for="description"><?= $this->getUiLocaleField('description'); ?></label>
-            <textarea id="description" class="desc-textarea rounded-right-custom border" placeholder="<?= $this->getUiLocaleField('description'); ?>"></textarea>
+            <label class="col-sm-4 col-form-label text-capitalize" for="owner_id"><?= $this->getUiLocaleField('owner'); ?></label>
+            <div class="input-group col-sm-8">
+              <select id="owner_id" class="custom-select form-control text-capitalize" required></select>
+              <div class="input-group-append">
+                <span
+                    class="btn btn-success add-new-client "
+                    data-toggle="modal"
+                    data-target="#add-new-client-modal">+</span>
+              </div>
+            </div>
+          </div>
+            <hr />
+          <div class="form-group row clearfix">
+            <label class="col-sm-4 text-capitalize" for="description"><?= $this->getUiLocaleField('description'); ?></label>
+            <div class="col-sm-8">
+              <textarea id="description" class="form-control" rows="4" placeholder="<?= $this->getUiLocaleField('description'); ?>"></textarea>
+            </div>
           </div>
         </div>
         <?php $this->loadPartial('addComponent.footerModal', 'add-edit-popup-modal'); ?>

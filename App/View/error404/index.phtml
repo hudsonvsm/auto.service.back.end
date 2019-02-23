@@ -1,12 +1,12 @@
 <script src="<?= OPERATOR_URL_NOPROTOCOL; ?>/public/js/svg.min.js"></script>
 <script src="<?= OPERATOR_URL_NOPROTOCOL; ?>/public/js/noise_simplex.js"></script>
 
-<?php $this->localizeUi(array('page404')); ?>
+<?php $this->localizeUi(array('page404', 'error')); ?>
 
 <div class="well well-sm" >
     <?php if($this->response['error'] !== null) { ?>
-        <div class="mt-3 alert alert-danger" role="alert">
-            Error: <?= $this->response['error'];?>
+        <div class="mt-3 alert alert-danger text-capitalize" role="alert">
+            <?= $this->getUiLocaleField('error');?>: <?= $this->response['error'];?>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>

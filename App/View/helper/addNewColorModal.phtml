@@ -4,7 +4,7 @@
 <?= $this->localizeUi(array('new_color', 'color'));?>
 
 <div class="modal fade" id="add-new-color-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog modal-sm" role="document">
+  <div class="modal-dialog " role="document">
     <div class="modal-content bg-faded border-dark bidding-popup">
       <form method="post" id="add-new-color" action="#">
         <div class="modal-header">
@@ -18,8 +18,10 @@
             <span></span>
           </div>
           <div class="form-group row clearfix">
-            <label class="input-group-addon required-field text-capitalize" for="color"><?= $this->getUiLocaleField('color'); ?></label>
-            <input type="text" id="color" placeholder="<?= $this->getUiLocaleField('color'); ?>">
+            <label class="col-sm-3 col-form-label required-field text-capitalize" for="color"><?= $this->getUiLocaleField('color'); ?></label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="color" placeholder="<?= $this->getUiLocaleField('color'); ?>">
+            </div>
           </div>
         </div>
         <?php $this->loadPartial('addComponent.footerModal', 'add-new-color-modal'); ?>

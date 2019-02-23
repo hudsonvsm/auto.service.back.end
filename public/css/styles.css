@@ -10,33 +10,8 @@ body, input, button, input, optgroup, select, textarea {
     background-color: rgba(0,150,150,.175) !important;
 }
 
-textarea.desc-textarea {
-    width: 70% !important;
-}
-
-span.pointer-cursor{
-    cursor: pointer;
-}
-
 .autoservice-navigation {
     width: 100%;
-}
-
-.border {
-    border: 1px solid rgba(0, 0, 0, 0.15)!important;
-}
-
-.rounded-left-custom {
-    border-top-left-radius: 0.25rem!important;
-    border-bottom-left-radius: 0.25rem!important;
-}
-.rounded-right-custom {
-    border-top-right-radius: 0.25rem!important;
-    border-bottom-right-radius: 0.25rem!important;
-}
-
-#add-edit-popup-modal input {
-    padding-left: 1rem;
 }
 
 .invalid-feedback {
@@ -74,45 +49,9 @@ span.pointer-cursor{
     left: 28rem;
 }
 
-form#add-edit-repair-card select#worker_id {
-    width: 8rem;
-}
-
-form#add-part-for-card select#automobile_part_id {
-    width: 14rem;
-}
-
-form#add-edit-automobile select#owner_id {
-    width: 9.5rem;
-}
-
-form#add-edit-automobile select#color_id {
-    width: 6rem;
-}
-
-form#add-edit-automobile select#model_id {
-    width: 6rem;
-}
-
-form#add-edit-automobile select#brand {
-    width: 8rem;
-}
-
-.add-new-button {
-    color: #fff!important;
-    background-color:#5cb85c!important;
-    border-color: #5cb85c!important;
-}
-
-.add-new-button:hover {
-    color: #fff!important;
-    background-color: #449d44!important;
-    border-color: #419641!important;
-}
-
 .dropdown-menu>li>a {
     display: block;
-    padding: 3px 20px;
+    padding: 0.1rem 0 0.1rem 1rem!important;
     clear: both;
     font-weight: 400;
     line-height: 1.42857143;
@@ -123,4 +62,12 @@ form#add-edit-automobile select#brand {
 
 .w-10rem{
     width: 10rem;
+}
+
+.first-letter-to-upper:first-letter {
+    text-transform: uppercase;
+}
+
+.pagination-padding {
+    padding: .75rem 1.5rem;
 }

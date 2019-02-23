@@ -24,33 +24,39 @@
         </div>
         <div class="modal-body">
           <div class="form-group row clearfix">
-            <label class="input-group-addon text-capitalize"
+            <label class="col-sm-3 col-form-label text-capitalize"
                    for="first-name"><?= $this->getUiLocaleField('first_name'); ?></label>
+              <div class="col-sm-9">
             <input type="text"
                    id="first-name"
+                   class="form-control"
                    placeholder="<?= $this->getUiLocaleField('first_name'); ?>"
                    oninvalid="this.setCustomValidity('<?= $this->getUiLocaleField('first_name_mandatory'); ?>')"
                    oninput="this.setCustomValidity('')"
-            >
+            ></div>
           </div>
           <div class="form-group row clearfix">
-            <label class="input-group-addon required-field text-capitalize"
+            <label class="col-sm-3 col-form-label required-field text-capitalize"
                    for="last-name"><?= $this->getUiLocaleField('last_name'); ?></label>
+              <div class="col-sm-9">
             <input type="text"
                    id="last-name"
+                   class="form-control"
                    placeholder="<?= $this->getUiLocaleField('last_name'); ?>"
                    oninvalid="this.setCustomValidity('<?= $this->getUiLocaleField('last_name_mandatory'); ?>')"
                    oninput="this.setCustomValidity('')"
-            >
+            ></div>
           </div>
           <div class="form-group row clearfix">
-            <label class="input-group-addon required-field text-capitalize"
+            <label class="col-sm-3 col-form-label required-field text-capitalize"
                    for="phone-number"><?= $this->getUiLocaleField('telephone'); ?></label>
+              <div class="col-sm-9">
             <input type="text"
                    id="phone-number"
+                   class="form-control"
                    placeholder="<?= $this->getUiLocaleField('telephone'); ?>"
                    oninvalid="this.setCustomValidity('<?= $this->getUiLocaleField('telephone_mandatory'); ?>')"
-                   oninput="this.setCustomValidity('')">
+                   oninput="this.setCustomValidity('')"></div>
           </div>
         </div>
         <?php $this->loadPartial('addComponent.footerModal', 'add-new-client-modal'); ?>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <?php $this->localizeUi(array('auto_service', 'developer', 'error', 'choose', 'delete_confirmation', 'currency')); ?>
+  <?php $this->localizeUi(array('auto_service', 'developer', 'success', 'error', 'choose', 'delete_confirmation', 'currency')); ?>
   <head>
       <!-- TODO CHANGE LOCALE Needed -->
     <title><?= $this->getUiLocaleField('auto_service'); ?></title>
@@ -38,7 +38,7 @@
     <script>
       var URL = '<?php echo (!is_null($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] !== 'off' || $_SERVER['HTTPS'] === true)) ? 'https:' : 'http:'; echo ROUTER_URL_NOPROTOCOL; ?>';
       var URL_NOPROTOCOL = '<?= ROUTER_URL_NOPROTOCOL; ?>';
-      var CURRENT_URL = URL + '<?= $this->response['params']['params']; ?>';
+      var CURRENT_URL = URL + '/<?= \App\Router::$controllerName; ?>';
       var AUTH_TOKEN = '<?= \App\Controller\Authenticator::$access_token; ?>';
       var LANG = '<?= \App\Router::$lang; ?>';
       var i18n = JSON.parse('<?= json_encode((object)$this->getUiLocale());?>');

@@ -13,74 +13,95 @@ $this->localizeUi(array(
     'inserted_parts',
     'add_new_part',
     'add',
+    'currency',
     'total_price'
 ));?>
 
 <div class="modal fade" id="add-edit-popup-modal" tabindex="-1" role="dialog" >
-  <div class="modal-dialog " role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content bidding-popup">
-      <form method="post" id="add-edit-repair-card" action="#">
+      <form method="post" class="rounded-0 border-bottom" id="add-edit-repair-card" action="#">
         <div class="modal-header">
           <div class="clearfix">
             <h5 class="col-xs-6 title-container"><span class="title text-capitalize"><?= $this->getUiLocaleField('work_card'); ?></span></h5>
           </div>
         </div>
         <div class="modal-body">
-          <div class="form-group row clearfix">
-            <label class="input-group-addon ml-3 text-capitalize" for="number"><?= $this->getUiLocaleField('number'); ?></label>
-            <input class="rounded-right-custom border" type="text" disabled id="number" placeholder="<?= $this->getUiLocaleField('number'); ?>">
-          </div>
-
-          <div class="form-group row clearfix">
-            <label class="input-group-addon ml-3" for="acceptance_date"><?= $this->getUiLocaleField('acceptance_date'); ?></label>
-            <input class="rounded-right-custom border" type="date" id="acceptance_date" value=""/>
-          </div>
-
-          <div class="form-group row clearfix">
-            <label class="input-group-addon ml-3" for="start_date"><?= $this->getUiLocaleField('start_date'); ?></label>
-            <input class="rounded-right-custom border" type="date" id="start_date" value=""/>
-          </div>
-
-          <div class="form-group row clearfix">
-            <label class="input-group-addon ml-3" for="end_date"><?= $this->getUiLocaleField('end_date'); ?></label>
-            <input class="rounded-right-custom border" type="date" id="end_date" value=""/>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label text-capitalize" for="number"><?= $this->getUiLocaleField('number'); ?></label>
+            <div class="col-sm-9">
+              <input class="form-control" type="text" disabled id="number" placeholder="<?= $this->getUiLocaleField('number'); ?>">
+            </div>
           </div>
           <div class="form-group row clearfix">
-            <label class="input-group-addon ml-3" for="automobile_id"><?= $this->getUiLocaleField('automobile'); ?></label>
-            <select class="rounded-right-custom text-capitalize border"
+            <label class="col-sm-3 col-form-label text-capitalize" for="acceptance_date"><?= $this->getUiLocaleField('acceptance_date'); ?></label>
+            <div class="col-sm-9">
+              <input class="form-control" type="date" id="acceptance_date" value=""/>
+            </div>
+          </div>
+          <div class="form-group row clearfix">
+            <label class="col-sm-3 col-form-label text-capitalize" for="start_date"><?= $this->getUiLocaleField('start_date'); ?></label>
+            <div class="col-sm-9">
+              <input class="form-control" type="date" id="start_date" value=""/>
+            </div>
+          </div>
+          <div class="form-group row clearfix">
+            <label class="col-sm-3 col-form-label text-capitalize" for="end_date"><?= $this->getUiLocaleField('end_date'); ?></label>
+            <div class="col-sm-9">
+              <input class="form-control" type="date" id="end_date" value=""/>
+            </div>
+          </div>
+          <div class="form-group row clearfix">
+            <label class="col-sm-3 col-form-label text-capitalize" for="automobile_id"><?= $this->getUiLocaleField('automobile'); ?></label>
+            <div class="col-sm-9">
+              <select class="form-control custom-select text-capitalize"
                     id="automobile_id"
                     required
-            ></select>
-            <label class="rounded-left-custom input-group-addon text-capitalize ml-3" for="worker_id"><?= $this->getUiLocaleField('worker'); ?></label>
-            <select class="rounded-right-custom text-capitalize border"
+              ></select>
+            </div>
+          </div>
+          <div class="form-group row ">
+            <label class="col-sm-3 col-form-label text-capitalize " for="worker_id"><?= $this->getUiLocaleField('worker'); ?></label>
+            <div class="col-sm-9">
+              <select class="form-control custom-select text-capitalize"
                     id="worker_id"
                     required
-            ></select>
+              ></select>
+            </div>
           </div>
           <div class="form-group row clearfix">
-            <label class="input-group-addon ml-3" for="description"><?= $this->getUiLocaleField('description'); ?></label>
-            <textarea id="description" class="rounded-right-custom border desc-textarea" placeholder="<?= $this->getUiLocaleField('description'); ?>"></textarea>
+            <label class="col-sm-3 col-form-label text-capitalize" for="description"><?= $this->getUiLocaleField('description'); ?></label>
+            <div class="col-sm-9">
+              <textarea id="description" class="form-control" rows="4" placeholder="<?= $this->getUiLocaleField('description'); ?>"></textarea>
+            </div>
           </div>
         </div>
       </form>
-      <div class="modal-header" id="add-part-for-card-header">
+      <div class="modal-header border-top rounded-0" id="add-part-for-card-header">
         <div class="clearfix">
-          <h6 class="col-xs-6 title-container"><span class="title"><?= $this->getUiLocaleField('inserted_parts'); ?></span></h6>
+          <h6 class="col-xs-6 title-container"><span class="title text-capitalize"><?= $this->getUiLocaleField('inserted_parts'); ?></span></h6>
         </div>
       </div>
       <div class="modal-body">
         <form method="post" id="add-part-for-card" action="#">
           <div class="form-group row clearfix">
-            <label class="input-group-addon ml-3" for="automobile_part_id"><?= $this->getUiLocaleField('add_new_part'); ?></label>
-            <select id="automobile_part_id"></select>
-            <input type="hidden" id="repair_card_id">
-            <input class="btn input-group-addon add-new-button" type="submit" value="<?= $this->getUiLocaleField('add'); ?>" />
+            <label class="col-sm-3 col-form-label first-letter-to-upper" for="automobile_part_id"><?= $this->getUiLocaleField('add_new_part'); ?></label>
+            <div class="input-group col-sm-9">
+              <select class="form-control custom-select text-capitalize" id="automobile_part_id"></select>
+              <input type="hidden" id="repair_card_id">
+                <div class="input-group-append"><input class="btn btn-success float-right" type="submit" value="<?= $this->getUiLocaleField('add'); ?>" /></div>
+            </div>
           </div>
         </form>
         <div id="part-card-container"></div>
         <div class="form-group row clearfix">
-          <label class="input-group-addon ml-3" for="total_price"><?= $this->getUiLocaleField('total_price'); ?>:</label>
-          <input class="rounded-right-custom border" type="number" step="any" disabled id="total_price">
+          <label class="col-sm-3 col-form-label text-capitalize" for="total_price"><?= $this->getUiLocaleField('total_price'); ?>:</label>
+          <div class="input-group col-sm-9">
+            <input class="form-control" type="number" step="any" disabled id="total_price">
+            <div class="input-group-append">
+              <span class="input-group-text" ><?= $this->getUiLocaleField('currency'); ?></span>
+            </div>
+          </div>
         </div>
       </div>
         <?php $this->loadPartial('addComponent.footerModal', 'add-edit-popup-modal'); ?>

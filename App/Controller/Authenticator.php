@@ -20,6 +20,11 @@ class Authenticator
         $getParams = explode('/', filter_input(INPUT_GET, 'params', FILTER_SANITIZE_MAGIC_QUOTES));
         $returnDataType = filter_input(INPUT_GET, 'returnDataType', FILTER_SANITIZE_MAGIC_QUOTES);
 
+        if (strlen($getParams[0]) !== 2) {
+            header('Location: '. OPERATOR_URL_NOPROTOCOL . '/' . Router::$lang  . '/RepairCardData');
+            die();
+        }
+
         Router::$lang = $getParams[0];
 
         if ($getParams[1] == 'Login') {

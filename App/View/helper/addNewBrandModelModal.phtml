@@ -4,7 +4,7 @@
 <?php $this->localizeUi(array('new_model', 'brand', 'model', 'model_name_mandatory')); ?>
 
 <div class="modal fade" id="add-new-brand-model-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog modal-sm" role="document">
+  <div class="modal-dialog " role="document">
     <div class="modal-content bg-faded border-dark bidding-popup">
       <form method="post" id="add-new-brand-to-model" >
         <div class="modal-header">
@@ -13,16 +13,23 @@
           </div>
         </div>
         <div class="modal-body">
-          <div class=" form-group row clearfix">
-            <label class="input-group-addon text-capitalize"><?= $this->getUiLocaleField('brand'); ?></label>
-            <input type="text" disabled id="add-brand-for-model" class="text-capitalize" placeholder="<?= $this->getUiLocaleField('brand'); ?>">
-            <label class="input-group-addon required-field text-capitalize" for="name"><?= $this->getUiLocaleField('model'); ?></label>
-            <input type="text"
-                   id="name"
-                   placeholder="<?= $this->getUiLocaleField('model'); ?>"
-                   oninvalid="this.setCustomValidity('<?= $this->getUiLocaleField('model_name_mandatory'); ?>.')"
-                   oninput="this.setCustomValidity('')"
-            >
+          <div class="form-group row clearfix">
+            <label class="col-sm-3 col-form-label text-capitalize"><?= $this->getUiLocaleField('brand'); ?></label>
+            <div class="col-sm-9">
+              <input type="text" disabled id="add-brand-for-model" class="form-control-plaintext text-capitalize" placeholder="<?= $this->getUiLocaleField('brand'); ?>">
+            </div>
+          </div>
+          <div class="form-group row clearfix">
+            <label class="col-sm-3 col-form-label required-field text-capitalize" for="name"><?= $this->getUiLocaleField('model'); ?></label>
+            <div class="col-sm-9">
+              <input type="text"
+                     class="form-control"
+                     id="name"
+                     placeholder="<?= $this->getUiLocaleField('model'); ?>"
+                     oninvalid="this.setCustomValidity('<?= $this->getUiLocaleField('model_name_mandatory'); ?>.')"
+                     oninput="this.setCustomValidity('')"
+              >
+            </div>
           </div>
         </div>
         <?php $this->loadPartial('addComponent.footerModal', 'add-new-brand-model-modal'); ?>

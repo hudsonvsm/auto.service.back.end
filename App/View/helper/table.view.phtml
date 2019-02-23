@@ -15,10 +15,11 @@ $this->localizeUi(array(
   <tfoot>
     <tr>
       <td colspan="<?php if (!empty($response['data'])) echo count($response['data'][0]->getColumns()); ?>">
-        <input class="btn btn-outline-success btn-lg" type="button" value="+" id="add-new"
+        <input class="btn btn-outline-success pagination-padding btn-lg" type="button" value="+" id="add-new"
                data-toggle="modal"
                data-target="#add-edit-popup-modal">
-        <?php $this->loadPartial('pagination'); ?></td>
+        <?php $this->loadPartial('pagination'); ?>
+      </td>
     </tr>
   </tfoot>
   <tbody class="row-element">

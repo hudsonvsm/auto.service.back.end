@@ -5,7 +5,7 @@
 
 <!-- TODO CHANGE LOCALE Needed all helpers-->
 <div class="modal fade" id="add-new-brand-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog modal-sm" role="document">
+  <div class="modal-dialog " role="document">
     <div class="modal-content bg-faded border-dark bidding-popup">
       <form method="post" id="add-new-model">
         <div class="modal-header">
@@ -17,14 +17,15 @@
         </div>
         <div class="modal-body">
           <div class="form-group row clearfix">
-            <label class="input-group-addon text-capitalize" for="name"><?= $this->getUiLocaleField('brand'); ?></label>
-            <input type="text"
+            <label class="col-sm-3 col-form-label text-capitalize" for="name"><?= $this->getUiLocaleField('brand'); ?></label>
+              <div class="col-sm-9">
+                  <input type="text"
                    id="name"
-                   class="text-capitalize"
+                   class="form-control text-capitalize"
                    placeholder="<?= $this->getUiLocaleField('brand'); ?>"
                    oninvalid="this.setCustomValidity('<?= $this->getUiLocaleField('brand_name_mandatory'); ?>')"
                    oninput="this.setCustomValidity('')"
-            >
+            ></div>
           </div>
         </div>
           <?php $this->loadPartial('addComponent.footerModal', 'add-new-brand-modal'); ?>
