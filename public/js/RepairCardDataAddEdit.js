@@ -123,6 +123,7 @@ $(document).ready(function() {
 
                 $('#add-edit-popup-modal').modal('toggle');
 
+                location.reload();
                 return false;
             }
 

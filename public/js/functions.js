@@ -33,9 +33,9 @@ function objectBuilderFromInputs($inputs) {
 
 function assignNewValuesToTableRowAndData(row, values, where) {
     $.each(values, function (i, value) {
-        row.data(i, value)
+        row.data(i, value);
 
-        row.find('td.' + i).html(value);
+        row.find(where + i).html(value);
     });
 }
 

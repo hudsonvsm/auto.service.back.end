@@ -18,7 +18,7 @@ $(document).ready(function() {
             $('#engine_capacity').val(addEditElementData.engineCapacity);
             $('#description').val(addEditElementData.automobileDescription);
 
-            var brandSelect = $('#brand');
+            var brandSelect = $('#brand_id');
             brandSelect.html('');
             appendNewOptionToSelect(brandSelect, {}, '', i18n['choose'], true);
             $.each(data.brands, function (i, brand) {
@@ -101,6 +101,7 @@ $(document).ready(function() {
 
                 $('#add-edit-popup-modal').modal('toggle');
 
+                location.reload();
                 return false;
             }
 
@@ -117,7 +118,7 @@ $(document).ready(function() {
         });
     });
 
-    $('#brand').on('change', function (event) {
+    $('#brand_id').on('change', function (event) {
         var selectedBrand = $(this).find(":selected").data();
 
         var brandModelSelect = $('#model_id');
