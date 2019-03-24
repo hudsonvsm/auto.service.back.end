@@ -3,7 +3,7 @@ $response = $this->getResponse();
 
 $country = \App\Router::$lang === 'en' ? 'GB' : \App\Router::$lang;
 
-$this->localizeUi(array('auto_service', 'spare_parts', 'automobiles', 'repair_cards', 'exit'));
+$this->localizeUi(array('auto_service', 'spare_parts', 'automobiles', 'repair_cards', 'worker', 'user', 'exit'));
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-toggleable-md navbar-dark bg-primary">
@@ -23,6 +23,14 @@ $this->localizeUi(array('auto_service', 'spare_parts', 'automobiles', 'repair_ca
       <li class="nav-item ">
         <a class="nav-link text-capitalize <?php if ($response['params']['params'] == \App\Router::$lang.'/AutomobilePart') echo 'active';?>" href="<?= ROUTER_URL_NOPROTOCOL . '/AutomobilePart'; ?>"
         ><?= $this->getUiLocaleField('spare_parts'); ?></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link text-capitalize <?php if ($response['params']['params'] == \App\Router::$lang.'/Worker') echo 'active';?>" href="<?= ROUTER_URL_NOPROTOCOL . '/Worker'; ?>"
+        ><?= $this->getUiLocaleField('worker'); ?></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link text-capitalize <?php if ($response['params']['params'] == \App\Router::$lang.'/User') echo 'active';?>" href="<?= ROUTER_URL_NOPROTOCOL . '/User'; ?>"
+        ><?= $this->getUiLocaleField('user'); ?></a>
       </li>
       <li class="nav-item">
         <a class="nav-link text-capitalize <?php if ($response['params']['params'] == \App\Router::$lang.'/AutomobileData') echo 'active';?>" href="<?= ROUTER_URL_NOPROTOCOL . '/AutomobileData'; ?>"

@@ -91,13 +91,15 @@ abstract class AbstractModel
      * @param string $tableName the name of the table passed from child element.
      * @param array $identification with data as array
      * @param array $data which will be updated
+     * @param string $id
+     *
      * @return bool
      */
-    protected function update(string $tableName, array $identification, array $data)
+    protected function update(string $tableName, array $identification, array $data, string $id)
     {
         $setData = '`' . implode('`=?, `', array_keys($data)) . '`=?';
 
-        $sql = "UPDATE `{$tableName}` SET {$setData} WHERE `id`=?";
+        $sql = "UPDATE `{$tableName}` SET {$setData} WHERE `{$id}`=?";
 
         $preparedData = array_values(array_merge($data, $identification));
 
@@ -105,14 +107,15 @@ abstract class AbstractModel
     }
 
     /**
-     * @param string $tableName         the name of the table passed from child element.
+     * @param string $tableName the name of the table passed from child element.
      * @param string $identification
+     * @param string $id
      *
      * @return bool
      */
-    protected function delete(string $tableName, string $identification) : bool
+    protected function delete(string $tableName, string $identification, string $id) : bool
     {
-        $sql = "DELETE FROM `{$tableName}` WHERE `id`=?";
+        $sql = "DELETE FROM `{$tableName}` WHERE `{$id}`=?";
 
         return $this->db->executePreparedStatement($sql, [ $identification ]);
     }

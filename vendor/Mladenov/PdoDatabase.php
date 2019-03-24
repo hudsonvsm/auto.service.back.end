@@ -11,6 +11,7 @@ namespace Mladenov;
 class PdoDatabase implements IDatabase
 {
     private $connection;
+    private static $dbConfig;
     private static $_instance; //The single instance
     //const FETCH_ASSOC = \PDO::FETCH_ASSOC;
 
@@ -23,7 +24,8 @@ class PdoDatabase implements IDatabase
      */
     public static function getInstance(array $dbConfig)
     {
-        if(!self::$_instance) { // If no instance then make one
+        if(!self::$_instance || (count($dbConfig) > 0 && $dbConfig !== self::$dbConfig)) { // If no instance then make one
+            self::$dbConfig = $dbConfig;
             self::$_instance = new self($dbConfig);
         }
         return self::$_instance;

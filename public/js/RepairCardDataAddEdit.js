@@ -33,7 +33,7 @@ $(document).ready(function() {
             $('#add-part-for-card-header').hide();
         }
 
-        $.getJSON(URL + '/Worker', function (data, textStatus, jqXHR) {
+        $.getJSON(URL + '/Worker?returnDataType=json', function (data, textStatus, jqXHR) {
             var select = $this.find('#worker_id');
             select.html('');
             appendNewOptionToSelect(select, {}, '', i18n['choose'], true);

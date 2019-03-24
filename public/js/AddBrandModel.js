@@ -2,7 +2,7 @@ $(document).ready(function() {
     // brand model
     $('#add-new-brand-model-modal')
         .on('show.bs.modal', function (e) {
-            var selectedBrand = $("#brand").find(":selected").data();
+            var selectedBrand = $("#brand_id").find(":selected").data();
 
             $("#add-brand-for-model").val(selectedBrand.name).data(selectedBrand);
         })

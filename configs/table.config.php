@@ -93,4 +93,9 @@ return [
         'name_bg',
         'name_en',
     ],
+    'oauth_clients' => [
+        'client_id',
+        'client_secret',
+        'scope'
+    ],
 ];

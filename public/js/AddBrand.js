@@ -19,14 +19,15 @@ $(document).ready(function() {
             if (textStatus === "success") {
                 alert(i18n[textStatus].toUpperCase());
 
-                var brand = $('#brand');
+                var brand = $('#brand_id');
                 brand.val(data.id);
                 if (Object.keys(data).length === 1) {
                     data.name = inputName.val();
 
-                    appendNewOptionToSelect(client, data, data.id, data.name, true);
+                    appendNewOptionToSelect(brand, data, data.id, data.name, true);
                 }
 
+                brand.trigger('change');
                 $('#add-new-brand-modal').modal('toggle');
 
                 return false;

@@ -21,6 +21,7 @@ define('DB_TABLE_REPAIR_CARD', 'repair_card');
 define('DB_TABLE_REPAIR_CARD_DATA', 'repair_card_data');
 define('DB_TABLE_WORKER', 'worker');
 define('DB_TABLE_I18N', 'i18n');
+define('DB_TABLE_USER', 'oauth_clients');
 
 define('DB_EXPRESSION_NOW', 'NOW()');
 define('DB_NULL_VALUE', 'NULL');

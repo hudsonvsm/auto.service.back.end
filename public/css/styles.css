@@ -2,6 +2,15 @@ body, input, button, input, optgroup, select, textarea {
     font-family: LibraSansModern, Sans-Serif;
 }
 
+.container-fluid {
+    height: 100vh;
+    overflow: auto;
+}
+
+.container {
+    height: 80vh;
+}
+
 .active.disable {
     pointer-events: none;
 }

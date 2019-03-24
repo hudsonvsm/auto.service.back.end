@@ -45,6 +45,14 @@ abstract class GeneralModel extends AbstractModel
     }
 
     /**
+     * remove column from object
+     */
+    public function unsetColumn($key) : void
+    {
+        unset($this->columns[$key]);
+    }
+
+    /**
      * @return array
      */
     public function getColumns() : array
@@ -108,13 +116,14 @@ abstract class GeneralModel extends AbstractModel
 
     /**
      * @param string $id
+     * @param string $ident
      *
      * @return array
      */
-    public function getOne(string $id)
+    public function getOne(string $id, string $ident = 'id')
     {
         $search = [
-            'id' => $id,
+            $ident => $id,
 
         ];
 
@@ -149,11 +158,12 @@ abstract class GeneralModel extends AbstractModel
 
     /**
      * @param string $id
-     * @param array  $params
+     * @param array $params
+     * @param string $ident
      *
      * @return mixed
      */
-    public function updateItem(string $id, array $params)
+    public function updateItem(string $id, array $params, string $ident = 'id')
     {
         $allowedParams = [];
 
@@ -163,17 +173,18 @@ abstract class GeneralModel extends AbstractModel
             }
         }
 
-        return parent::update($this->getTableName(), [ $this->getColumn('id') => $id ], $allowedParams);
+        return parent::update($this->getTableName(), [ $this->getColumn('id') => $id ], $allowedParams, $ident);
     }
 
     /**
      * @param string $id
+     * @param string $ident
      *
      * @return bool
      */
-    public function deleteItem(string $id)
+    public function deleteItem(string $id, string $ident = 'id')
     {
-        return parent::delete($this->getTableName(), $id);
+        return parent::delete($this->getTableName(), $id, $ident);
     }
 
     /**

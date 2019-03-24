@@ -48,4 +48,10 @@ return [
         'sortBy' => 'id',
         'sortDirection' => 'ASC',
     ],
+    'User' => [
+        'start' => 0,
+        'count' => 1000,
+        'sortBy' => 'client_id',
+        'sortDirection' => 'ASC',
+    ],
 ];

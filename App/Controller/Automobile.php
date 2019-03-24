@@ -7,6 +7,7 @@ use Mladenov\IController;
 use App\Model\Automobile as Model;
 use Mladenov\IDatabase;
 use Mladenov\JsonView;
+use \PDOException;
 
 class Automobile implements IController
 {
@@ -23,7 +24,7 @@ class Automobile implements IController
     {
         try {
             $out = [ 'result' => $this->model->insertNewItem($params) ];
-        } catch (\PDOException $ex) {
+        } catch (PDOException $ex) {
             $errorKeys = ['engine_number', 'vin_number', 'license_number'];
 
             $field = '';
