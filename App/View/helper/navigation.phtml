@@ -25,7 +25,7 @@ $this->localizeUi(array('auto_service', 'spare_parts', 'automobiles', 'repair_ca
         <a class="nav-link text-capitalize <?php if ($response['params']['params'] == \App\Router::$lang.'/AutomobilePart') echo 'active';?>" href="<?= ROUTER_URL_NOPROTOCOL . '/AutomobilePart'; ?>"
         ><?= $this->getUiLocaleField('spare_parts'); ?></a>
       </li>
-      <li class="nav-item ">
+      <li class="nav-item">
         <a class="nav-link text-capitalize <?php if ($response['params']['params'] == \App\Router::$lang.'/Worker') echo 'active';?>" href="<?= ROUTER_URL_NOPROTOCOL . '/Worker'; ?>"
         ><?= $this->getUiLocaleField('worker'); ?></a>
       </li>
