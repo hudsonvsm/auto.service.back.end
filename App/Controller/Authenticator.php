@@ -11,6 +11,7 @@ class Authenticator
 {
     public static $isAuthorized = false;
     public static $access_token = '';
+    public static $authorizedUser = [];
 
     /**
      * @throws \Exception
@@ -72,12 +73,13 @@ class Authenticator
             $response = $authService->getService()->executeCurl();
 
             $out = $response->getValues();
-
+var_dump($out);
             switch ($returnDataType) {
                 case 'json':
                     return JsonView::render($out);
                 case null;
                     $_SESSION['Token'] = $out['access_token'];
+                    $_SESSION['Authorized'] = $out;
 
                     header('Location: '. ROUTER_URL_NOPROTOCOL .'/RepairCardData');
             }
@@ -123,6 +125,7 @@ class Authenticator
 
             self::$isAuthorized = $out['success'];
             self::$access_token = $auth;
+            self::$authorizedUser = $_SESSION['Authorized'];
         } catch (AccessException $ex){
             http_response_code($ex->getCode());
 
@@ -142,6 +145,7 @@ class Authenticator
     public static function logout() : void
     {
         $_SESSION['Token'] = null;
+        $_SESSION['Authorized'] = null;
         session_destroy();
 
         header('Location: '. ROUTER_URL_NOPROTOCOL .'/Login');

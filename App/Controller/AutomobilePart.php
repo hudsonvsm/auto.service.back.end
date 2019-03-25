@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Exceptions\ControllerException;
+use Exception;
 use Mladenov\Config;
 use Mladenov\IController;
 use App\Model\AutomobilePart as Model;
@@ -15,8 +17,17 @@ class AutomobilePart implements IController
 
     private $model;
 
+    /**
+     * AutomobilePart constructor.
+     * @param IDatabase $db
+     * @throws ControllerException
+     */
     public function __construct(IDatabase $db)
     {
+        if (Authenticator::$authorizedUser['scope'] !== 'admin') {
+            throw new ControllerException('401 Unauthorized', 401);
+        }
+
         $dbTableColumns = Config::getProperty('tables');
 
         $this->model = new Model($db, DB_TABLE_AUTOMOBILE_PART, $dbTableColumns[DB_TABLE_AUTOMOBILE_PART]);
@@ -27,6 +38,11 @@ class AutomobilePart implements IController
         return JsonView::render($this->model->insertNewItem($params));
     }
 
+    /**
+     * @param array $params
+     * @return false|string|void
+     * @throws ControllerException
+     */
     public function getCollection(array $params)
     {
         $out['params'] = $params;
@@ -41,7 +57,11 @@ class AutomobilePart implements IController
                 return JsonView::render($out);
             case null;
                 $view = new View(ReflectionShortName::getClassShortName(__CLASS__), 'index', $out);
-                return $view->render();
+                try {
+                    return $view->render();
+                } catch (Exception $e) {
+                    throw new ControllerException($e->getMessage(), $e->getCode(), $e);
+                }
         }
     }
 

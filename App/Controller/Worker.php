@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Exceptions\ControllerException;
 use Mladenov\Config;
 use Mladenov\IController;
 use App\Model\Worker as Model;
@@ -13,8 +14,17 @@ class Worker implements IController
 {
     private $model;
 
+    /**
+     * Worker constructor.
+     * @param IDatabase $db
+     * @throws ControllerException
+     */
     public function __construct(IDatabase $db)
     {
+        if (Authenticator::$authorizedUser['scope'] !== 'admin') {
+            throw new ControllerException('401 Unauthorized', 401);
+        }
+
         $dbTableColumns = Config::getProperty('tables');
 
         $this->model = new Model($db, DB_TABLE_WORKER, $dbTableColumns[DB_TABLE_WORKER]);

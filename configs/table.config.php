@@ -94,7 +94,7 @@ return [
         'name_en',
     ],
     'oauth_clients' => [
-        'client_id',
+        'id' => 'client_id',
         'client_secret',
         'scope'
     ],

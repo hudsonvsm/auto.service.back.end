@@ -1,46 +1,57 @@
 <!-- Automobile Modal -->
-<script src="<?= OPERATOR_URL_NOPROTOCOL . '/public/js/';?>WorkerAddEdit.js"></script>
+<script src="<?= OPERATOR_URL_NOPROTOCOL . '/public/js/';?>UserAddEdit.js"></script>
 
 <?php $this->localizeUi(array(
     'name_required',
-    'worker',
-    'first_name',
-    'last_name'
+    'scope',
+    'user',
+    'user_name',
+    'admin',
+    'choose',
+    'password'
 ));?>
 
 <div class="modal fade" id="add-edit-popup-modal" tabindex="-1" role="dialog" >
   <div class="modal-dialog" role="document">
     <div class="modal-content bidding-popup">
-      <form method="post" id="add-edit-worker" action="#">
+      <form method="post" id="add-edit-user" action="#">
         <div class="modal-header">
           <div class="clearfix">
-            <h5 class="col-xs-6 title-container"><span class="title"><?= $this->getUiLocaleField('worker'); ?></span></h5>
+            <h5 class="col-xs-6 title-container text-capitalize"><span class="title"><?= $this->getUiLocaleField('user'); ?></span></h5>
           </div>
         </div>
         <div class="modal-body">
-          <div class="form-group row clearfix">
-            <label class="col-sm-3 col-form-label " for="first_name"><?= $this->getUiLocaleField('first_name'); ?></label>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label " for="client_id"><?= $this->getUiLocaleField('user_name'); ?></label>
               <div class="col-sm-9">
               <input class="form-control"
                      type="text"
-                     id="first_name"
-                     placeholder="<?= $this->getUiLocaleField('first_name'); ?>"
+                     id="client_id"
+                     placeholder="<?= $this->getUiLocaleField('user_name'); ?>"
                      required
+                     disabled
                      oninvalid="this.setCustomValidity('<?= $this->getUiLocaleField('name_required'); ?>')"
                      oninput="this.setCustomValidity('')">
               </div>
           </div>
-          <div class="form-group row clearfix">
-            <label class="col-sm-3 col-form-label " for="last_name"><?= $this->getUiLocaleField('last_name'); ?></label>
+          <div class="form-group row">
+            <label class="col-sm-3 col-form-label " for="scope"><?= $this->getUiLocaleField('scope'); ?></label>
               <div class="input-group col-sm-9">
-                <input class="form-control"
-                       type="text"
-                       id="last_name"
-                       placeholder="<?= $this->getUiLocaleField('last_name'); ?>"
-                       required
-                       oninvalid="this.setCustomValidity('<?= $this->getUiLocaleField('name_required'); ?>')"
-                       oninput="this.setCustomValidity('')">
+                <select class="form-control custom-select text-capitalize" id="scope" required>
+                    <option value="">-- <?= $this->getUiLocaleField('choose'); ?> --</option>
+                    <option value="user"><?= $this->getUiLocaleField('user'); ?></option>
+                    <option value="admin"><?= $this->getUiLocaleField('admin'); ?></option>
+                </select>
               </div>
+          </div>
+          <div class="form-group row clearfix">
+            <label class="col-sm-3 col-form-label " for="client_secret"><?= $this->getUiLocaleField('password'); ?></label>
+            <div class="col-sm-9">
+              <input class="form-control"
+                   type="password"
+                   id="client_secret"
+                   placeholder="<?= $this->getUiLocaleField('password'); ?>">
+            </div>
           </div>
         </div>
         <?php $this->loadPartial('addComponent.footerModal', 'add-edit-popup-modal'); ?>

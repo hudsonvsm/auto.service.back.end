@@ -1,34 +1,43 @@
 $(document).ready(function() {
-    // automobile part
+    // User
     $(".row-element").on('click', ".edit-row", function (event) {
         if ($(event.target).hasClass('delete-element')) {
             return false;
         }
-
-        $('#add-edit-worker').data($(this).data());
+        $('#add-edit-user').data($(this).data());
     });
 
     $('#add-edit-popup-modal').off().on('show.bs.modal', function (e) {
-        $(this).find('input#first_name').val($('#add-edit-worker').data('first-name'));
-        $(this).find('input#last_name').val($('#add-edit-worker').data('last-name'));
+        console.log($('#add-edit-user').data());
+        if(jQuery.isEmptyObject($('#add-edit-user').data())) {
+            $('#add-edit-popup-modal').find('input#client_id').prop({ 'disabled': false });
+        }
+
+        $(this).find('select#scope').val($('#add-edit-user').data('scope'));
+        $(this).find('input#client_id').val($('#add-edit-user').data('clientId'));
     })
     .on('hide.bs.modal', function (e) {
-        $('#add-edit-worker').removeData();
-        $(this).find('input#first_name').val('');
-        $(this).find('input#last_name').val('');
+        $('#add-edit-user').removeData();
+        $(this).find('select#scope').val('');
+        $(this).find('input#client_id').val('').prop({ 'disabled': true });
     });
 
-    $("#add-edit-worker").on('submit', function (event) {
+    $("#add-edit-user").on('submit', function (event) {
         event.preventDefault();
 
         var $this = $(this);
-        var values = objectBuilderFromInputs($('#add-edit-worker').find(':input'));
+        var values = objectBuilderFromInputs($('#add-edit-user').find(':input'));
+
+        if (values.client_secret === '') {
+             delete values.client_secret;
+        }
 
         var method = 'POST';
         var id = '';
-        if (typeof $this.data('id') !== 'undefined') {
+        if (typeof $this.data('clientId') !== 'undefined') {
             method = 'PATCH';
-            id = '/' + $this.data('id');
+            id = '/' + $this.data('clientId');
+            delete values.client_id;
         }
 
         $.ajax({

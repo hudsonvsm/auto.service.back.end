@@ -20,6 +20,7 @@ $this->localizeUi(array('auto_service', 'spare_parts', 'automobiles', 'repair_ca
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent" role="tabpanel">
     <ul class="autoservice-navigation navbar-nav nav mr-auto" role="tablist">
+<?php if (App\Controller\Authenticator::$authorizedUser['scope'] === 'admin') { ?>
       <li class="nav-item ">
         <a class="nav-link text-capitalize <?php if ($response['params']['params'] == \App\Router::$lang.'/AutomobilePart') echo 'active';?>" href="<?= ROUTER_URL_NOPROTOCOL . '/AutomobilePart'; ?>"
         ><?= $this->getUiLocaleField('spare_parts'); ?></a>
@@ -32,6 +33,7 @@ $this->localizeUi(array('auto_service', 'spare_parts', 'automobiles', 'repair_ca
         <a class="nav-link text-capitalize <?php if ($response['params']['params'] == \App\Router::$lang.'/User') echo 'active';?>" href="<?= ROUTER_URL_NOPROTOCOL . '/User'; ?>"
         ><?= $this->getUiLocaleField('user'); ?></a>
       </li>
+<?php } ?>
       <li class="nav-item">
         <a class="nav-link text-capitalize <?php if ($response['params']['params'] == \App\Router::$lang.'/AutomobileData') echo 'active';?>" href="<?= ROUTER_URL_NOPROTOCOL . '/AutomobileData'; ?>"
         ><?= $this->getUiLocaleField('automobiles'); ?></a>
