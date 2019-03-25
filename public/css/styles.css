@@ -9,6 +9,7 @@ body, input, button, input, optgroup, select, textarea {
 
 .container {
     height: 80vh;
+    max-width: 84vw!important;
 }
 
 .active.disable {

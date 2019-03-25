@@ -10,6 +10,10 @@ use Mladenov\IDatabase;
 use Mladenov\JsonView;
 use Mladenov\View;
 
+/**
+ * Class Worker
+ * @package App\Controller
+ */
 class Worker implements IController
 {
     private $model;
@@ -17,24 +21,33 @@ class Worker implements IController
     /**
      * Worker constructor.
      * @param IDatabase $db
-     * @throws ControllerException
      */
     public function __construct(IDatabase $db)
     {
-        if (Authenticator::$authorizedUser['scope'] !== 'admin') {
-            throw new ControllerException('401 Unauthorized', 401);
-        }
-
         $dbTableColumns = Config::getProperty('tables');
 
         $this->model = new Model($db, DB_TABLE_WORKER, $dbTableColumns[DB_TABLE_WORKER]);
     }
 
+    /**
+     * @param $params
+     * @return false|string
+     * @throws ControllerException
+     */
     public function addItem($params)
     {
+        if (Authenticator::$authorizedUser['scope'] !== 'admin') {
+            throw new ControllerException('401 Unauthorized', 401);
+        }
+
         return JsonView::render($this->model->insertNewItem($params));
     }
 
+    /**
+     * @param array $params
+     * @return false|string
+     * @throws \Exception
+     */
     public function getCollection(array $params)
     {
         $out['params'] = $params;
@@ -58,13 +71,32 @@ class Worker implements IController
         return JsonView::render($this->model->getOne($id));
     }
 
+    /**
+     * @param $id
+     * @return false|string
+     * @throws ControllerException
+     */
     public function deleteItem($id)
     {
+        if (Authenticator::$authorizedUser['scope'] !== 'admin') {
+            throw new ControllerException('401 Unauthorized', 401);
+        }
+
         return JsonView::render([ 'deleted' => $this->model->deleteItem($id) ]);
     }
 
+    /**
+     * @param $id
+     * @param $params
+     * @return false|string
+     * @throws ControllerException
+     */
     public function updateItem($id, $params)
     {
+        if (Authenticator::$authorizedUser['scope'] !== 'admin') {
+            throw new ControllerException('401 Unauthorized', 401);
+        }
+
         return JsonView::render([ 'result' => $this->model->updateItem($id, $params) ]);
     }
 }

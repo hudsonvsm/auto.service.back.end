@@ -11,6 +11,10 @@ use Mladenov\IDatabase;
 use Mladenov\JsonView;
 use Mladenov\View;
 
+/**
+ * Class AutomobilePart
+ * @package App\Controller
+ */
 class AutomobilePart implements IController
 {
     use ReflectionShortName;
@@ -24,17 +28,22 @@ class AutomobilePart implements IController
      */
     public function __construct(IDatabase $db)
     {
-        if (Authenticator::$authorizedUser['scope'] !== 'admin') {
-            throw new ControllerException('401 Unauthorized', 401);
-        }
-
         $dbTableColumns = Config::getProperty('tables');
 
         $this->model = new Model($db, DB_TABLE_AUTOMOBILE_PART, $dbTableColumns[DB_TABLE_AUTOMOBILE_PART]);
     }
 
+    /**
+     * @param $params
+     * @return false|string
+     * @throws ControllerException
+     */
     public function addItem($params)
     {
+        if (Authenticator::$authorizedUser['scope'] !== 'admin') {
+            throw new ControllerException('401 Unauthorized', 401);
+        }
+
         return JsonView::render($this->model->insertNewItem($params));
     }
 
@@ -65,13 +74,26 @@ class AutomobilePart implements IController
         }
     }
 
+    /**
+     * @param $id
+     * @return false|string
+     */
     public function getItem($id)
     {
         return JsonView::render($this->model->getOne($id));
     }
 
+    /**
+     * @param $id
+     * @return false|string
+     * @throws ControllerException
+     */
     public function deleteItem($id)
     {
+        if (Authenticator::$authorizedUser['scope'] !== 'admin') {
+            throw new ControllerException('401 Unauthorized', 401);
+        }
+
         try {
             $out = [ 'deleted' => $this->model->deleteItem($id) ];
         } catch (\PDOException $ex) {
@@ -85,8 +107,18 @@ class AutomobilePart implements IController
         return JsonView::render($out);
     }
 
+    /**
+     * @param $id
+     * @param $params
+     * @return mixed
+     * @throws ControllerException
+     */
     public function updateItem($id, $params)
     {
+        if (Authenticator::$authorizedUser['scope'] !== 'admin') {
+            throw new ControllerException('401 Unauthorized', 401);
+        }
+
         return $this->model->updateItem($id, $params);
     }
 }

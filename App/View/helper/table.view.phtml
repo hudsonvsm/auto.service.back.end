@@ -24,20 +24,22 @@ $this->localizeUi(array(
   </tfoot>
   <tbody class="row-element">
   <?php foreach ($response['data'] as $row) { ?>
-    <tr class="edit-row"
-        <?php foreach ($row as $key => $column) {
+  <tr class="edit-row"
+      <?php foreach ($row as $key => $column) {
           echo 'data-' . $this->camelCaseToHyphen($key) . '="' . $column . '"';
-        } ?>
-    >
-        <?php foreach ($row as $key => $column) {
-            if ($key === 'id') continue; ?>
-          <td class="edit-current-element <?= $key; ?>"
-              data-toggle="modal"
-              data-target="#add-edit-popup-modal"><?= $column; ?></td>
-        <?php } ?>
+      } ?>
+  >
+      <?php foreach ($row as $key => $column) {
+      if ($key === 'id') continue; ?>
+      <td class="edit-current-element <?= $key; ?>"
+          data-toggle="modal"
+          data-target="#add-edit-popup-modal"><?= $column; ?></td>
+      <?php }
+      if (App\Controller\Authenticator::$authorizedUser['scope'] === 'admin') { ?>
         <td class="delete" align="center" valign="middle">
           <input class="btn text-capitalize btn-outline-danger delete-element" type="button" value="<?= $this->getUiLocaleField('delete'); ?>">
         </td>
+      <?php } ?>
     </tr>
   <?php } ?>
   </tbody>
