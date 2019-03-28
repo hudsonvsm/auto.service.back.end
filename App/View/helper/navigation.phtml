@@ -22,31 +22,33 @@ $this->localizeUi(array('auto_service', 'spare_parts', 'automobiles', 'repair_ca
     <ul class="autoservice-navigation navbar-nav nav mr-auto" role="tablist">
 <?php if (App\Controller\Authenticator::$authorizedUser['scope'] === 'admin') { ?>
       <li class="nav-item ">
-        <a class="nav-link text-capitalize <?php if ($response['params']['params'] == \App\Router::$lang.'/AutomobilePart') echo 'active';?>" href="<?= ROUTER_URL_NOPROTOCOL . '/AutomobilePart'; ?>"
+        <a class="nav-link text-capitalize <?php if ($response['params']['params'] === \App\Router::$lang.'/AutomobilePart') echo 'active';?>" href="<?= ROUTER_URL_NOPROTOCOL . '/AutomobilePart'; ?>"
         ><?= $this->getUiLocaleField('spare_parts'); ?></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-capitalize <?php if ($response['params']['params'] == \App\Router::$lang.'/Worker') echo 'active';?>" href="<?= ROUTER_URL_NOPROTOCOL . '/Worker'; ?>"
+        <a class="nav-link text-capitalize <?php if ($response['params']['params'] === \App\Router::$lang.'/Worker') echo 'active';?>" href="<?= ROUTER_URL_NOPROTOCOL . '/Worker'; ?>"
         ><?= $this->getUiLocaleField('worker'); ?></a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link text-capitalize <?php if ($response['params']['params'] == \App\Router::$lang.'/User') echo 'active';?>" href="<?= ROUTER_URL_NOPROTOCOL . '/User'; ?>"
+        <a class="nav-link text-capitalize <?php if ($response['params']['params'] === \App\Router::$lang.'/User') echo 'active';?>" href="<?= ROUTER_URL_NOPROTOCOL . '/User'; ?>"
         ><?= $this->getUiLocaleField('user'); ?></a>
       </li>
 <?php } ?>
       <li class="nav-item">
-        <a class="nav-link text-capitalize <?php if ($response['params']['params'] == \App\Router::$lang.'/AutomobileData') echo 'active';?>" href="<?= ROUTER_URL_NOPROTOCOL . '/AutomobileData'; ?>"
+        <a class="nav-link text-capitalize <?php if ($response['params']['params'] === \App\Router::$lang.'/AutomobileData') echo 'active';?>" href="<?= ROUTER_URL_NOPROTOCOL . '/AutomobileData'; ?>"
         ><?= $this->getUiLocaleField('automobiles'); ?></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-capitalize <?php if ($response['params']['params'] == \App\Router::$lang.'/RepairCardData') echo 'active';?>" href="<?= ROUTER_URL_NOPROTOCOL . '/RepairCardData'; ?>"
+        <a class="nav-link text-capitalize <?php if ($response['params']['params'] === \App\Router::$lang.'/RepairCardData') echo 'active';?>" href="<?= ROUTER_URL_NOPROTOCOL . '/RepairCardData'; ?>"
         ><?= $this->getUiLocaleField('repair_cards'); ?></a>
       </li>
     </ul>
       <div class="my-2 mr-5" >
           <div id="options" data-input-name="country" data-selected-country="<?= $country; ?>"></div>
       </div>
-    <a class="btn text-capitalize btn-danger my-2 my-sm-0 " href="<?= ROUTER_URL_NOPROTOCOL . '/Logout'; ?>"><?= $this->getUiLocaleField('exit'); ?></a>
+      <?php if (!is_null($response['params']['params'])) { ?>
+          <a class="btn text-capitalize btn-danger my-2 my-sm-0 " href="<?= ROUTER_URL_NOPROTOCOL . '/Logout'; ?>"><?= $this->getUiLocaleField('exit'); ?></a>
+      <?php }?>
   </div>
 </nav>
 
