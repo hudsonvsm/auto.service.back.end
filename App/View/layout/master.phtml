@@ -21,9 +21,9 @@
             rel="stylesheet"
             integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
             crossorigin="anonymous">
-    <script 
-        src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" 
-        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" 
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js"
         integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP"
@@ -31,10 +31,16 @@
 
     <link rel="stylesheet" href="<?= OPERATOR_URL_NOPROTOCOL; ?>/public/css/font-faces.css">
     <link rel="stylesheet" href="<?= OPERATOR_URL_NOPROTOCOL; ?>/public/css/styles.css">
-    <link rel="stylesheet" href="<?= OPERATOR_URL_NOPROTOCOL; ?>/public/css/flags.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/flagstrap/1.0/css/flags.min.css"
+          integrity="sha256-GyHMVPF7wBcshyUKwPcXb7CEyCwlyk9/USb6d3MTwN4="
+          crossorigin="anonymous" />
 
     <script src="<?= OPERATOR_URL_NOPROTOCOL; ?>/public/js/functions.js"></script>
-    <script src="<?= OPERATOR_URL_NOPROTOCOL; ?>/public/js/jquery.flagstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flagstrap/1.0/js/jquery.flagstrap.min.js"
+            integrity="sha256-Dub2Ph9eWjAjG3/bH0r21mdIGjfgAcpXG937IIyfTCg="
+            crossorigin="anonymous"></script>
+
     <script>
       var URL = '<?php echo (!is_null($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] !== 'off' || $_SERVER['HTTPS'] === true)) ? 'https:' : 'http:'; echo ROUTER_URL_NOPROTOCOL; ?>';
       var URL_NOPROTOCOL = '<?= ROUTER_URL_NOPROTOCOL; ?>';
